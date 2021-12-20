@@ -9,7 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/target-ar" />
+            <option value="$PROJECT_DIR$/core-sample" />
+            <option value="$PROJECT_DIR$/surface-ar-sample" />
+            <option value="$PROJECT_DIR$/target-ar-sample" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

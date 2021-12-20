@@ -18,4 +18,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "IAR SDK Samples"
-include ':target-ar'
+include ':target-ar-sample'
+include ':surface-ar-sample'
+include ':core-sample'
