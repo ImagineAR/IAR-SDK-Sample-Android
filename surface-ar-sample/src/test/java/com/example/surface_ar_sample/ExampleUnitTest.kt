@@ -1,4 +1,4 @@
-package com.example.surface_ar
+package com.example.surface_ar_sample
 
 import org.junit.Test
 
