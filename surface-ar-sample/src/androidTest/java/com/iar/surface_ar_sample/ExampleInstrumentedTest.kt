@@ -1,4 +1,4 @@
-package com.example.surface_ar_sample
+package com.iar.surface_ar_sample
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

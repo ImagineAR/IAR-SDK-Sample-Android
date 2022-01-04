@@ -1,4 +1,4 @@
-package com.example.target_ar_sample
+package com.iar.target_ar_sample
 
 import org.junit.Test
 

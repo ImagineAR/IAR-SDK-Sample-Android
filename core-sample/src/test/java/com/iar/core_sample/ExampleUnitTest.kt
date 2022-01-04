@@ -1,4 +1,4 @@
-package com.example.core_sample
+package com.iar.core_sample
 
 import org.junit.Test
 
