@@ -1,4 +1,4 @@
-package com.example.target_ar_sample
+package com.iar.target_ar_sample
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

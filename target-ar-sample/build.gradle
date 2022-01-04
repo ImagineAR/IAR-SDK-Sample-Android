@@ -9,8 +9,8 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.iarsdksamples"
-        minSdk 21
+        applicationId "com.iar.iarsdksamples"
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -31,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -49,6 +52,7 @@ dependencies {
 
     // DI lib
     implementation "com.google.dagger:hilt-android:2.38.1"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:hilt-android-compiler:2.38.1"
 
     // Navigation components dependencies
@@ -59,6 +63,19 @@ dependencies {
     // Kotlin navigation component deps
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // IAR dependencies
+    implementation 'com.imaginear.iar:iar_core-dev:1.5.6-dev'
+    implementation 'com.imaginear.iar:iar_sdk-dev:1.5.6-dev'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.7.1'
+    implementation 'com.google.android.filament:filament-android:1.12.7'
+    implementation 'com.google.android.filament:filament-utils-android:1.12.7'
+    implementation 'com.google.android.filament:gltfio-android:1.12.7'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
