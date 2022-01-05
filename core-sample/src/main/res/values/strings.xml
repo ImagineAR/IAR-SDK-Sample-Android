@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">core-sample</string>
+    <string name="button_label_user_management">User Management</string>
+    <string name="button_label_user_rewards">User Rewards</string>
+    <string name="button_label_arhunts">ARHunts</string>
+    <string name="button_label_location_markers">Location Markers</string>
+    <string name="button_label_ondemand_markers">OnDemand Markers</string>
+    <string name="button_label_dev_tools">Developer Tools</string>
 </resources>

@@ -3,13 +3,14 @@
     package="com.iar.core_sample">
 
     <application
+        android:name="com.iar.core_sample.CoreApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IARSDKSamples">
-        <activity android:name="com.iar.core_sample.MainActivity"
+        <activity android:name="com.iar.core_sample.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
