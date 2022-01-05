@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
-    tools:context=".ui.fragments.MainFragment">
+    tools:context=".ui.fragments.main.MainFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"

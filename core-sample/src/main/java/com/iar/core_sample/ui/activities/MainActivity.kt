@@ -1,8 +1,9 @@
-package com.iar.core_sample.ui
+package com.iar.core_sample.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.iar.core_sample.databinding.ActivityMainBinding
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

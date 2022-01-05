@@ -1,26 +1,29 @@
-package com.iar.core_sample.ui.fragments
+package com.iar.core_sample.ui.fragments.main
 
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.iar.core_sample.databinding.MainFragmentBinding
+import com.iar.core_sample.ui.common.BaseFragment
+import com.iar.core_sample.ui.common.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class MainFragment : BaseFragment() {
     private val LOGTAG = "MainFragment"
     private val viewModel by viewModels<MainViewModel>()
+
+    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val (orgKey, region)  = viewModel.getOrgKeyRegion()
+        val (orgKey, region) = viewModel.getOrgKeyRegion()
         Log.d(LOGTAG, orgKey)
         Log.d(LOGTAG, region.toString())
 
@@ -53,7 +56,5 @@ class MainFragment : Fragment() {
 
         return binding.root
     }
-
-
 
 }
