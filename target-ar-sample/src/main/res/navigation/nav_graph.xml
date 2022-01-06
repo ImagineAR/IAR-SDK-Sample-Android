@@ -5,10 +5,16 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragment_main">
 
+    <action android:id="@+id/action_target_ar"
+        app:destination="@id/activity_target_ar"/>
+
     <fragment android:name="com.iar.target_ar_sample.ui.fragments.main.MainFragment"
         android:id="@+id/fragment_main"
         android:label="Main Fragment"
         tools:layout="@layout/main_fragment">
-
     </fragment>
+
+    <activity android:name="com.iar.target_ar_sample.ui.activities.TargetARActivity"
+        android:id="@+id/activity_target_ar"
+        android:label="@string/label_target_ar_view"/>
 </navigation>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.iar.target_ar_sample.R
 import com.iar.target_ar_sample.databinding.MainFragmentBinding
 import com.iar.target_ar_sample.ui.common.BaseFragment
 import com.iar.target_ar_sample.ui.common.BaseViewModel
@@ -30,7 +31,7 @@ class MainFragment : BaseFragment() {
 
 
         binding.scanButton.setOnClickListener {
-            //TODO: Navigate to scan target AR.
+            viewModel.navigate(R.id.action_target_ar)
         }
 
         binding.userButton.setOnClickListener {
