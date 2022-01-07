@@ -6,4 +6,16 @@
     <string name="button_label_location_markers">Location Markers</string>
     <string name="button_label_ondemand_markers">OnDemand Markers</string>
     <string name="button_label_dev_tools">Developer Tools</string>
+
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="create_new_user">Create New User</string>
+    <string name="migrate_user">Migrate User</string>
+    <string name="login_user">Login User</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="enter_external_unserId">Enter external userId:</string>
+    <string name="migrate_message">Would like to migrate the userId to new userId:</string>
+
+
 </resources>

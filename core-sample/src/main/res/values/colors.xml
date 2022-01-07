@@ -17,4 +17,9 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
     <color name="grey">#595959</color>
+
+    <color name="sampleApp_greyBlue">#415787</color>
+    <color name="sampleApp_darkBlue">#004781</color>
+    <color name="transparent">#00000000</color>
+
 </resources>
