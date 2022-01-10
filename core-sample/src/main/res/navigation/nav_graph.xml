@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_userManagementFragment"
             app:destination="@id/userManagementFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_userRewardsFragment"
+            app:destination="@id/userRewardsFragment" />
     </fragment>
     <fragment
         android:id="@+id/userManagementFragment"
@@ -25,6 +28,13 @@
         <argument
             android:name="Region"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRewardsFragment"
+        android:name="com.iar.core_sample.ui.fragments.rewards.UserRewardsFragment"
+        android:label="user_rewards_fragment"
+        tools:layout="@layout/user_rewards_fragment" >
+
     </fragment>
 
 </navigation>

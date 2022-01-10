@@ -20,7 +20,7 @@ dependencyResolutionManagement {
             url 'https://pkgs.dev.azure.com/xenoholographicit/ImagineAR/_packaging/iar_sdk/maven/v1'
             credentials {
                 username "xenoholographicit"
-                password "l5n4dpd5areaq6lxpkdjda62a2gksb6lxczigp4c36yxl7axz4ga"
+                password "to4yegbroehrxllo2tfoxbnr4r7q5hkkvnupauoeffoy6ieojmzq"
             }
         }
     }
