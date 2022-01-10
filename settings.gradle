@@ -11,6 +11,8 @@ pluginManagement {
     }
 }
 
+def accessToken = System.getenv("ACCESS_TOKEN") ?: ACCESS_TOKEN
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -20,7 +22,7 @@ dependencyResolutionManagement {
             url 'https://pkgs.dev.azure.com/xenoholographicit/ImagineAR/_packaging/iar_sdk/maven/v1'
             credentials {
                 username "xenoholographicit"
-                password ACCESS_TOKEN
+                password accessToken
             }
         }
     }
