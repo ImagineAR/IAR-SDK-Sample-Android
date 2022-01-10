@@ -6,7 +6,6 @@ import com.iar.core_sample.data.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.core_sample.utils.Constants
 import com.iar.iar_core.CoreAPI
-import com.iar.iar_core.Region
 import com.iar.iar_core.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
@@ -17,8 +16,8 @@ class UserManagementViewModel @Inject constructor(private val appConfig: AppConf
     BaseViewModel() {
     var isAnonymous = true
 
-    fun initialize(iarLicense: String, region: Region, context: Context) {
-        CoreAPI.initialize(iarLicense, region, context)
+    fun initialize(context: Context) {
+        CoreAPI.initialize(appConfig.getOrgKeyRegion().first, appConfig.getOrgKeyRegion().second, context)
     }
 
     fun createNewUser(

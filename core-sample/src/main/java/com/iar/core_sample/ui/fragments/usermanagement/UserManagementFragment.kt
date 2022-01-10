@@ -9,14 +9,11 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import com.iar.core_sample.R
 import com.iar.core_sample.databinding.UserManagementFragmentBinding
 import com.iar.core_sample.ui.common.BaseFragment
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.core_sample.utils.Util.setupDialogEditText
-import com.iar.iar_core.CoreAPI
-import com.iar.iar_core.Region
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -24,7 +21,6 @@ import java.util.*
 class UserManagementFragment : BaseFragment() {
     private val LOGTAG = "userManagementFragment"
     private val viewModel by viewModels<UserManagementViewModel>()
-    private val args by navArgs<UserManagementFragmentArgs>()
 
     override fun getViewModel(): BaseViewModel = viewModel
 
@@ -37,18 +33,7 @@ class UserManagementFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val orgKey = args.orgKey
-        val region = args.region
-     //   val orgKey = arguments?.getString("OrgKey")?:""
-    //    val region = arguments?.getString("Region")?:""
-
-
-        Log.d(LOGTAG, orgKey)
-        Log.d(LOGTAG, region)
-
-
-        viewModel.initialize(orgKey, Region.valueOf(region), requireContext())
-
+        viewModel.initialize(requireContext())
 
         binding = UserManagementFragmentBinding.inflate(inflater, container, false)
 

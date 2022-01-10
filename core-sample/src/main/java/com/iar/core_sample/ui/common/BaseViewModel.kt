@@ -14,7 +14,7 @@ open class BaseViewModel : ViewModel() {
     // and handled in the corresponding UI view.
     fun navigateBack() = _navigationCommand.postValue(NavigationCommand.Back)
 
-    fun navigate(direction: Int, args: Bundle?) {
+    fun navigate(direction: Int, args: Bundle?=null) {
         val command = NavigationCommand.To(direction)
         args?.let {
             command.args = it
