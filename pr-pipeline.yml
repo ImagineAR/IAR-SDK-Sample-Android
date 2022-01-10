@@ -14,9 +14,9 @@ pr:
 pool:
   vmImage: 'macos-latest'
 
+steps:
 - bash: echo $(accessToken)
 
-steps:
 - task: Gradle@2
   env:
     ACCESS_TOKEN: $(accessToken)
