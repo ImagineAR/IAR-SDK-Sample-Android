@@ -15,7 +15,7 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-- bash: echo $(accessToken)
+- bash: echo $(accessToken) this is the token
 
 - task: Gradle@2
   env:
