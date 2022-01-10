@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.rewards.UserRewardsFragment">
+    tools:context=".ui.fragments.rewards.RewardDetailsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reward_list"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:text="reward details screen" />
 
 </FrameLayout>

@@ -35,6 +35,14 @@
         android:label="user_rewards_fragment"
         tools:layout="@layout/user_rewards_fragment" >
 
+        <action
+            android:id="@+id/action_userRewardsFragment_to_rewardDetailsFragment"
+            app:destination="@id/rewardDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/rewardDetailsFragment"
+        android:name="com.iar.core_sample.ui.fragments.rewards.RewardDetailsFragment"
+        android:label="reward_details_fragment"
+        tools:layout="@layout/reward_details_fragment" />
 
 </navigation>

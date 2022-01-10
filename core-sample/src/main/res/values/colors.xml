@@ -22,4 +22,6 @@
     <color name="sampleApp_darkBlue">#004781</color>
     <color name="transparent">#00000000</color>
 
+    <color name="darkGrey">#404040</color>
+
 </resources>
