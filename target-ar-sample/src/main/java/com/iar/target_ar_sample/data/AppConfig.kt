@@ -1,9 +1,9 @@
 package com.iar.target_ar_sample.data
 
 import android.content.Context
-import ca.iversoft.iar_core.CoreAPI
-import ca.iversoft.iar_core.Region
-import ca.iversoft.iar_core.User
+import com.iar.iar_core.CoreAPI
+import com.iar.iar_core.Region
+import com.iar.iar_core.User
 import java.util.*
 
 /**
@@ -13,6 +13,10 @@ import java.util.*
 class AppConfig {
     private val QA_ORG_KEY = "pk_org_c7a686bf2b4a4a3c95b817cbf95b1198"
     private val QA_REGION = Region.QA
+
+    fun getCurRegion() = QA_REGION
+
+    fun getCurLicense() = QA_ORG_KEY
 
     fun initialize(context: Context,
                    success: (() -> Unit)?,
