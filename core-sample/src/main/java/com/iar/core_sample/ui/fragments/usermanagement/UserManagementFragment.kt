@@ -92,8 +92,6 @@ class UserManagementFragment : BaseFragment() {
                 newUserId
             )
 
-            binding.userId.text = newUserId
-
         }
     }
 
@@ -108,7 +106,6 @@ class UserManagementFragment : BaseFragment() {
             inputId
         )
 
-        binding.userId.setText(inputId)
     }
 
     private fun setExternalUser() {
