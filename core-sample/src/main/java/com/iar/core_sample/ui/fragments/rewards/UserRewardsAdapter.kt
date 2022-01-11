@@ -26,13 +26,14 @@ class UserRewardsAdapter(private val rewardsList: List<Reward>, val listener : O
 
         val requestOptions = RequestOptions()
             .override(400, 400)
+        reward.image?.let{
         Glide.with(holder.rewardImage.getContext())
             .load(reward.image.url)
             .placeholder(R.drawable.splash_icon)
             .error(R.drawable.splash_icon)
             .apply(requestOptions)
             .into(holder.rewardImage)
-
+        }
         holder.rewardName.text = reward.name
         holder.rewardId.text = reward.id
         holder.itemView.setOnClickListener {

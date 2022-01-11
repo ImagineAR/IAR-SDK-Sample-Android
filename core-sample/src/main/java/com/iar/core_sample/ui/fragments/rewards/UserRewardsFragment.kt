@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.iar.core_sample.databinding.UserRewardsFragmentBinding
 import com.iar.core_sample.ui.fragments.main.MainFragmentDirections
+import com.iar.core_sample.ui.fragments.usermanagement.UserManagementViewModel
 import com.iar.iar_core.Reward
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +22,7 @@ class UserRewardsFragment : Fragment() {
 
 
     private val viewModel by viewModels<UserRewardsViewModel>()
+
     private lateinit var binding: UserRewardsFragmentBinding
     private lateinit var rewardList: RecyclerView
 
@@ -49,14 +51,15 @@ class UserRewardsFragment : Fragment() {
         val adapter = UserRewardsAdapter(rewards, object: UserRewardsAdapter.OnRewardItemClickListener{
             override fun onRewardItemClick(reward: Reward) {
                 println("user reward clicked ${reward.id}")
-         //      viewModel.navigateToRewardDetailsFragment()
+                //currently not working
+              // viewModel.navigateToRewardDetailsFragment()
 
-                val action = UserRewardsFragmentDirections.actionUserRewardsFragmentToRewardDetailsFragment()
+                val action = UserRewardsFragmentDirections.actionUserRewardsFragmentToRewardDetailsFragment(reward)
                 binding.root.findNavController().navigate(action)
             }
         })
-        rewardList.adapter = adapter
 
+        rewardList.adapter = adapter
 
     }
 

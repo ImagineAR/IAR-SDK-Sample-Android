@@ -28,6 +28,9 @@ class UserRewardsViewModel @Inject constructor(private val appConfig: AppConfig)
     }
 
     fun getCurrentUserId(): String {
+
+
+
         return CoreAPI.getCurrentExternalUserId() ?: UUID.randomUUID().toString()
     }
 
@@ -44,6 +47,9 @@ class UserRewardsViewModel @Inject constructor(private val appConfig: AppConfig)
 
         }
     }
+
+
+
 
     fun navigateToRewardDetailsFragment() {
         navigate(R.id.action_userRewardsFragment_to_rewardDetailsFragment)

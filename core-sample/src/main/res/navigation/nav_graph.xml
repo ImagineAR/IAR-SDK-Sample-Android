@@ -43,6 +43,11 @@
         android:id="@+id/rewardDetailsFragment"
         android:name="com.iar.core_sample.ui.fragments.rewards.RewardDetailsFragment"
         android:label="reward_details_fragment"
-        tools:layout="@layout/reward_details_fragment" />
+        tools:layout="@layout/reward_details_fragment" >
+
+        <argument
+            android:name="reward"
+            app:argType="com.iar.iar_core.Reward" />
+    </fragment>
 
 </navigation>
