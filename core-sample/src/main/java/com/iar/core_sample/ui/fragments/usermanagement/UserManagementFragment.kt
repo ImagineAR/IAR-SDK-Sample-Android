@@ -1,7 +1,6 @@
 package com.iar.core_sample.ui.fragments.usermanagement
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,14 +18,12 @@ import java.util.*
 
 @AndroidEntryPoint
 class UserManagementFragment : BaseFragment() {
-    private val LOGTAG = "userManagementFragment"
+
     private val viewModel by viewModels<UserManagementViewModel>()
 
     override fun getViewModel(): BaseViewModel = viewModel
 
     private lateinit var binding: UserManagementFragmentBinding
-    private var isAnonymous = true
-    private var hasUserLoaded = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,26 +34,38 @@ class UserManagementFragment : BaseFragment() {
 
         binding = UserManagementFragmentBinding.inflate(inflater, container, false)
 
-        viewModel.loadCurrentUser(requireContext(), {
-            hasUserLoaded = true
+        viewModel.loadCurrentUser(requireContext())
 
-        }) { errCode, errMsg ->
-            hasUserLoaded = false
+        viewModel.isAnonymous.observe(viewLifecycleOwner, { isAnonymous ->
+            if (!isAnonymous) {
+                binding.createButton.visibility = View.GONE;
+            } else {
+                binding.createButton.visibility = View.VISIBLE;
+            }
+        })
 
-        }
-        isAnonymous = viewModel.getIsAnonymous(requireActivity());
+        viewModel.userId.observe(viewLifecycleOwner, { userId ->
+            binding.userId.text = userId
+        })
 
-        if (!isAnonymous) {
-            binding.createButton.setVisibility(View.GONE);
-            binding.logButton.setText(R.string.logout);
-        } else {
-            binding.createButton.setVisibility(View.VISIBLE);
-            binding.logButton.setText(getString(R.string.login));
-        }
-        val userId = viewModel.getCurrentUserId()
+        viewModel.isLogin.observe(viewLifecycleOwner, { isLogin ->
+            if (isLogin) {
+                binding.logButton.setText(R.string.logout)
+            } else {
+                binding.logButton.setText(R.string.login)
+            }
+        })
 
-        binding.userId.setText(userId)
-
+        viewModel.error.observe(viewLifecycleOwner, { error ->
+            error?.let {
+                val toast = Toast.makeText(
+                    requireActivity().getApplicationContext(),
+                    "There is error $error",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+            }
+        })
 
         binding.createButton.setOnClickListener {
             userDialog(getString(R.string.create_new_user), true, false)
@@ -76,74 +85,30 @@ class UserManagementFragment : BaseFragment() {
     private fun migrateUser(oldUserId: String?) {
         val newUserId = UUID.randomUUID().toString()
 
-        if (oldUserId != null) {
-            viewModel.migrateUser(requireActivity(),
+        oldUserId?.let {
+            viewModel.migrateUser(
+                requireActivity(),
                 oldUserId,
-                newUserId,
-                {
-                    binding.userId.text = newUserId
-                    binding.logButton.setText(getString(R.string.logout))
-                    Log.i(LOGTAG, "Migrate successfully: $newUserId")
-                }
-            ) { errorCode, errorMessage ->
-                Log.i(LOGTAG, "Fail to migrate: $errorCode $errorMessage")
-
-            }
-        } else {
-            val toast = Toast.makeText(
-                requireActivity().getApplicationContext(),
-                "Did not have user Id yet",
-                Toast.LENGTH_SHORT
+                newUserId
             )
-            toast.show()
+
+            binding.userId.text = newUserId
+
         }
     }
 
     private fun login(inputId: String) {
-        viewModel.login(requireContext(),
-            inputId,
-            {
-                binding.userId.text = inputId
-                binding.createButton.setVisibility(View.GONE)
-                binding.logButton.setText(getString(R.string.logout))
-                Log.i(LOGTAG, "Login successfully")
-
-            }
-        ) { errorCode, errorMessage ->
-            Log.i(LOGTAG, "Login: $errorMessage")
-            binding.userId.setText("")
-            val toast =
-                Toast.makeText(
-                    requireActivity().getApplicationContext(),
-                    "Login failed",
-                    Toast.LENGTH_SHORT
-                )
-            toast.show()
-
-        }
+        viewModel.login(requireContext(), inputId)
+        binding.userId.text = inputId
     }
 
     private fun createNewUser(inputId: String) {
-        viewModel.createNewUser(requireContext(),
-            inputId,
-            {
-                binding.userId.setText(inputId)
-                binding.createButton.setVisibility(View.GONE)
-                binding.logButton.setText(getString(R.string.logout))
-                Log.i(LOGTAG, "Create new user successfully")
+        viewModel.createNewUser(
+            requireContext(),
+            inputId
+        )
 
-            }
-        ) { errorCode, errorMessage ->
-            Log.i(LOGTAG, "Create New User: $errorMessage")
-
-            val toast = Toast.makeText(
-                requireActivity().getApplicationContext(),
-                "Failed to create User Id, This user id has existed! ",
-                Toast.LENGTH_SHORT
-            )
-            toast.show()
-
-        }
+        binding.userId.setText(inputId)
     }
 
     private fun setExternalUser() {
@@ -154,18 +119,7 @@ class UserManagementFragment : BaseFragment() {
         }
 
         if (buttonText == "Logout") {
-            viewModel.logout(requireActivity(), {
-                binding.createButton.setVisibility(View.VISIBLE)
-                binding.logButton.setText(getString(R.string.login))
-                val userId = viewModel.getCurrentUserId()
-                binding.userId.text = userId
-                Log.d(LOGTAG, "Logout successfully")
-
-            }
-            ) { errorCode, errorMessage ->
-                Log.d(LOGTAG, "Logout: $errorCode $errorMessage")
-
-            }
+            viewModel.logout(requireActivity())
         }
     }
 
@@ -173,7 +127,12 @@ class UserManagementFragment : BaseFragment() {
         val builder: android.app.AlertDialog.Builder =
             android.app.AlertDialog.Builder(requireActivity())
         builder.setTitle(title)
-        val oldUserId: String = viewModel.getCurrentUserId()
+
+        var oldUserId = ""
+
+        viewModel.userId.observe(viewLifecycleOwner, {
+            oldUserId = it
+        })
 
         val container = FrameLayout(requireActivity())
         val editText: EditText = setupDialogEditText(requireContext())
@@ -183,7 +142,7 @@ class UserManagementFragment : BaseFragment() {
         if (isMigrate) {
             builder.setMessage(getString(R.string.migrate_message))
             editText.setText(oldUserId)
-            editText.textAlignment= View.TEXT_ALIGNMENT_CENTER
+            editText.textAlignment = View.TEXT_ALIGNMENT_CENTER
         } else {
             builder.setMessage(getString(R.string.enter_external_unserId))
         }
