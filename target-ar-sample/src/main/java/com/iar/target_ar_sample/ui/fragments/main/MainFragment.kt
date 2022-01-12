@@ -1,13 +1,12 @@
 package com.iar.target_ar_sample.ui.fragments.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.iar.target_ar_sample.R
-import com.iar.target_ar_sample.databinding.MainFragmentBinding
+import com.iar.target_ar_sample.databinding.FragmentMainBinding
 import com.iar.target_ar_sample.ui.common.BaseFragment
 import com.iar.target_ar_sample.ui.common.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +26,7 @@ class MainFragment : BaseFragment() {
             viewModel.initializeCore(it)
         }
 
-        val binding = MainFragmentBinding.inflate(inflater, container, false)
+        val binding = FragmentMainBinding.inflate(inflater, container, false)
 
 
         binding.scanButton.setOnClickListener {

@@ -1,5 +1,6 @@
 package com.iar.target_ar_sample.ui.activities
 
+import android.net.Uri
 import android.widget.RelativeLayout
 import androidx.activity.viewModels
 import com.iar.iar_core.Region
@@ -50,5 +51,13 @@ class TargetARActivity: IARActivity() {
      */
     override fun onTrackingChanged(isTracking: Boolean) {
         mOverlay?.get()?.onTrackingChanged(isTracking)
+    }
+
+    /**
+     * This callback gets called when a screenshot is taken. The
+     * uri provided will be the path where it is currently saved.
+     */
+    override fun shareScreenShot(uri: Uri?) {
+        super.shareScreenShot(uri)
     }
 }

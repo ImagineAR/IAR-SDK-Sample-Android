@@ -11,7 +11,7 @@
     <fragment android:name="com.iar.target_ar_sample.ui.fragments.main.MainFragment"
         android:id="@+id/fragment_main"
         android:label="Main Fragment"
-        tools:layout="@layout/main_fragment">
+        tools:layout="@layout/fragment_main">
     </fragment>
 
     <activity android:name="com.iar.target_ar_sample.ui.activities.TargetARActivity"
