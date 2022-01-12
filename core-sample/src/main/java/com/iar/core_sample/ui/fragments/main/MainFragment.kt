@@ -22,15 +22,16 @@ class MainFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
         val (orgKey, region) = viewModel.getOrgKeyRegion()
         Log.d(LOGTAG, orgKey)
         Log.d(LOGTAG, region.toString())
 
         val binding = MainFragmentBinding.inflate(inflater, container, false)
+
         binding.userManagementButton.setOnClickListener {
-            Log.d(LOGTAG, "user management button clicked")
-            //TODO: Navigate to user management screen
+               viewModel.navigateToUserManagementFragment()
         }
 
         binding.userRewardButton.setOnClickListener {
