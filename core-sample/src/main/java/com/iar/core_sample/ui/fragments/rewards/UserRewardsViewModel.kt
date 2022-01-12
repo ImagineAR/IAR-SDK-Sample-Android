@@ -4,55 +4,50 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.iar.core_sample.R
 import com.iar.core_sample.data.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.Reward
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class UserRewardsViewModel @Inject constructor(private val appConfig: AppConfig) :
     BaseViewModel() {
 
-   private val _userRewards = MutableLiveData<List<Reward>>()
+    private val _userRewards = MutableLiveData<List<Reward>>()
     val userRewards: LiveData<List<Reward>>
-    get() = _userRewards
+        get() = _userRewards
+
+    private val _userId = MutableLiveData<String>()
+    val userId: LiveData<String>
+        get() = _userId
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
 
     private val LOGTAG = "User Rewards"
 
     fun initialize(context: Context) {
-        CoreAPI.initialize(appConfig.getOrgKeyRegion().first, appConfig.getOrgKeyRegion().second, context)
+        CoreAPI.initialize(
+            appConfig.getOrgKeyRegion().first,
+            appConfig.getOrgKeyRegion().second,
+            context
+        )
+        _userId.postValue(CoreAPI.getCurrentExternalUserId())
     }
 
-    fun getCurrentUserId(): String {
-
-
-
-        return CoreAPI.getCurrentExternalUserId() ?: UUID.randomUUID().toString()
-    }
-
-
-     fun getUserRewards() {
+    fun getUserRewards() {
         CoreAPI.getRewardsForCurrentUser(
             { rewards ->
                 _userRewards.postValue(rewards)
-
             }
-        )  // Error callback.
+        )
         { errorCode, errorMessage ->
             Log.i(LOGTAG, "getReward: $errorMessage")
-
+            _error.postValue("$errorCode, $errorMessage")
         }
-    }
-
-
-
-
-    fun navigateToRewardDetailsFragment() {
-        navigate(R.id.action_userRewardsFragment_to_rewardDetailsFragment)
     }
 
 }
