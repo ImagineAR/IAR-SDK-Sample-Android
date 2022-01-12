@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import com.iar.core_sample.databinding.MainFragmentBinding
 import com.iar.core_sample.ui.common.BaseFragment
 import com.iar.core_sample.ui.common.BaseViewModel
@@ -32,12 +31,7 @@ class MainFragment : BaseFragment() {
         val binding = MainFragmentBinding.inflate(inflater, container, false)
 
         binding.userManagementButton.setOnClickListener {
-            //   viewModel.navigateToUserManagementFragment()
-            val action = MainFragmentDirections.actionMainFragmentToUserManagementFragment(
-                orgKey,
-                region.toString()
-            )
-            binding.root.findNavController().navigate(action)
+               viewModel.navigateToUserManagementFragment()
         }
 
         binding.userRewardButton.setOnClickListener {

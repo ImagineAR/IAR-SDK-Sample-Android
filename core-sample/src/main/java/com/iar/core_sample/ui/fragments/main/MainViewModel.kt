@@ -1,6 +1,6 @@
 package com.iar.core_sample.ui.fragments.main
 
-import android.os.Bundle
+
 import com.iar.core_sample.R
 import com.iar.core_sample.data.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
@@ -16,14 +16,7 @@ class MainViewModel @Inject constructor(private val appConfig: AppConfig) : Base
     }
 
     fun navigateToUserManagementFragment() {
-        val orgKey = appConfig.getOrgKeyRegion().first
-        val region = appConfig.getOrgKeyRegion().second
-
-        val bundle = Bundle()
-        bundle.putString("OrgKey", orgKey)
-        bundle.putString("Region", region.toString())
-
-        navigate(R.id.action_mainFragment_to_userManagementFragment, bundle)
+        navigate(R.id.action_mainFragment_to_userManagementFragment)
     }
 
     fun navigateToUserRewardsFragment() {

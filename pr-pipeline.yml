@@ -15,7 +15,11 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
+- bash: echo $(accessToken) this is the token
+
 - task: Gradle@2
+  env:
+    ACCESS_TOKEN: $(accessToken)
   inputs:
     gradleWrapperFile: 'gradlew'
     workingDirectory: 'target-ar-sample/'
@@ -25,6 +29,8 @@ steps:
     tasks: 'assembleDebug testDebugUnitTest'
 
 - task: Gradle@3
+  env:
+    ACCESS_TOKEN: $(accessToken)
   inputs:
     gradleWrapperFile: 'gradlew'
     workingDirectory: 'core-sample/'
@@ -34,6 +40,8 @@ steps:
     tasks: 'assembleDebug testDebugUnitTest'
 
 - task: Gradle@3
+  env:
+    ACCESS_TOKEN: $(accessToken)
   inputs:
     gradleWrapperFile: 'gradlew'
     workingDirectory: 'surface-ar-sample/'

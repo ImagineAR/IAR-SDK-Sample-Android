@@ -22,12 +22,7 @@
         android:name="com.iar.core_sample.ui.fragments.usermanagement.UserManagementFragment"
         android:label="user_management_fragment"
         tools:layout="@layout/user_management_fragment" >
-        <argument
-            android:name="OrgKey"
-            app:argType="string" />
-        <argument
-            android:name="Region"
-            app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/userRewardsFragment"
