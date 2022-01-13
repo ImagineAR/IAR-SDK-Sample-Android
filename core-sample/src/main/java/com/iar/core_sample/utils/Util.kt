@@ -6,6 +6,7 @@ import android.util.TypedValue
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.Toast
 import com.iar.core_sample.R
 
 object Util {
@@ -36,5 +37,14 @@ object Util {
             dp.toFloat(),
             r.displayMetrics
         )
+    }
+
+     fun showToastMessage(message: String, context: Context){
+        val toast = Toast.makeText(
+            context,
+            message,
+            Toast.LENGTH_LONG
+        )
+        toast.show()
     }
 }

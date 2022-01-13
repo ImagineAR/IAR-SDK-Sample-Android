@@ -103,25 +103,24 @@ class UserRewardsFragment : Fragment() {
         builder.setMessage("Enter reward ID")
         builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
-
-            userRewards?.let {
-                val reward = viewModel.getRewardFromId(inputId, it)
-                if (reward != null) {
-                    navigateToRewardDetailsFragment(reward)
-                } else {
-                    val toast = Toast.makeText(
-                        requireActivity().getApplicationContext(),
-                        "Don't have this reward id",
-                        Toast.LENGTH_SHORT
-                    )
-                    toast.show()
-                }
-            }
-
+            onGetUserReward(inputId)
             dialogInterface.dismiss()
         }
         builder.setNegativeButton(getString(R.string.cancel)) { dialogInterface, i -> dialogInterface.dismiss() }
         builder.create().show()
+    }
+
+    private fun onGetUserReward(inputId: String) {
+        userRewards?.let {
+            val reward = viewModel.getRewardFromId(inputId, it)
+            if (reward != null) {
+                navigateToRewardDetailsFragment(reward)
+
+            } else {
+
+                Util.showToastMessage("Don't have this reward id", requireContext())
+            }
+        }
     }
 
     private fun navigateToRewardDetailsFragment(reward: Reward) {
@@ -131,6 +130,5 @@ class UserRewardsFragment : Fragment() {
             )
         binding.root.findNavController().navigate(action)
     }
-
 
 }
