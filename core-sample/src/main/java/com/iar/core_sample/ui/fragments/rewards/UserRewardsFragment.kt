@@ -105,7 +105,7 @@ class UserRewardsFragment : Fragment() {
             val inputId = editText.text.toString()
 
             userRewards?.let {
-                val reward = getRewardFromId(inputId, it)
+                val reward = viewModel.getRewardFromId(inputId, it)
                 if (reward != null) {
                     navigateToRewardDetailsFragment(reward)
                 } else {
@@ -132,14 +132,5 @@ class UserRewardsFragment : Fragment() {
         binding.root.findNavController().navigate(action)
     }
 
-    private fun getRewardFromId(rewardId: String, rewards: List<Reward>): Reward? {
-        var currentReward: Reward? = null
-        for (reward in rewards) {
-            if (rewardId == reward.id) {
-                currentReward = reward
-            }
-        }
-        return currentReward
-    }
 
 }
