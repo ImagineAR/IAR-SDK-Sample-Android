@@ -54,12 +54,7 @@ class UserRewardsFragment : Fragment() {
 
         viewModel.error.observe(viewLifecycleOwner, { error ->
             error?.let {
-                val toast = Toast.makeText(
-                    requireActivity().getApplicationContext(),
-                    "There is error $error",
-                    Toast.LENGTH_SHORT
-                )
-                toast.show()
+                Util.showToastMessage( "There is error $error", requireContext())
             }
         })
 
@@ -69,7 +64,6 @@ class UserRewardsFragment : Fragment() {
 
         return binding.root
     }
-
 
     private fun setupRewards(rewards: List<Reward>) {
         rewardList.layoutManager = LinearLayoutManager(requireContext())
