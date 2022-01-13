@@ -2,20 +2,21 @@ package com.iar.core_sample.ui.fragments.arhunts
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.iar.core_sample.R
 import com.iar.core_sample.databinding.ArHuntsFragmentBinding
-import com.iar.core_sample.ui.fragments.usermanagement.UserManagementViewModel
 import com.iar.core_sample.utils.Util
 import com.iar.iar_core.Hunt
 import dagger.hilt.android.AndroidEntryPoint
@@ -75,7 +76,7 @@ class ARHuntsFragment : Fragment() {
 
         val adapter = ARHuntsAdapter(hunts, object : ARHuntsAdapter.OnHuntItemClickListener {
             override fun onHuntItemClick(hunt: Hunt) {
-                println("hunt item clicked")
+                navigateToHuntDetailsFragment(hunt)
             }
 
         })
@@ -103,8 +104,7 @@ class ARHuntsFragment : Fragment() {
             huntList?.let {
                 viewModel.arSingleHunt.observe(viewLifecycleOwner, { hunt ->
                     hunt?.let{
-                        println(hunt.name)
-                        // navigate to HuntDetailsFragment
+                        navigateToHuntDetailsFragment(hunt)
                     }
                 })
 
@@ -124,5 +124,14 @@ class ARHuntsFragment : Fragment() {
         )
         toast.show()
     }
+
+    private fun navigateToHuntDetailsFragment(hunt: Hunt) {
+
+        val huntString =Util.gson.toJson(hunt)
+        val action = ARHuntsFragmentDirections.actionARHuntsFragmentToHuntDetailsFragment(huntString)
+
+        binding.root.findNavController().navigate(action)
+    }
+
 
 }

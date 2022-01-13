@@ -6,9 +6,13 @@ import android.util.TypedValue
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
+import com.google.gson.Gson
 import com.iar.core_sample.R
 
 object Util {
+
+    val gson = Gson()
+
     fun setupDialogEditText(context: Context): EditText {
         val padding =dpToPx(20, context).toInt()
         val params = FrameLayout.LayoutParams(
@@ -37,4 +41,6 @@ object Util {
             r.displayMetrics
         )
     }
+
+
 }

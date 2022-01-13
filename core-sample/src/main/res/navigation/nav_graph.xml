@@ -53,6 +53,18 @@
         android:name="com.iar.core_sample.ui.fragments.arhunts.ARHuntsFragment"
         android:label="ar_hunts_fragment"
         tools:layout="@layout/ar_hunts_fragment">
+        <action
+            android:id="@+id/action_ARHuntsFragment_to_huntDetailsFragment"
+            app:destination="@id/huntDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/huntDetailsFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntDetailsFragment"
+        android:label="fragment_hunt_details"
+        tools:layout="@layout/fragment_hunt_details" >
+        <argument
+            android:name="hunt"
+            app:argType="string" />
     </fragment>
 
 
