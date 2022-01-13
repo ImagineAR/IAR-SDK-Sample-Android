@@ -25,14 +25,21 @@ class ARHuntsViewModel @Inject constructor(private val appConfig: AppConfig) :
 
     private val LOGTAG = "AR Hunts"
 
+    private val _userId = MutableLiveData<String>()
+    val userId: LiveData<String>
+        get() = _userId
 
     private val _arHunts = MutableLiveData<ArrayList<Hunt>>()
     val arHunts: LiveData<ArrayList<Hunt>>
         get() = _arHunts
 
-    private val _userId = MutableLiveData<String>()
-    val userId: LiveData<String>
-        get() = _userId
+    private val _arSingleHunt = MutableLiveData<Hunt>()
+    val arSingleHunt: LiveData<Hunt>
+        get() = _arSingleHunt
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
 
     fun initialize(context: Context) {
         CoreAPI.initialize(
@@ -53,8 +60,22 @@ class ARHuntsViewModel @Inject constructor(private val appConfig: AppConfig) :
             })
         { errorCode: Int?, errorMessage: String? ->
             Log.i(LOGTAG, "Get user hunts: $errorCode, $errorMessage")
-
+            _error.postValue("Get user hunts: $errorCode, $errorMessage")
         }
 
     }
+
+    fun getSingleHunt(huntId: String) {
+        CoreAPI.getHunt(huntId,
+            { hunt: Hunt? ->
+                Log.i(LOGTAG, "Get single hunt successfully")
+                _arSingleHunt.postValue(hunt)
+            }
+        )  // Error callback.
+        { errorCode: Int?, errorMessage: String? ->
+            Log.i(LOGTAG, "Get single hunt: $errorCode, $errorMessage")
+            _error.postValue("Get single hunt: $errorCode, $errorMessage")
+        }
+    }
+
 }

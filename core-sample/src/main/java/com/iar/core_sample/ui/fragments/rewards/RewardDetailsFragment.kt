@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.iar.core_sample.R
 import com.iar.core_sample.databinding.RewardDetailsFragmentBinding
+
 import com.iar.iar_core.Reward
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -36,6 +36,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:textColor="@color/lightGrey"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toBottomOf="@+id/hunt_thumbnail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/hunt_thumbnail"
