@@ -58,6 +58,7 @@ class TargetARActivity: IARActivity() {
      * uri provided will be the path where it is currently saved.
      */
     override fun shareScreenShot(uri: Uri?) {
+        // Default behavior brings up a share modal.
         super.shareScreenShot(uri)
     }
 }
