@@ -20,6 +20,10 @@
 
     <color name="sampleApp_greyBlue">#415787</color>
     <color name="sampleApp_darkBlue">#004781</color>
+    <color name="sampleApp_lightBlue">#80c3f2</color>
     <color name="transparent">#00000000</color>
+
+    <color name="darkGrey">#404040</color>
+    <color name="lightGrey">#B0B0B0</color>
 
 </resources>
