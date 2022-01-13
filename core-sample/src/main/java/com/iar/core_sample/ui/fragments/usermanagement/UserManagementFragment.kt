@@ -144,7 +144,7 @@ class UserManagementFragment : BaseFragment() {
             builder.setMessage(getString(R.string.enter_external_unserId))
         }
 
-        builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, i ->
+        builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
             if (!isMigrate) {
                 if (!createNew) {

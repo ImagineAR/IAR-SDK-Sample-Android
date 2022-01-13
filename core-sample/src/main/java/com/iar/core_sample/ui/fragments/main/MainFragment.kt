@@ -36,7 +36,7 @@ class MainFragment : BaseFragment() {
 
         binding.userRewardButton.setOnClickListener {
             Log.d(LOGTAG, "user reward button clicked")
-            //TODO: Navigate to user rewards screen
+           viewModel.navigateToUserRewardsFragment()
         }
         binding.arHuntButton.setOnClickListener {
             Log.d(LOGTAG, "AR hunt button clicked")

@@ -33,6 +33,7 @@ dependencyResolutionManagement {
             credentials {
                 username "xenoholographicit"
                 password accessToken
+
             }
         }
     }
