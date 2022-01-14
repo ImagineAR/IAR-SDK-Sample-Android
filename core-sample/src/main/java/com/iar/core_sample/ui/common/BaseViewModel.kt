@@ -3,6 +3,8 @@ package com.iar.core_sample.ui.common
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import com.iar.core_sample.utils.NavigationCommand
 import com.iar.core_sample.utils.SingleLiveEvent
 
@@ -14,11 +16,17 @@ open class BaseViewModel : ViewModel() {
     // and handled in the corresponding UI view.
     fun navigateBack() = _navigationCommand.postValue(NavigationCommand.Back)
 
-    fun navigate(direction: Int, args: Bundle?=null) {
+    fun navigate(direction: Int, args: Bundle? = null) {
         val command = NavigationCommand.To(direction)
         args?.let {
             command.args = it
         }
+        _navigationCommand.postValue(command)
+    }
+
+    fun navigate(direction: NavDirections, controller: NavController) {
+        val command = NavigationCommand.ToDir(direction)
+        controller.navigate(direction)
         _navigationCommand.postValue(command)
     }
 

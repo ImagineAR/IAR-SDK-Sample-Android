@@ -5,6 +5,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import com.iar.core_sample.data.AppConfig
 import com.iar.core_sample.databinding.UserRewardsFragmentBinding
 import com.iar.core_sample.ui.common.BaseViewModel
@@ -61,6 +63,14 @@ class UserRewardsViewModel @Inject constructor(private val appConfig: AppConfig)
             }
         }
         return currentReward
+    }
+
+    fun navigateToRewardDetailsFragment(reward: Reward, controller: NavController) {
+        val action: NavDirections =
+            UserRewardsFragmentDirections.actionUserRewardsFragmentToRewardDetailsFragment(
+                reward
+            )
+        navigate(action, controller)
     }
 
 }

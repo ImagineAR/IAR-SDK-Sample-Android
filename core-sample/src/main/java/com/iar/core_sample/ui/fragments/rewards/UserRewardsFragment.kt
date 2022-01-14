@@ -78,7 +78,10 @@ class UserRewardsFragment : Fragment() {
         val adapter =
             UserRewardsAdapter(rewards, object : UserRewardsAdapter.OnRewardItemClickListener {
                 override fun onRewardItemClick(reward: Reward) {
-                    navigateToRewardDetailsFragment(reward)
+                    viewModel.navigateToRewardDetailsFragment(
+                        reward,
+                        binding.root.findNavController()
+                    )
                 }
             })
 
@@ -108,21 +111,13 @@ class UserRewardsFragment : Fragment() {
         userRewards?.let {
             val reward = viewModel.getRewardFromId(inputId, it)
             if (reward != null) {
-                navigateToRewardDetailsFragment(reward)
+                viewModel.navigateToRewardDetailsFragment(reward, binding.root.findNavController())
 
             } else {
 
                 Util.showToastMessage("Don't have this reward id", requireContext())
             }
         }
-    }
-
-    private fun navigateToRewardDetailsFragment(reward: Reward) {
-        val action =
-            UserRewardsFragmentDirections.actionUserRewardsFragmentToRewardDetailsFragment(
-                reward
-            )
-        binding.root.findNavController().navigate(action)
     }
 
 }
