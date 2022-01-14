@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.iar.core_sample.R
 import com.iar.core_sample.databinding.RewardDetailsFragmentBinding
+import com.iar.core_sample.utils.Util.loadImage
 
 import com.iar.iar_core.Reward
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +33,9 @@ class RewardDetailsFragment : Fragment() {
 
         if (reward.type == "Image") {
             binding.rewardImageLayout.visibility = View.VISIBLE
-            loadImage(reward)
+            reward.image?.let {
+                binding.rewardCard.loadImage(it.url, requireContext())
+            }
 
         } else if (reward.type == "General Promotion Code") {
             binding.promoCodeRewardLayout.visibility = View.VISIBLE
@@ -55,16 +58,4 @@ class RewardDetailsFragment : Fragment() {
         return binding.root
     }
 
-    private fun loadImage(reward: Reward) {
-        val requestOptions = RequestOptions()
-            .override(400, 400)
-        reward.image?.let {
-            Glide.with(requireContext())
-                .load(reward.image.url)
-                .placeholder(R.drawable.splash_icon)
-                .error(R.drawable.splash_icon)
-                .apply(requestOptions)
-                .into(binding.rewardCard)
-        }
-    }
 }

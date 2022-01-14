@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.iar.core_sample.R
+import com.iar.core_sample.utils.Util.loadImage
 import com.iar.iar_core.Hunt
 
 class ARHuntsAdapter (private val huntList: ArrayList<Hunt>, val listener : OnHuntItemClickListener) :
@@ -22,16 +23,10 @@ class ARHuntsAdapter (private val huntList: ArrayList<Hunt>, val listener : OnHu
     override fun onBindViewHolder(holder: HuntViewHolder, position: Int) {
         val hunt = huntList[position]
 
-        val requestOptions = RequestOptions()
-            .override(400, 400)
-        hunt.thumbnailUrl?.let{
-            Glide.with(holder.thumbnail.getContext())
-                .load(hunt.thumbnailUrl)
-                .placeholder(R.drawable.splash_icon)
-                .error(R.drawable.splash_icon)
-                .apply(requestOptions)
-                .into(holder.thumbnail)
+        hunt.thumbnailUrl.let {
+            holder.thumbnail.loadImage(it, holder.thumbnail.getContext())
         }
+
         holder.huntName.text = hunt.name
         holder.huntId.text = hunt.id
         holder.itemView.setOnClickListener {
