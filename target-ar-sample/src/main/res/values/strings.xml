@@ -6,4 +6,7 @@
     <string name="button_label_scanartarget">Scan AR Target</string>
     <string name="button_label_user">User</string>
     <string name="button_label_dev_tools">Developer Tools</string>
+    <string name="label_target_ar_view">Target AR View</string>
+    <string name="button_label_screenshot">Screen Shot</string>
+    <string name="button_label_record_video">Record Video</string>
 </resources>

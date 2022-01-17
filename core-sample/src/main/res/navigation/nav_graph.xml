@@ -9,5 +9,40 @@
         android:id="@+id/mainFragment"
         android:name="com.iar.core_sample.ui.fragments.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_userManagementFragment"
+            app:destination="@id/userManagementFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_userRewardsFragment"
+            app:destination="@id/userRewardsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userManagementFragment"
+        android:name="com.iar.core_sample.ui.fragments.usermanagement.UserManagementFragment"
+        android:label="user_management_fragment"
+        tools:layout="@layout/user_management_fragment" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/userRewardsFragment"
+        android:name="com.iar.core_sample.ui.fragments.rewards.UserRewardsFragment"
+        android:label="user_rewards_fragment"
+        tools:layout="@layout/user_rewards_fragment" >
+
+        <action
+            android:id="@+id/action_userRewardsFragment_to_rewardDetailsFragment"
+            app:destination="@id/rewardDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardDetailsFragment"
+        android:name="com.iar.core_sample.ui.fragments.rewards.RewardDetailsFragment"
+        android:label="reward_details_fragment"
+        tools:layout="@layout/reward_details_fragment" >
+
+        <argument
+            android:name="reward"
+            app:argType="com.iar.iar_core.Reward" />
+    </fragment>
+
 </navigation>
