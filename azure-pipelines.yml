@@ -1,0 +1,40 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
+trigger: none
+
+pr: none
+
+pool:
+  vmImage: 'macos-latest'
+
+steps:
+- task: Gradle@2
+  inputs:
+    workingDirectory: 'target-ar-sample/'
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'assembleRelease'
+
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: './target-ar-sample/build/outputs/release/app-release-unsigned.apk'
+    apksignerKeystoreFile: 'iar_keystore'
+    apksignerKeystorePassword: $(keystorePassword)
+    apksignerKeystoreAlias: 'iar'
+    apksignerKeyPassword: $(keystoreAliasPassword)
+    zipalign: false
+
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'IAR SDK App Center'
+    appSlug: 'iversoft-team/IAR-SDK-Target-Example-Android'
+    appFile: './target-ar-sample/build/outputs/release/app-release-unsigned.apk'
+    symbolsOption: 'Android'
+    releaseNotesOption: 'input'
+    releaseNotesInput: 'New Target Sample QA Build'
+    destinationType: 'groups'
