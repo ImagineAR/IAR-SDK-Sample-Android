@@ -4,6 +4,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -60,6 +61,19 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    // HTTP Client
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.7.1'
+
+    //okHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.0'
+
+    // JSON converter
+    implementation 'com.google.code.gson:gson:2.8.9'
+
     // Navigation components dependencies
     def nav_version = "2.3.5"
     // Java navigation component deps
@@ -75,4 +89,10 @@ dependencies {
 
     // IAR dependencies
     implementation 'com.imaginear.iar:iar_core-dev:1.5.8-dev'
+
+    //Preference
+    implementation 'androidx.preference:preference:1.1.1'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 }

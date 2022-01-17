@@ -11,6 +11,18 @@ pluginManagement {
     }
 }
 
+def getLocalProperties() {
+    Properties props = new Properties()
+    if (file('local.properties').exists()) {
+        props.load(new FileInputStream(file('local.properties')))
+    }
+    return props
+}
+
+Properties localProps = getLocalProperties()
+
+def accessToken = System.getenv("ACCESS_TOKEN") ?: localProps["accessToken"]
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -20,7 +32,8 @@ dependencyResolutionManagement {
             url 'https://pkgs.dev.azure.com/xenoholographicit/ImagineAR/_packaging/iar_sdk/maven/v1'
             credentials {
                 username "xenoholographicit"
-                password "btw73yovncctbo2laomwii6k2pv7astxl3cchssn2kthueiszidq"
+                password accessToken
+
             }
         }
     }
