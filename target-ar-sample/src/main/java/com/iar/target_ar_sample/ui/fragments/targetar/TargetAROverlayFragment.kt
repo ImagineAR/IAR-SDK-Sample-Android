@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.iar.target_ar_sample.databinding.FragmentTargetArOverlayBinding
 import com.iar.target_sdk.IARActivity
 import kotlinx.coroutines.*
@@ -71,7 +72,9 @@ class TargetAROverlayFragment: Fragment() {
 
         // Get a handle to the job so that it is cancellable whenever we want
         // by calling job.cancel()
-        recordingJob = GlobalScope.launch(Dispatchers.IO) {
+        // Here we use lifecyclescope since we want this job to only exist in a valid
+        // lifecycle state.
+        recordingJob = viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             var currentProgress = 0
             val maxTime = 5000
             val interval = 500L
