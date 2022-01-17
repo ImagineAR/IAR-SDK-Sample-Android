@@ -24,7 +24,7 @@ steps:
 
 - task: AndroidSigning@3
   inputs:
-    apkFiles: './target-ar-sample/build/outputs/release/app-release-unsigned.apk'
+    apkFiles: './target-ar-sample/build/outputs/apk/release/target-ar-sample-release-unsigned.apk'
     apksignerKeystoreFile: 'iar_keystore'
     apksignerKeystorePassword: $(keystorePassword)
     apksignerKeystoreAlias: 'iar'
@@ -35,7 +35,7 @@ steps:
   inputs:
     serverEndpoint: 'IAR SDK App Center'
     appSlug: 'iversoft-team/IAR-SDK-Target-Example-Android'
-    appFile: './target-ar-sample/build/outputs/release/app-release-unsigned.apk'
+    appFile: './target-ar-sample/build/outputs/apk/release/target-ar-sample-release-unsigned.apk'
     symbolsOption: 'Android'
     releaseNotesOption: 'input'
     releaseNotesInput: 'New Target Sample QA Build'
