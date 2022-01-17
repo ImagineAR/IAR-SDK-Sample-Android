@@ -12,6 +12,8 @@ pool:
 
 steps:
 - task: Gradle@2
+  env:
+    ACCESS_TOKEN: $(accessToken)
   inputs:
     workingDirectory: 'target-ar-sample/'
     gradleWrapperFile: 'gradlew'
