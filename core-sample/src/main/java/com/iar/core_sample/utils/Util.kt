@@ -6,6 +6,10 @@ import android.util.TypedValue
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.iar.core_sample.R
 
 object Util {
@@ -36,5 +40,25 @@ object Util {
             dp.toFloat(),
             r.displayMetrics
         )
+    }
+
+     fun showToastMessage(message: String, context: Context){
+        val toast = Toast.makeText(
+            context,
+            message,
+            Toast.LENGTH_LONG
+        )
+        toast.show()
+    }
+
+    fun ImageView.loadImage(url: String, context: Context) {
+        val requestOptions = RequestOptions()
+            .override(400, 400)
+        Glide.with(context)
+            .load(url)
+            .placeholder(R.drawable.splash_icon)
+            .error(R.drawable.splash_icon)
+            .apply(requestOptions)
+            .into(this)
     }
 }

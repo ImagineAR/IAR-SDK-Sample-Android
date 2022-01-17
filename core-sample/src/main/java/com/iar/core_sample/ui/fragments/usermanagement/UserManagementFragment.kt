@@ -12,6 +12,7 @@ import com.iar.core_sample.R
 import com.iar.core_sample.databinding.UserManagementFragmentBinding
 import com.iar.core_sample.ui.common.BaseFragment
 import com.iar.core_sample.ui.common.BaseViewModel
+import com.iar.core_sample.utils.Util
 import com.iar.core_sample.utils.Util.setupDialogEditText
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -58,12 +59,7 @@ class UserManagementFragment : BaseFragment() {
 
         viewModel.error.observe(viewLifecycleOwner, { error ->
             error?.let {
-                val toast = Toast.makeText(
-                    requireActivity().getApplicationContext(),
-                    "There is error $error",
-                    Toast.LENGTH_SHORT
-                )
-                toast.show()
+                Util.showToastMessage( "There is error $error", requireContext())
             }
         })
 
@@ -144,7 +140,7 @@ class UserManagementFragment : BaseFragment() {
             builder.setMessage(getString(R.string.enter_external_unserId))
         }
 
-        builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, i ->
+        builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
             if (!isMigrate) {
                 if (!createNew) {
