@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.FrameLayout
 import androidx.fragment.app.viewModels
+import com.iar.iar_core.CoreAPI
 import com.iar.target_ar_sample.R
 import com.iar.target_ar_sample.databinding.MainFragmentBinding
 import com.iar.target_ar_sample.ui.common.BaseFragment
@@ -35,7 +38,7 @@ class MainFragment : BaseFragment() {
         }
 
         binding.userButton.setOnClickListener {
-            //TODO: Navigate to user info
+            showUserDialog()
         }
 
         binding.devToolsButton.setOnClickListener {
@@ -45,4 +48,15 @@ class MainFragment : BaseFragment() {
         return binding.root
     }
 
+    private fun showUserDialog() {
+        val builder: android.app.AlertDialog.Builder =
+            android.app.AlertDialog.Builder(requireActivity())
+        builder.setTitle(getString(R.string.dialog_title_user))
+        builder.setMessage("User ID: ${CoreAPI.getCurrentExternalUserId()}")
+
+        builder.setPositiveButton(getString(R.string.button_ok)) { dialogInterface, i ->
+            dialogInterface.dismiss()
+        }
+        builder.create().show()
+    }
 }
