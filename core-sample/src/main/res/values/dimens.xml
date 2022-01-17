@@ -3,4 +3,5 @@
     <dimen name="dimen_activity_edge">24dp</dimen>
     <dimen name="dimen_corner_round">50dp</dimen>
     <dimen name="corner_radius_small">6dp</dimen>
+    <dimen name="corner_radius_large">12dp</dimen>
 </resources>
