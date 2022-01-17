@@ -54,12 +54,7 @@ class UserRewardsFragment : Fragment() {
 
         viewModel.error.observe(viewLifecycleOwner, { error ->
             error?.let {
-                val toast = Toast.makeText(
-                    requireActivity().getApplicationContext(),
-                    "There is error $error",
-                    Toast.LENGTH_SHORT
-                )
-                toast.show()
+                Util.showToastMessage( "There is error $error", requireContext())
             }
         })
 
@@ -69,7 +64,6 @@ class UserRewardsFragment : Fragment() {
 
         return binding.root
     }
-
 
     private fun setupRewards(rewards: List<Reward>) {
         rewardList.layoutManager = LinearLayoutManager(requireContext())
@@ -84,7 +78,10 @@ class UserRewardsFragment : Fragment() {
         val adapter =
             UserRewardsAdapter(rewards, object : UserRewardsAdapter.OnRewardItemClickListener {
                 override fun onRewardItemClick(reward: Reward) {
-                    navigateToRewardDetailsFragment(reward)
+                    viewModel.navigateToRewardDetailsFragment(
+                        reward,
+                        binding.root.findNavController()
+                    )
                 }
             })
 
@@ -103,43 +100,24 @@ class UserRewardsFragment : Fragment() {
         builder.setMessage("Enter reward ID")
         builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
-
-            userRewards?.let {
-                val reward = getRewardFromId(inputId, it)
-                if (reward != null) {
-                    navigateToRewardDetailsFragment(reward)
-                } else {
-                    val toast = Toast.makeText(
-                        requireActivity().getApplicationContext(),
-                        "Don't have this reward id",
-                        Toast.LENGTH_SHORT
-                    )
-                    toast.show()
-                }
-            }
-
+            onGetUserReward(inputId)
             dialogInterface.dismiss()
         }
         builder.setNegativeButton(getString(R.string.cancel)) { dialogInterface, i -> dialogInterface.dismiss() }
         builder.create().show()
     }
 
-    private fun navigateToRewardDetailsFragment(reward: Reward) {
-        val action =
-            UserRewardsFragmentDirections.actionUserRewardsFragmentToRewardDetailsFragment(
-                reward
-            )
-        binding.root.findNavController().navigate(action)
-    }
+    private fun onGetUserReward(inputId: String) {
+        userRewards?.let {
+            val reward = viewModel.getRewardFromId(inputId, it)
+            if (reward != null) {
+                viewModel.navigateToRewardDetailsFragment(reward, binding.root.findNavController())
 
-    private fun getRewardFromId(rewardId: String, rewards: List<Reward>): Reward? {
-        var currentReward: Reward? = null
-        for (reward in rewards) {
-            if (rewardId == reward.id) {
-                currentReward = reward
+            } else {
+
+                Util.showToastMessage("Don't have this reward id", requireContext())
             }
         }
-        return currentReward
     }
 
 }

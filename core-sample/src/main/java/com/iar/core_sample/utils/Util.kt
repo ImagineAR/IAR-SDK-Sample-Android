@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
+import com.google.gson.Gson
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.google.gson.Gson
 import com.iar.core_sample.R
 
 object Util {
@@ -32,7 +33,6 @@ object Util {
         editText.maxLines = 2
         editText.textSize = 14f
 
-
         return editText
     }
 
@@ -43,6 +43,15 @@ object Util {
             dp.toFloat(),
             r.displayMetrics
         )
+    }
+
+    fun showToastMessage(message: String, context: Context) {
+        val toast = Toast.makeText(
+            context,
+            message,
+            Toast.LENGTH_LONG
+        )
+        toast.show()
     }
 
     fun ImageView.loadImage(url: String, context: Context) {
