@@ -1,8 +1,7 @@
 package com.iar.core_sample.ui.fragments.markers
 
-import androidx.lifecycle.ViewModelProvider
+
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.iar.core_sample.R
 import com.iar.core_sample.databinding.OnDemandMarkersFragmentBinding
-import com.iar.core_sample.databinding.UserRewardsFragmentBinding
-import com.iar.core_sample.ui.fragments.rewards.UserRewardsAdapter
-import com.iar.core_sample.ui.fragments.rewards.UserRewardsViewModel
 import com.iar.core_sample.utils.Util
 import com.iar.core_sample.utils.Util.addDivider
-import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.Marker
-import com.iar.iar_core.Reward
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,10 +29,11 @@ class OnDemandMarkersFragment : Fragment() {
     ): View {
 
         binding = OnDemandMarkersFragmentBinding.inflate(inflater, container, false)
-
+        markerListView = binding.onDemandMarkerList
         viewModel.initialize(requireContext())
 
         viewModel.userId.observe(viewLifecycleOwner, { userId ->
+
             userId?.let { viewModel.getOnDemandMarkers() }
 
         })
@@ -75,6 +69,5 @@ class OnDemandMarkersFragment : Fragment() {
         markerListView.adapter = adapter
 
     }
-
 
 }

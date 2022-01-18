@@ -47,12 +47,12 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
         CoreAPI.getDemandMarkers("OnDemand",
             {markers ->
                 _onDemandMarkers.postValue(markers)
-            },
-            {
-                    errorCode, errorMessage ->
-           Log.i(LOGTAG, "OnDemand Markers: $errorMessage")
-           _error.postValue("$errorCode, $errorMessage")
             })
+            {
+             errorCode, errorMessage ->
+           Log.i(LOGTAG, "OnDemand Markers: $errorCode $errorMessage")
+           _error.postValue("$errorCode, $errorMessage")
+            }
     }
 
     fun navigateOnDemandToMarkerDetailsFragment(marker: Marker, controller: NavController) {
