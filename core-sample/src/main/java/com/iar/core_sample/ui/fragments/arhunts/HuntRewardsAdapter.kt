@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.iar.core_sample.R
 import com.iar.core_sample.utils.Util.loadImage
-import com.iar.iar_core.HuntMarker
 import com.iar.iar_core.HuntReward
 
 class HuntRewardsAdapter (private val huntRewardList: ArrayList<HuntReward>, val listener : OnHuntRewardItemClickListener) :
@@ -32,7 +31,6 @@ class HuntRewardsAdapter (private val huntRewardList: ArrayList<HuntReward>, val
         holder.huntRewardHuntId.text = huntIdString
 
         holder.itemView.setOnClickListener {
-            //   println("hunt clicked ${huntMarker.id}")
             listener.onHuntRewardItemClick (huntReward)
         }
     }

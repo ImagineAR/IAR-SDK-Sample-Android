@@ -9,6 +9,9 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import com.google.gson.Gson
 import android.widget.Toast
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.iar.core_sample.R
@@ -63,6 +66,14 @@ object Util {
             .error(R.drawable.splash_icon)
             .apply(requestOptions)
             .into(this)
+    }
+
+    fun RecyclerView.addDivider(context: Context){
+        val dividerItemDecoration = DividerItemDecoration(
+            context,
+            LinearLayoutManager.VERTICAL
+        )
+        this.addItemDecoration(dividerItemDecoration)
     }
 
 }

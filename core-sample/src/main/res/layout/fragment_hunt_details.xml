@@ -9,9 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:paddingTop="16dp"
         android:orientation="vertical"
+        android:paddingTop="16dp"
         tools:context=".ui.fragments.arhunts.ARHuntDetailsFragment">
 
         <RelativeLayout
@@ -66,25 +65,33 @@
                 android:maxLines="2"
                 android:textColor="@color/lightGrey"
                 android:textSize="14sp"
-                tools:text="Hunt Descrption" />
+                tools:text="Hunt Description" />
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/huntData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textColor="@color/lightGrey"
+            android:textSize="14sp"
+            tools:text="Hunt Data" />
 
         <TextView
             android:id="@+id/hunt_marker_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:text="@string/hunt_markers"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="Hunt Markers" />
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/hunt_marker_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:overScrollMode="never">
-
         </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
@@ -92,17 +99,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:text="@string/hunt_rewards"
             android:textColor="@color/white"
+            android:layout_marginTop="16dp"
             android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="Hunt Rewards" />
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/hunt_reward_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:overScrollMode="never">
-
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>

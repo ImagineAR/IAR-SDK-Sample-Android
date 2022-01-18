@@ -10,11 +10,15 @@ import com.iar.core_sample.R
 import com.iar.core_sample.utils.Util.loadImage
 import com.iar.iar_core.HuntMarker
 
-class HuntMarkersAdapter (private val huntMarkerList: ArrayList<HuntMarker>, val listener : OnHuntMarkerItemClickListener) :
+class HuntMarkersAdapter(
+    private val huntMarkerList: ArrayList<HuntMarker>,
+    val listener: OnHuntMarkerItemClickListener
+) :
     RecyclerView.Adapter<HuntMarkersAdapter.HuntMarkerViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):HuntMarkerViewHolder{
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.hunt_marker_item, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HuntMarkerViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.hunt_marker_item, parent, false)
         return HuntMarkerViewHolder(view)
     }
 
@@ -31,7 +35,6 @@ class HuntMarkersAdapter (private val huntMarkerList: ArrayList<HuntMarker>, val
         holder.huntMarkerHuntId.text = huntIdString
 
         holder.itemView.setOnClickListener {
-         //   println("hunt clicked ${huntMarker.id}")
             listener.onHuntMarkerItemClick(huntMarker)
         }
     }

@@ -16,8 +16,14 @@
     <string name="ok">OK</string>
     <string name="enter_external_unserId">Enter external userId:</string>
     <string name="migrate_message">Would like to migrate the userId to new userId:</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="clue_card">Clue Card</string>
+    <string name="hunt_markers">Hunt Markers</string>
+    <string name="hunt_rewards">Hunt Rewards</string>
+    <string name="huntmarker_data">Hunt Marker Data</string>
+    <string name="reward">Reward</string>
+    <string name="huntreward_data">Hunt Reward Data</string>
 
 
 </resources>

@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/huntRewardsFragment"
-        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntRewardsFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntRewardDetailsFragment"
         android:label="fragment_hunt_rewards"
         tools:layout="@layout/fragment_hunt_rewards" >
         <argument

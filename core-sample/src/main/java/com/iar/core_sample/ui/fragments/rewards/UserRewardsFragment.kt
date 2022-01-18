@@ -20,6 +20,7 @@ import com.iar.iar_core.Reward
 import dagger.hilt.android.AndroidEntryPoint
 import com.iar.core_sample.R
 import com.iar.core_sample.utils.Util
+import com.iar.core_sample.utils.Util.addDivider
 
 @AndroidEntryPoint
 class UserRewardsFragment : Fragment() {
@@ -68,13 +69,7 @@ class UserRewardsFragment : Fragment() {
     private fun setupRewards(rewards: List<Reward>) {
         rewardList.layoutManager = LinearLayoutManager(requireContext())
 
-        val dividerItemDecoration = DividerItemDecoration(
-            context,
-            LinearLayoutManager.VERTICAL
-        )
-
-        rewardList.addItemDecoration(dividerItemDecoration)
-
+        rewardList.addDivider(requireContext())
         val adapter =
             UserRewardsAdapter(rewards, object : UserRewardsAdapter.OnRewardItemClickListener {
                 override fun onRewardItemClick(reward: Reward) {

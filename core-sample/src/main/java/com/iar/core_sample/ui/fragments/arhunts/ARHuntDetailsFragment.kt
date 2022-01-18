@@ -15,6 +15,7 @@ import com.iar.core_sample.databinding.FragmentHuntDetailsBinding
 
 
 import com.iar.core_sample.utils.Util
+import com.iar.core_sample.utils.Util.addDivider
 import com.iar.core_sample.utils.Util.loadImage
 import com.iar.iar_core.Hunt
 import com.iar.iar_core.HuntMarker
@@ -33,104 +34,77 @@ class ARHuntDetailsFragment : Fragment() {
     private lateinit var huntRewardListView: RecyclerView
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-       binding = FragmentHuntDetailsBinding.inflate(inflater, container, false)
+        binding = FragmentHuntDetailsBinding.inflate(inflater, container, false)
         val huntString = args.hunt
-      val hunt =  Util.gson.fromJson(huntString, Hunt::class.java)
-        println(hunt.name)
-//        println(hunt.id)
-//        println(hunt.description)
-//        println(hunt.thumbnailUrl)
+        val hunt = Util.gson.fromJson(huntString, Hunt::class.java)
+
         binding.huntName.text = hunt.name
         binding.huntId.text = hunt.id
         binding.huntDescription.text = hunt.description
         binding.huntImage.loadImage(hunt.thumbnailUrl, requireContext())
 
-        binding.huntMarkerTitle.text = "Hunt Markers"
+        val huntData = "Start Date: ${hunt.startDate}\n" +
+                "End Date: ${hunt.endDate}\n" +
+                "Retroactive Contribution: ${hunt.retroactiveContribution}\n"
+        binding.huntData.text = huntData
+
         huntMarkerListView = binding.huntMarkerList
 
-//        println(hunt.huntMarkers?.size)
         val huntMarkers = hunt.huntMarkers
-
-        huntMarkers?.let{
+        huntMarkers?.let {
             setupHuntMarkers(it)
-//            for(huntMarker in it){
-//                huntMarker.clueCard?.imageUrl
-////                println(huntMarker.clueCard?.id)
-////                println(huntMarker.clueCard?.description)
-////                println(huntMarker.clueCard?.name)
-////                println(huntMarker.huntId)
-////                println(huntMarker.id)
-////                println(huntMarker.marker.toString())
-////                println(huntMarker.markerId)
-////                println(huntMarker.scanned)
-//            }
         }
-        binding.huntRewardTitle.text = "Hunt Rewards"
+
         huntRewardListView = binding.huntRewardList
-      //  println(hunt.huntRewards?.size)
+
         val huntRewards = hunt.huntRewards
-        huntRewards?.let{
+        huntRewards?.let {
             setupHuntRewards(it)
-  //          for(huntReward in it){
-              //  huntReward.reward.image.
-//                println(huntReward.createdAt)
-//                println(huntReward.huntId)
-//                println(huntReward.id)
-//                println(huntReward.isCustomProgress)
-//                println(huntReward.requiredScanCount)
-//                println(huntReward.reward.toString())
-//                println(huntReward.rewardId)
-
-  //          }
         }
-//        println(hunt.endDate)
-//        println(hunt.retroactiveContribution)
-//        println(hunt.startDate)
 
-
-        return  binding.root
+        return binding.root
     }
 
     private fun setupHuntMarkers(huntMarkers: ArrayList<HuntMarker>) {
         huntMarkerListView.layoutManager = LinearLayoutManager(requireContext())
-        val dividerItemDecoration = DividerItemDecoration(
-            requireContext(),
-            LinearLayoutManager.VERTICAL
-        )
-        huntMarkerListView.addItemDecoration(dividerItemDecoration)
 
-        val adapter = HuntMarkersAdapter(huntMarkers, object : HuntMarkersAdapter.OnHuntMarkerItemClickListener {
-            override fun onHuntMarkerItemClick(huntMarker: HuntMarker) {
+        huntMarkerListView.addDivider(requireContext())
 
-                viewModel.navigateToHuntMarkerFragment(huntMarker, binding.root.findNavController())
+        val adapter = HuntMarkersAdapter(
+            huntMarkers,
+            object : HuntMarkersAdapter.OnHuntMarkerItemClickListener {
+                override fun onHuntMarkerItemClick(huntMarker: HuntMarker) {
 
-            }
-        })
+                    viewModel.navigateToHuntMarkerFragment(
+                        huntMarker,
+                        binding.root.findNavController()
+                    )
+
+                }
+            })
         huntMarkerListView.adapter = adapter
     }
 
     private fun setupHuntRewards(huntRewards: ArrayList<HuntReward>) {
         huntRewardListView.layoutManager = LinearLayoutManager(requireContext())
-        val dividerItemDecoration = DividerItemDecoration(
-            requireContext(),
-            LinearLayoutManager.VERTICAL
-        )
-        huntRewardListView.addItemDecoration(dividerItemDecoration)
 
-        val adapter = HuntRewardsAdapter(huntRewards, object : HuntRewardsAdapter.OnHuntRewardItemClickListener {
-            override fun onHuntRewardItemClick(huntReward: HuntReward) {
+        huntRewardListView.addDivider(requireContext())
 
-                viewModel.navigateToHuntRewardFragment(huntReward, binding.root.findNavController())
-            }
-        })
+        val adapter = HuntRewardsAdapter(
+            huntRewards,
+            object : HuntRewardsAdapter.OnHuntRewardItemClickListener {
+                override fun onHuntRewardItemClick(huntReward: HuntReward) {
+
+                    viewModel.navigateToHuntRewardFragment(
+                        huntReward,
+                        binding.root.findNavController()
+                    )
+                }
+            })
         huntRewardListView.adapter = adapter
     }
-
-
-
 }

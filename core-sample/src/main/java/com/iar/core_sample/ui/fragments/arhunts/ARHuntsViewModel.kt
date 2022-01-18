@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import com.iar.core_sample.data.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.core_sample.utils.Util
@@ -32,10 +31,6 @@ class ARHuntsViewModel @Inject constructor(private val appConfig: AppConfig) :
     private val _arHunts = MutableLiveData<ArrayList<Hunt>>()
     val arHunts: LiveData<ArrayList<Hunt>>
         get() = _arHunts
-
-    private val _arSingleHunt = MutableLiveData<Hunt?>()
-    val arSingleHunt: LiveData<Hunt?>
-        get() = _arSingleHunt
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String>
@@ -65,55 +60,39 @@ class ARHuntsViewModel @Inject constructor(private val appConfig: AppConfig) :
 
     }
 
-    fun getSingleHunt(huntId: String)  {
-
-        CoreAPI.getHunt(huntId,
-            { hunt: Hunt? ->
-                Log.i(LOGTAG, "Get single hunt successfully")
-                _arSingleHunt.postValue(hunt)
-
-            }
-        )  // Error callback.
-        { errorCode: Int?, errorMessage: String? ->
-            Log.i(LOGTAG, "Get single hunt: $errorCode, $errorMessage")
-            _error.postValue("Get single hunt: $errorCode, $errorMessage")
-           // _error.value = ("Get single hunt: $errorCode, $errorMessage")
-            _arSingleHunt.postValue(null)
-          //  _arSingleHunt.value = null
-
-        }
-
-    }
-
-    fun setSingleHuntNull(){
-        _arSingleHunt.postValue(null)
-    }
-
-    fun clearErrorMessage(){
-        _arSingleHunt.value= null
-    }
-
-
-
-    fun navigateToARHuntDetailsFragment(hunt: Hunt, controller: NavController){
+    fun navigateToARHuntDetailsFragment(hunt: Hunt, controller: NavController) {
         val huntString = Util.gson.toJson(hunt)
-        val action = ARHuntsFragmentDirections.actionARHuntsFragmentToHuntDetailsFragment(huntString)
+        val action =
+            ARHuntsFragmentDirections.actionARHuntsFragmentToHuntDetailsFragment(huntString)
 
         controller.navigate(action)
     }
 
-
-    fun navigateToHuntMarkerFragment(huntMarker: HuntMarker, controller: NavController){
+    fun navigateToHuntMarkerFragment(huntMarker: HuntMarker, controller: NavController) {
         val huntMarkerString = Util.gson.toJson(huntMarker)
-        val action = ARHuntDetailsFragmentDirections.actionHuntDetailsFragmentToHuntMarkersFragment(huntMarkerString)
+        val action = ARHuntDetailsFragmentDirections.actionHuntDetailsFragmentToHuntMarkersFragment(
+            huntMarkerString
+        )
 
         controller.navigate(action)
     }
 
-    fun navigateToHuntRewardFragment(huntReward: HuntReward, controller: NavController){
+    fun navigateToHuntRewardFragment(huntReward: HuntReward, controller: NavController) {
         val huntRewardString = Util.gson.toJson(huntReward)
-        val action = ARHuntDetailsFragmentDirections.actionHuntDetailsFragmentToHuntRewardsFragment(huntRewardString)
-
+        val action = ARHuntDetailsFragmentDirections.actionHuntDetailsFragmentToHuntRewardsFragment(
+            huntRewardString
+        )
         controller.navigate(action)
     }
+
+    fun getHuntFromId(huntId: String, hunts: ArrayList<Hunt>): Hunt? {
+        var currentHunt: Hunt? = null
+        for (hunt in hunts) {
+            if (huntId == hunt.id) {
+                currentHunt = hunt
+            }
+        }
+        return currentHunt
+    }
+
 }

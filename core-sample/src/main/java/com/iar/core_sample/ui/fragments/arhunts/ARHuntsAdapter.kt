@@ -6,16 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.iar.core_sample.R
 import com.iar.core_sample.utils.Util.loadImage
 import com.iar.iar_core.Hunt
 
-class ARHuntsAdapter (private val huntList: ArrayList<Hunt>, val listener : OnHuntItemClickListener) :
+class ARHuntsAdapter(private val huntList: ArrayList<Hunt>, val listener: OnHuntItemClickListener) :
     RecyclerView.Adapter<ARHuntsAdapter.HuntViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):HuntViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HuntViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.hunt_item, parent, false)
         return HuntViewHolder(view)
     }
@@ -30,7 +28,6 @@ class ARHuntsAdapter (private val huntList: ArrayList<Hunt>, val listener : OnHu
         holder.huntName.text = hunt.name
         holder.huntId.text = hunt.id
         holder.itemView.setOnClickListener {
-            println("hunt clicked ${hunt.id}")
             listener.onHuntItemClick(hunt)
         }
     }
@@ -48,4 +45,5 @@ class ARHuntsAdapter (private val huntList: ArrayList<Hunt>, val listener : OnHu
     interface OnHuntItemClickListener {
         fun onHuntItemClick(hunt: Hunt)
     }
+
 }
