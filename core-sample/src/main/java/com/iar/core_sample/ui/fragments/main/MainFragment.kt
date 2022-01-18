@@ -35,11 +35,9 @@ class MainFragment : BaseFragment() {
         }
 
         binding.userRewardButton.setOnClickListener {
-            Log.d(LOGTAG, "user reward button clicked")
            viewModel.navigateToUserRewardsFragment()
         }
         binding.arHuntButton.setOnClickListener {
-            Log.d(LOGTAG, "AR hunt button clicked")
             viewModel.navigateToARHuntsFragment()
         }
         binding.locationMarkerButton.setOnClickListener {
@@ -47,8 +45,7 @@ class MainFragment : BaseFragment() {
             //TODO: Navigate to location markers screen
         }
         binding.ondemandMarkerButton.setOnClickListener {
-            Log.d(LOGTAG, "ondemand marker button clicked")
-            //TODO: Navigate to ondemand markers screen
+            viewModel.navigateToOnDemandMarkersFragment()
         }
         binding.devToolsButton.setOnClickListener {
             Log.d(LOGTAG, "dev tools button clicked")
