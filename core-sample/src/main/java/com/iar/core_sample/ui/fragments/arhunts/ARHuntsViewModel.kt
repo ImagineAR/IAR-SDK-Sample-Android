@@ -1,20 +1,20 @@
 package com.iar.core_sample.ui.fragments.arhunts
 
 import android.content.Context
-import android.os.UserManager
 import android.util.Log
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.iar.core_sample.data.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
-import com.iar.core_sample.ui.fragments.usermanagement.UserManagementViewModel
+import com.iar.core_sample.utils.Util
 import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.CoreAPI.getAllHunts
 import com.iar.iar_core.Hunt
-import com.iar.iar_core.controllers.FileLogger.log
+import com.iar.iar_core.HuntMarker
+import com.iar.iar_core.HuntReward
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
@@ -33,8 +33,8 @@ class ARHuntsViewModel @Inject constructor(private val appConfig: AppConfig) :
     val arHunts: LiveData<ArrayList<Hunt>>
         get() = _arHunts
 
-    private val _arSingleHunt = MutableLiveData<Hunt>()
-    val arSingleHunt: LiveData<Hunt>
+    private val _arSingleHunt = MutableLiveData<Hunt?>()
+    val arSingleHunt: LiveData<Hunt?>
         get() = _arSingleHunt
 
     private val _error = MutableLiveData<String>()
@@ -65,17 +65,55 @@ class ARHuntsViewModel @Inject constructor(private val appConfig: AppConfig) :
 
     }
 
-    fun getSingleHunt(huntId: String) {
+    fun getSingleHunt(huntId: String)  {
+
         CoreAPI.getHunt(huntId,
             { hunt: Hunt? ->
                 Log.i(LOGTAG, "Get single hunt successfully")
                 _arSingleHunt.postValue(hunt)
+
             }
         )  // Error callback.
         { errorCode: Int?, errorMessage: String? ->
             Log.i(LOGTAG, "Get single hunt: $errorCode, $errorMessage")
             _error.postValue("Get single hunt: $errorCode, $errorMessage")
+           // _error.value = ("Get single hunt: $errorCode, $errorMessage")
+            _arSingleHunt.postValue(null)
+          //  _arSingleHunt.value = null
+
         }
+
     }
 
+    fun setSingleHuntNull(){
+        _arSingleHunt.postValue(null)
+    }
+
+    fun clearErrorMessage(){
+        _arSingleHunt.value= null
+    }
+
+
+
+    fun navigateToARHuntDetailsFragment(hunt: Hunt, controller: NavController){
+        val huntString = Util.gson.toJson(hunt)
+        val action = ARHuntsFragmentDirections.actionARHuntsFragmentToHuntDetailsFragment(huntString)
+
+        controller.navigate(action)
+    }
+
+
+    fun navigateToHuntMarkerFragment(huntMarker: HuntMarker, controller: NavController){
+        val huntMarkerString = Util.gson.toJson(huntMarker)
+        val action = ARHuntDetailsFragmentDirections.actionHuntDetailsFragmentToHuntMarkersFragment(huntMarkerString)
+
+        controller.navigate(action)
+    }
+
+    fun navigateToHuntRewardFragment(huntReward: HuntReward, controller: NavController){
+        val huntRewardString = Util.gson.toJson(huntReward)
+        val action = ARHuntDetailsFragmentDirections.actionHuntDetailsFragmentToHuntRewardsFragment(huntRewardString)
+
+        controller.navigate(action)
+    }
 }

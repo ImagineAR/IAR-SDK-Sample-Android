@@ -14,7 +14,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.iar.core_sample.R
 import com.iar.core_sample.databinding.ArHuntsFragmentBinding
 import com.iar.core_sample.utils.Util
@@ -30,12 +29,15 @@ class ARHuntsFragment : Fragment() {
     private lateinit var huntListView: RecyclerView
     private var huntList: ArrayList<Hunt>? = null
     private var currentUserId: String? = null
-
+    private var errorMessage: String? = null
+    private var singleHunt: Hunt? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        println("onCreateView called")
+
         binding = ArHuntsFragmentBinding.inflate(inflater, container, false)
         huntListView = binding.huntList
 
@@ -53,18 +55,26 @@ class ARHuntsFragment : Fragment() {
             huntList = hunts
         })
 
-        binding.getHuntButton.setOnClickListener {
-            setupDialog()
-        }
+        viewModel.arSingleHunt.observe(viewLifecycleOwner, { hunt ->
+            singleHunt = hunt
+        })
+
 
         viewModel.error.observe(viewLifecycleOwner, { error ->
             error?.let {
                 showToastMessage(error)
+                viewModel.clearErrorMessage()
             }
+            errorMessage = error
         })
+
+        binding.getHuntButton.setOnClickListener {
+            setupDialog()
+        }
 
         return binding.root
     }
+
 
     private fun setupHunts(hunts: ArrayList<Hunt>) {
         huntListView.layoutManager = LinearLayoutManager(requireContext())
@@ -76,9 +86,9 @@ class ARHuntsFragment : Fragment() {
 
         val adapter = ARHuntsAdapter(hunts, object : ARHuntsAdapter.OnHuntItemClickListener {
             override fun onHuntItemClick(hunt: Hunt) {
-                navigateToHuntDetailsFragment(hunt)
+                // navigateToHuntDetailsFragment(hunt)
+                viewModel.navigateToARHuntDetailsFragment(hunt, binding.root.findNavController())
             }
-
         })
         huntListView.adapter = adapter
     }
@@ -95,28 +105,16 @@ class ARHuntsFragment : Fragment() {
         builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
 
-            if(currentUserId!=null){
-                viewModel.getSingleHunt(inputId)
-            }else{
-                showToastMessage("Don't have the user Id")
-            }
-
-            huntList?.let {
-                viewModel.arSingleHunt.observe(viewLifecycleOwner, { hunt ->
-                    hunt?.let{
-                        navigateToHuntDetailsFragment(hunt)
-                    }
-                })
-
-            }
-
+            getSingleHunt(inputId)
+            onGetARHunt()
             dialogInterface.dismiss()
         }
+
         builder.setNegativeButton(getString(R.string.cancel)) { dialogInterface, i -> dialogInterface.dismiss() }
         builder.create().show()
     }
 
-    private fun showToastMessage(message: String){
+    private fun showToastMessage(message: String) {
         val toast = Toast.makeText(
             requireActivity().getApplicationContext(),
             message,
@@ -125,12 +123,35 @@ class ARHuntsFragment : Fragment() {
         toast.show()
     }
 
-    private fun navigateToHuntDetailsFragment(hunt: Hunt) {
+   private fun getSingleHunt(inputId: String){
 
-        val huntString =Util.gson.toJson(hunt)
-        val action = ARHuntsFragmentDirections.actionARHuntsFragmentToHuntDetailsFragment(huntString)
+       if (currentUserId != null) {
+           viewModel.getSingleHunt(inputId)
 
-        binding.root.findNavController().navigate(action)
+
+       } else {
+           showToastMessage("Don't have the user Id")
+       }
+
+   }
+
+    private fun onGetARHunt(){
+
+        huntList?.let {
+            viewModel.arSingleHunt.observe(viewLifecycleOwner, { hunt ->
+                hunt?.let {
+
+                    viewModel.navigateToARHuntDetailsFragment(
+                        it,
+                        binding.root.findNavController()
+                    )
+                    viewModel.setSingleHuntNull()
+                }
+
+
+            })
+
+        }
     }
 
 

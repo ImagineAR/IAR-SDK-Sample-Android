@@ -59,11 +59,35 @@
     </fragment>
     <fragment
         android:id="@+id/huntDetailsFragment"
-        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntDetailsFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.ARHuntDetailsFragment"
         android:label="fragment_hunt_details"
         tools:layout="@layout/fragment_hunt_details" >
         <argument
             android:name="hunt"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_huntDetailsFragment_to_huntMarkersFragment"
+            app:destination="@id/huntMarkersFragment" />
+        <action
+            android:id="@+id/action_huntDetailsFragment_to_huntRewardsFragment"
+            app:destination="@id/huntRewardsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/huntMarkersFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntMarkersFragment"
+        android:label="fragment_hunt_markers"
+        tools:layout="@layout/fragment_hunt_markers" >
+        <argument
+            android:name="huntMarker"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/huntRewardsFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntRewardsFragment"
+        android:label="fragment_hunt_rewards"
+        tools:layout="@layout/fragment_hunt_rewards" >
+        <argument
+            android:name="huntReward"
             app:argType="string" />
     </fragment>
 
