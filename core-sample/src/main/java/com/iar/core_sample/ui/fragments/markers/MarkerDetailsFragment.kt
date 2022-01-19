@@ -11,6 +11,7 @@ import com.iar.core_sample.R
 import com.iar.core_sample.databinding.FragmentMarkerDetailsBinding
 import com.iar.core_sample.databinding.RewardDetailsFragmentBinding
 import com.iar.core_sample.ui.fragments.rewards.RewardDetailsFragmentArgs
+import com.iar.core_sample.utils.Util.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,6 +28,13 @@ class MarkerDetailsFragment : Fragment() {
         binding = FragmentMarkerDetailsBinding.inflate(inflater, container, false)
 
         val marker = args.marker
+
+        marker.previewImageUrl?.let {
+            binding.markerImage.loadImage(it, requireContext())
+        }
+        binding.markerName.text = marker.name
+        binding.markerId.text = marker.id
+
         val gson = GsonBuilder().setPrettyPrinting().create()
          val prettyJsonString = gson.toJson(marker)
         binding.markerData.text = prettyJsonString
