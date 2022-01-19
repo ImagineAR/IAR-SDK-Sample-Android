@@ -7,14 +7,21 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
+import com.google.gson.Gson
 import android.widget.Toast
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.iar.core_sample.R
 
 object Util {
+
+    val gson = Gson()
+
     fun setupDialogEditText(context: Context): EditText {
-        val padding =dpToPx(20, context).toInt()
+        val padding = dpToPx(20, context).toInt()
         val params = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
@@ -29,12 +36,11 @@ object Util {
         editText.maxLines = 2
         editText.textSize = 14f
 
-
         return editText
     }
 
     fun dpToPx(dp: Int, context: Context): Float {
-        val r= context.getResources()
+        val r = context.getResources()
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             dp.toFloat(),
@@ -42,7 +48,7 @@ object Util {
         )
     }
 
-     fun showToastMessage(message: String, context: Context){
+    fun showToastMessage(message: String, context: Context) {
         val toast = Toast.makeText(
             context,
             message,
@@ -61,4 +67,13 @@ object Util {
             .apply(requestOptions)
             .into(this)
     }
+
+    fun RecyclerView.addDivider(context: Context){
+        val dividerItemDecoration = DividerItemDecoration(
+            context,
+            LinearLayoutManager.VERTICAL
+        )
+        this.addItemDecoration(dividerItemDecoration)
+    }
+
 }

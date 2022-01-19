@@ -31,7 +31,7 @@ class MainFragment : BaseFragment() {
         val binding = MainFragmentBinding.inflate(inflater, container, false)
 
         binding.userManagementButton.setOnClickListener {
-               viewModel.navigateToUserManagementFragment()
+            viewModel.navigateToUserManagementFragment()
         }
 
         binding.userRewardButton.setOnClickListener {
@@ -40,7 +40,7 @@ class MainFragment : BaseFragment() {
         }
         binding.arHuntButton.setOnClickListener {
             Log.d(LOGTAG, "AR hunt button clicked")
-            //TODO: Navigate to arHunt screen
+            viewModel.navigateToARHuntsFragment()
         }
         binding.locationMarkerButton.setOnClickListener {
             Log.d(LOGTAG, "location marker button clicked")

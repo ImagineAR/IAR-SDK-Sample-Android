@@ -16,33 +16,80 @@
         <action
             android:id="@+id/action_mainFragment_to_userRewardsFragment"
             app:destination="@id/userRewardsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_ARHuntsFragment"
+            app:destination="@id/ARHuntsFragment" />
+
     </fragment>
+
     <fragment
         android:id="@+id/userManagementFragment"
         android:name="com.iar.core_sample.ui.fragments.usermanagement.UserManagementFragment"
         android:label="user_management_fragment"
-        tools:layout="@layout/user_management_fragment" >
-
+        tools:layout="@layout/user_management_fragment">
     </fragment>
+
     <fragment
         android:id="@+id/userRewardsFragment"
         android:name="com.iar.core_sample.ui.fragments.rewards.UserRewardsFragment"
         android:label="user_rewards_fragment"
-        tools:layout="@layout/user_rewards_fragment" >
-
+        tools:layout="@layout/user_rewards_fragment">
         <action
             android:id="@+id/action_userRewardsFragment_to_rewardDetailsFragment"
             app:destination="@id/rewardDetailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/rewardDetailsFragment"
         android:name="com.iar.core_sample.ui.fragments.rewards.RewardDetailsFragment"
-        android:label="reward_details_fragment"
-        tools:layout="@layout/reward_details_fragment" >
-
+        android:label="RewardDetailsFragment" >
         <argument
             android:name="reward"
             app:argType="com.iar.iar_core.Reward" />
     </fragment>
+
+    <fragment
+        android:id="@+id/ARHuntsFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.ARHuntsFragment"
+        android:label="ar_hunts_fragment"
+        tools:layout="@layout/ar_hunts_fragment">
+        <action
+            android:id="@+id/action_ARHuntsFragment_to_huntDetailsFragment"
+            app:destination="@id/huntDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/huntDetailsFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.ARHuntDetailsFragment"
+        android:label="fragment_hunt_details"
+        tools:layout="@layout/fragment_hunt_details" >
+        <argument
+            android:name="hunt"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_huntDetailsFragment_to_huntMarkersFragment"
+            app:destination="@id/huntMarkersFragment" />
+        <action
+            android:id="@+id/action_huntDetailsFragment_to_huntRewardsFragment"
+            app:destination="@id/huntRewardsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/huntMarkersFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntMarkersFragment"
+        android:label="fragment_hunt_markers"
+        tools:layout="@layout/fragment_hunt_markers" >
+        <argument
+            android:name="huntMarker"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/huntRewardsFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntRewardDetailsFragment"
+        android:label="fragment_hunt_rewards"
+        tools:layout="@layout/fragment_hunt_rewards" >
+        <argument
+            android:name="huntReward"
+            app:argType="string" />
+    </fragment>
+
 
 </navigation>
