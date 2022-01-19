@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.google.gson.GsonBuilder
 import com.iar.core_sample.databinding.FragmentHuntRewardsBinding
 import com.iar.core_sample.utils.Util
 import com.iar.core_sample.utils.Util.loadImage
@@ -33,14 +34,9 @@ class HuntRewardDetailsFragment : Fragment() {
         val typeString = "Type: ${huntReward?.reward?.type}"
         binding.rewardType.text = typeString
         binding.rewardId.text = huntReward?.reward?.id
-        val huntRewardData = "ID: ${huntReward.id}\n" +
-                "HuntID: ${huntReward.huntId}\n" +
-                "RewardID: ${huntReward.rewardId}\n" +
-                "Created at: ${huntReward.createdAt}\n" +
-                "CustomProgress: ${huntReward.isCustomProgress}\n" +
-                "Required Scan Count: ${huntReward.requiredScanCount}\n" +
-                "Reward: ${Util.gson.toJson(huntReward.reward)}"
 
+        val gson = GsonBuilder().setPrettyPrinting().create()
+        val huntRewardData = gson.toJson(huntReward)
         binding.huntRewardData.text = huntRewardData
 
         return binding.root

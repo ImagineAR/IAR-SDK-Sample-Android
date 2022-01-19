@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.google.gson.GsonBuilder
 import com.iar.core_sample.databinding.FragmentHuntMarkersBinding
 import com.iar.core_sample.utils.Util
 import com.iar.core_sample.utils.Util.loadImage
@@ -32,11 +33,8 @@ class HuntMarkersFragment : Fragment() {
         binding.clueCardId.text = huntMarker.clueCard?.id
         binding.clueCardDescription.text = huntMarker.clueCard?.description
 
-        val huntMarkerData = "ID: ${huntMarker.id}\n" +
-                "HuntID: ${huntMarker.huntId}\n" +
-                "MarkerID: ${huntMarker.markerId}\n" +
-                "Scanned: ${huntMarker.scanned}\n" +
-                "Marker: ${Util.gson.toJson(huntMarker.marker)}"
+        val gson = GsonBuilder().setPrettyPrinting().create()
+        val huntMarkerData = gson.toJson(huntMarker)
         binding.huntMarkerData.text = huntMarkerData
 
         return binding.root
