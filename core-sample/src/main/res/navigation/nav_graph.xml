@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_mainFragment_to_onDemandMarkersFragment"
             app:destination="@id/onDemandMarkersFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_locationMarkersFragment"
+            app:destination="@id/locationMarkersFragment" />
 
     </fragment>
 
@@ -110,6 +113,15 @@
         <argument
             android:name="marker"
             app:argType="com.iar.iar_core.Marker" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationMarkersFragment"
+        android:name="com.iar.core_sample.ui.fragments.markers.LocationMarkersFragment"
+        android:label="fragment_location_markers"
+        tools:layout="@layout/fragment_location_markers" >
+        <action
+            android:id="@+id/action_locationMarkersFragment_to_markerDetailsFragment"
+            app:destination="@id/markerDetailsFragment" />
     </fragment>
 
 
