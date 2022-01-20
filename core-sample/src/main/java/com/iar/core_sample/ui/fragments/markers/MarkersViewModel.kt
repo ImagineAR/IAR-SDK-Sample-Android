@@ -13,6 +13,7 @@ import com.iar.core_sample.ui.fragments.rewards.UserRewardsFragmentDirections
 import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.Marker
 import com.iar.iar_core.Reward
+import com.iar.surface_sdk.SurfaceAPI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -30,6 +31,10 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
     val onDemandMarkers: LiveData<List<Marker>>
         get() = _onDemandMarkers
 
+    private val _locationMarkers = MutableLiveData<List<Marker>>()
+    val locationMarkers: LiveData<List<Marker>>
+        get() = _locationMarkers
+
     private val _error = MutableLiveData<String>()
     val error: LiveData<String>
         get() = _error
@@ -41,6 +46,31 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
             context
         )
         _userId.postValue(CoreAPI.getCurrentExternalUserId())
+    }
+
+    fun validateLIcense(context: Context){
+        SurfaceAPI.validateLicense(
+            appConfig.getOrgKeyRegion().first,
+            appConfig.getOrgKeyRegion().second,
+            context
+        )
+    }
+
+    fun getLocationMarkers(latitude: Double, longitude: Double) {
+        SurfaceAPI.getLocationMarkers(
+            latitude,
+            longitude,
+            10000,
+            { markers ->
+                _locationMarkers.postValue(markers)
+
+            }
+        )
+        { errorCode: Int?, errorMessage: String? ->
+            Log.i(LOGTAG, "getLocationMarkers: $errorMessage")
+            _error.postValue("$errorCode, $errorMessage")
+        }
+
     }
 
     fun getOnDemandMarkers(){
@@ -63,6 +93,19 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
         navigate(action, controller)
     }
 
+    fun navigateLocationToMarkerDetailsFragment(marker: Marker, controller: NavController) {
+        val action: NavDirections =
+            LocationMarkersFragmentDirections.actionLocationMarkersFragmentToMarkerDetailsFragment(marker)
 
+        navigate(action, controller)
+    }
+
+    fun onGetLocationMarkers(coordinates: String, controller: NavController){
+        val positionString = coordinates.split("[\\s,]+".toRegex()).toTypedArray()
+        val latitude = positionString[0].toDouble()
+        val longitude = positionString[1].toDouble()
+        getLocationMarkers(latitude,longitude)
+
+    }
 
 }
