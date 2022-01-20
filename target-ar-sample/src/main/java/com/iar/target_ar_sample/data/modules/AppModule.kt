@@ -1,6 +1,6 @@
 package com.iar.target_ar_sample.data.modules
 
-import com.iar.target_ar_sample.data.AppConfig
+import com.iar.common.AppConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
-import com.iar.core_sample.data.AppConfig
+import com.iar.common.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.core_sample.utils.Util
 import com.iar.iar_core.CoreAPI
