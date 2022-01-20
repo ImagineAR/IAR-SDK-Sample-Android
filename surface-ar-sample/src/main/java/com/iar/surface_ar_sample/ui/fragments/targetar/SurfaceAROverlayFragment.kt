@@ -26,7 +26,7 @@ class SurfaceAROverlayFragment: Fragment() {
         binding = FragmentSurfaceArOverlayBinding.inflate(inflater, container, false)
 
         context?.let {
-            Toast.makeText(it, "Point your camera at an AR target to begin", Toast.LENGTH_LONG).show()
+            Toast.makeText(it, "Point your camera at a surface to place", Toast.LENGTH_LONG).show()
         }
 
         binding?.screenshotButton?.setOnClickListener {
