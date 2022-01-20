@@ -8,7 +8,7 @@ import java.util.*
 
 /**
  * Simple class to manage the initialization/configuration
- * of IAR core/IAR target
+ * of IAR core/IAR target/IAR surface
  */
 class AppConfig {
     private val QA_ORG_KEY = "pk_org_c7a686bf2b4a4a3c95b817cbf95b1198"
