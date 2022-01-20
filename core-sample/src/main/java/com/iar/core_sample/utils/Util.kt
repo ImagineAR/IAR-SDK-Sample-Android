@@ -1,6 +1,7 @@
 package com.iar.core_sample.utils
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.text.InputType
 import android.util.TypedValue
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import com.google.gson.Gson
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -73,6 +75,7 @@ object Util {
             context,
             LinearLayoutManager.VERTICAL
         )
+        dividerItemDecoration.setDrawable(ColorDrawable(ContextCompat.getColor(context, R.color.lightGrey)));
         this.addItemDecoration(dividerItemDecoration)
     }
 

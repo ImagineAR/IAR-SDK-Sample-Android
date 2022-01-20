@@ -19,6 +19,12 @@
         <action
             android:id="@+id/action_mainFragment_to_ARHuntsFragment"
             app:destination="@id/ARHuntsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_onDemandMarkersFragment"
+            app:destination="@id/onDemandMarkersFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_locationMarkersFragment"
+            app:destination="@id/locationMarkersFragment" />
 
     </fragment>
 
@@ -89,6 +95,33 @@
         <argument
             android:name="huntReward"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/onDemandMarkersFragment"
+        android:name="com.iar.core_sample.ui.fragments.markers.OnDemandMarkersFragment"
+        android:label="on_demand_markers_fragment"
+        tools:layout="@layout/on_demand_markers_fragment" >
+        <action
+            android:id="@+id/action_onDemandMarkersFragment_to_markerDetailsFragment"
+            app:destination="@id/markerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/markerDetailsFragment"
+        android:name="com.iar.core_sample.ui.fragments.markers.MarkerDetailsFragment"
+        android:label="fragment_marker_details"
+        tools:layout="@layout/fragment_marker_details" >
+        <argument
+            android:name="marker"
+            app:argType="com.iar.iar_core.Marker" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationMarkersFragment"
+        android:name="com.iar.core_sample.ui.fragments.markers.LocationMarkersFragment"
+        android:label="fragment_location_markers"
+        tools:layout="@layout/fragment_location_markers" >
+        <action
+            android:id="@+id/action_locationMarkersFragment_to_markerDetailsFragment"
+            app:destination="@id/markerDetailsFragment" />
     </fragment>
 
 

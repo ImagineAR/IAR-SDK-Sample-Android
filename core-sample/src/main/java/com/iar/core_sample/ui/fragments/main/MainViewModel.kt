@@ -28,5 +28,13 @@ class MainViewModel @Inject constructor(private val appConfig: AppConfig) : Base
         navigate(R.id.action_mainFragment_to_ARHuntsFragment)
     }
 
+    fun navigateToLocationMarkersFragment() {
+        navigate(R.id.action_mainFragment_to_locationMarkersFragment)
+    }
+
+    fun navigateToOnDemandMarkersFragment() {
+        navigate(R.id.action_mainFragment_to_onDemandMarkersFragment)
+    }
+
 
 }
