@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sampleApp_darkBlue"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.markers.MarkerDetailsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <TextView
+            android:id="@+id/markerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="@string/marker_name"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/markerImage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_below="@id/markerName"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/marker_image"
+            android:src="@drawable/splash_icon">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/markerId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/markerName"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:layout_toEndOf="@id/markerImage"
+            android:textColor="@color/lightGrey"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:text="Marker Id" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/markerDataTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="@string/marker_data"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/marker_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white" />
+
+    </ScrollView>
+
+</LinearLayout>
