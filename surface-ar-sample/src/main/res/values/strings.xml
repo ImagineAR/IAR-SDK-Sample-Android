@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">surface-ar</string>
+    <string name="app_name">IAR SDK Samples</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="button_label_locationmarkers">Location Markers</string>
+    <string name="button_label_user">User</string>
+    <string name="button_label_dev_tools">Developer Tools</string>
+    <string name="label_surface_ar_view">Surface AR View</string>
+    <string name="button_label_screenshot">Screen Shot</string>
+    <string name="button_label_record_video">Record Video</string>
+    <string name="dialog_title_user">Current User</string>
+    <string name="button_ok">OK</string>
+    <string name="button_label_ondemand">On Demand Markers</string>
+    <string name="button_label_nfcwrite">NFC - Write</string>
+    <string name="button_label_nfcread">NFC - Read</string>
 </resources>
