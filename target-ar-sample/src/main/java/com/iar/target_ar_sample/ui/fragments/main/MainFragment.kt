@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.FrameLayout
 import androidx.fragment.app.viewModels
 import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.analytics.AnalyticsController
@@ -41,7 +43,7 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
         }
 
         binding.userButton.setOnClickListener {
-            //TODO: Navigate to user info
+            showUserDialog()
         }
 
         binding.devToolsButton.setOnClickListener {
@@ -56,6 +58,17 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
         return binding.root
     }
 
+    private fun showUserDialog() {
+        val builder: android.app.AlertDialog.Builder =
+            android.app.AlertDialog.Builder(requireActivity())
+        builder.setTitle(getString(R.string.dialog_title_user))
+        builder.setMessage("User ID: ${CoreAPI.getCurrentExternalUserId()}")
+
+        builder.setPositiveButton(getString(R.string.button_ok)) { dialogInterface, i ->
+            dialogInterface.dismiss()
+        }
+        builder.create().show()
+    }
     /**
      * DevConsoleDialog.DevConsoleListener
      */
