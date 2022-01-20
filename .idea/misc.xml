@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="core-sample/src/main/res/layout/user_management_fragment.xml" value="0.17760416666666667" />
         <entry key="surface-ar-sample/src/main/res/layout/activity_main.xml" value="0.125" />
         <entry key="surface-ar-sample/src/main/res/layout/fragment_main.xml" value="0.125" />
         <entry key="surface-ar-sample/src/main/res/layout/fragment_target_ar_overlay.xml" value="0.125" />
