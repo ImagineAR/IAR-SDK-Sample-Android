@@ -31,24 +31,21 @@ class MainFragment : BaseFragment() {
         val binding = MainFragmentBinding.inflate(inflater, container, false)
 
         binding.userManagementButton.setOnClickListener {
-               viewModel.navigateToUserManagementFragment()
+            viewModel.navigateToUserManagementFragment()
         }
 
         binding.userRewardButton.setOnClickListener {
-            Log.d(LOGTAG, "user reward button clicked")
            viewModel.navigateToUserRewardsFragment()
         }
         binding.arHuntButton.setOnClickListener {
-            Log.d(LOGTAG, "AR hunt button clicked")
-            //TODO: Navigate to arHunt screen
+            viewModel.navigateToARHuntsFragment()
         }
         binding.locationMarkerButton.setOnClickListener {
             Log.d(LOGTAG, "location marker button clicked")
             //TODO: Navigate to location markers screen
         }
         binding.ondemandMarkerButton.setOnClickListener {
-            Log.d(LOGTAG, "ondemand marker button clicked")
-            //TODO: Navigate to ondemand markers screen
+            viewModel.navigateToOnDemandMarkersFragment()
         }
         binding.devToolsButton.setOnClickListener {
             Log.d(LOGTAG, "dev tools button clicked")

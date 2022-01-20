@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sampleApp_darkBlue"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.arhunts.HuntMarkersFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <TextView
+            android:id="@+id/clueCardTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="@string/clue_card"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/clueCardImage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_below="@id/clueCardTitle"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/clue_card"
+            android:src="@drawable/splash_icon">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/clueCardId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/clueCardTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:layout_toEndOf="@id/clueCardImage"
+            android:textColor="@color/lightGrey"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:text="clue card Id" />
+
+        <TextView
+            android:id="@+id/clueCardDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/clueCardId"
+            android:layout_margin="8dp"
+            android:layout_toEndOf="@id/clueCardImage"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@color/lightGrey"
+            android:textSize="14sp"
+            tools:text="Clue card Description" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/huntMarkerDataTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="@string/huntmarker_data"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/huntMarkerData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textColor="@color/lightGrey">
+        </TextView>
+    </ScrollView>
+
+</LinearLayout>

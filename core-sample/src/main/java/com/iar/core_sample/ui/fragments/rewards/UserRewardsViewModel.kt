@@ -11,6 +11,7 @@ import com.iar.core_sample.data.AppConfig
 import com.iar.core_sample.databinding.UserRewardsFragmentBinding
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.iar_core.CoreAPI
+import com.iar.iar_core.Hunt
 import com.iar.iar_core.Reward
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

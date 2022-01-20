@@ -6,12 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.iar.core_sample.R
 import com.iar.core_sample.databinding.RewardDetailsFragmentBinding
 import com.iar.core_sample.utils.Util.loadImage
-import com.iar.iar_core.Reward
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

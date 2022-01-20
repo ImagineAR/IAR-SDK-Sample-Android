@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/reward_image"
+        android:id="@+id/marker_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/splash_icon"
@@ -20,7 +20,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/reward_name"
+        android:id="@+id/marker_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -28,19 +28,19 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/reward_image"
-        app:layout_constraintTop_toTopOf="@+id/reward_image" />
+        app:layout_constraintStart_toEndOf="@+id/marker_image"
+        app:layout_constraintTop_toTopOf="@+id/marker_image" />
 
     <TextView
-        android:id="@+id/reward_id"
+        android:id="@+id/marker_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textColor="@color/lightGrey"
         android:textIsSelectable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/reward_image"
+        app:layout_constraintBottom_toBottomOf="@+id/marker_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/reward_image"
-        app:layout_constraintTop_toBottomOf="@+id/reward_name" />
+        app:layout_constraintStart_toEndOf="@+id/marker_image"
+        app:layout_constraintTop_toBottomOf="@+id/marker_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
