@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.preference.PreferenceManager
-import com.iar.core_sample.data.AppConfig
+import com.iar.common.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.core_sample.utils.Constants
 import com.iar.iar_core.CoreAPI

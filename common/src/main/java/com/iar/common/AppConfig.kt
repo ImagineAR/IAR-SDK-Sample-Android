@@ -1,4 +1,4 @@
-package com.iar.target_ar_sample.data
+package com.iar.common
 
 import android.content.Context
 import com.iar.iar_core.CoreAPI
@@ -8,7 +8,7 @@ import java.util.*
 
 /**
  * Simple class to manage the initialization/configuration
- * of IAR core/IAR target
+ * of IAR core/IAR target/IAR surface
  */
 class AppConfig {
     private val QA_ORG_KEY = "pk_org_c7a686bf2b4a4a3c95b817cbf95b1198"
@@ -17,6 +17,10 @@ class AppConfig {
     fun getCurRegion() = QA_REGION
 
     fun getCurLicense() = QA_ORG_KEY
+
+    fun getOrgKeyRegion(): Pair<String, Region> {
+        return Pair(QA_ORG_KEY,QA_REGION )
+    }
 
     fun initialize(context: Context,
                    success: (() -> Unit)?,

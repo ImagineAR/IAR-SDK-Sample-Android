@@ -4,15 +4,12 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
-import com.iar.core_sample.data.AppConfig
+import com.iar.common.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
-import com.iar.core_sample.ui.fragments.rewards.UserRewardsFragmentDirections
 import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.Marker
-import com.iar.iar_core.Reward
 import com.iar.surface_sdk.SurfaceAPI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -85,12 +82,12 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
             }
     }
 
-    fun navigateOnDemandToMarkerDetailsFragment(marker: Marker, controller: NavController) {
+    fun navigateOnDemandToMarkerDetailsFragment(marker: Marker) {
         val action: NavDirections =
             OnDemandMarkersFragmentDirections.actionOnDemandMarkersFragmentToMarkerDetailsFragment(
                 marker
             )
-        navigate(action, controller)
+        navigate(action)
     }
 
     fun navigateLocationToMarkerDetailsFragment(marker: Marker, controller: NavController) {

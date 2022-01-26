@@ -7,7 +7,7 @@ pluginManagement {
     plugins {
         id 'com.android.application' version '7.1.0-alpha08'
         id 'com.android.library' version '7.1.0-alpha08'
-        id 'org.jetbrains.kotlin.android' version '1.5.21'
+        id 'org.jetbrains.kotlin.android' version '1.6.10'
     }
 }
 
@@ -42,3 +42,4 @@ rootProject.name = "IAR SDK Samples"
 include ':target-ar-sample'
 include ':surface-ar-sample'
 include ':core-sample'
+include ':common'

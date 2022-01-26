@@ -32,23 +32,21 @@ class OnDemandMarkersFragment : Fragment() {
         markerListView = binding.onDemandMarkerList
         viewModel.initialize(requireContext())
 
-        viewModel.userId.observe(viewLifecycleOwner, { userId ->
-
+        viewModel.userId.observe(viewLifecycleOwner) { userId ->
             userId?.let { viewModel.getOnDemandMarkers() }
+        }
 
-        })
-
-        viewModel.onDemandMarkers.observe(viewLifecycleOwner, { markers ->
+        viewModel.onDemandMarkers.observe(viewLifecycleOwner) { markers ->
             markers?.let {
                 setupMarkersList(markers)
             }
-        })
+        }
 
-        viewModel.error.observe(viewLifecycleOwner, { error ->
+        viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Util.showToastMessage("There is error $error", requireContext())
             }
-        })
+        }
         return binding.root
     }
 
@@ -59,10 +57,7 @@ class OnDemandMarkersFragment : Fragment() {
         val adapter =
             MarkersAdapter(markers, object : MarkersAdapter.OnMarkerItemClickListener {
                 override fun onMarkerItemClick(marker: Marker) {
-                    viewModel.navigateOnDemandToMarkerDetailsFragment(
-                        marker,
-                        binding.root.findNavController()
-                    )
+                    viewModel.navigateOnDemandToMarkerDetailsFragment(marker)
                 }
             })
 

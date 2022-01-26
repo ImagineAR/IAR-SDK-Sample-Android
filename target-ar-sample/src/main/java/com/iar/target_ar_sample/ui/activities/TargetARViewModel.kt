@@ -1,7 +1,7 @@
 package com.iar.target_ar_sample.ui.activities
 
+import com.iar.common.AppConfig
 import com.iar.iar_core.Region
-import com.iar.target_ar_sample.data.AppConfig
 import com.iar.target_ar_sample.ui.common.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

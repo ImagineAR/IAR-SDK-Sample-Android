@@ -2,16 +2,13 @@ package com.iar.core_sample.ui.fragments.rewards
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
-import com.iar.core_sample.data.AppConfig
-import com.iar.core_sample.databinding.UserRewardsFragmentBinding
+import com.iar.common.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.iar_core.CoreAPI
-import com.iar.iar_core.Hunt
 import com.iar.iar_core.Reward
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -71,7 +68,7 @@ class UserRewardsViewModel @Inject constructor(private val appConfig: AppConfig)
             UserRewardsFragmentDirections.actionUserRewardsFragmentToRewardDetailsFragment(
                 reward
             )
-        navigate(action, controller)
+        navigate(action)
     }
 
 }

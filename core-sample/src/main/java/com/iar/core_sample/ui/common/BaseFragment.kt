@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import com.iar.common.NavigationCommand
 import com.iar.core_sample.R
-import com.iar.core_sample.utils.NavigationCommand
 
 /**
  * This base fragment will handle the basic navigation
@@ -33,6 +33,9 @@ abstract class BaseFragment : Fragment() {
                 is NavigationCommand.To -> {
                     // The direction should have an argument in it's structure if it needs to
                     // so we dont have to pass in args.
+                    navController.navigate(it.direction)
+                }
+                is NavigationCommand.ToDir -> {
                     navController.navigate(it.direction)
                 }
                 is NavigationCommand.Back -> {
