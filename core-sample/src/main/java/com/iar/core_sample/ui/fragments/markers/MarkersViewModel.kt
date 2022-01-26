@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import com.iar.common.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
@@ -45,7 +44,7 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
         _userId.postValue(CoreAPI.getCurrentExternalUserId())
     }
 
-    fun validateLIcense(context: Context){
+    fun validateLicense(context: Context) {
         SurfaceAPI.validateLicense(
             appConfig.getOrgKeyRegion().first,
             appConfig.getOrgKeyRegion().second,
@@ -70,16 +69,15 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
 
     }
 
-    fun getOnDemandMarkers(){
+    fun getOnDemandMarkers() {
         CoreAPI.getDemandMarkers("OnDemand",
-            {markers ->
+            { markers ->
                 _onDemandMarkers.postValue(markers)
             })
-            {
-             errorCode, errorMessage ->
-           Log.i(LOGTAG, "OnDemand Markers: $errorCode $errorMessage")
-           _error.postValue("$errorCode, $errorMessage")
-            }
+        { errorCode, errorMessage ->
+            Log.i(LOGTAG, "OnDemand Markers: $errorCode $errorMessage")
+            _error.postValue("$errorCode, $errorMessage")
+        }
     }
 
     fun navigateOnDemandToMarkerDetailsFragment(marker: Marker) {
@@ -90,18 +88,21 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
         navigate(action)
     }
 
-    fun navigateLocationToMarkerDetailsFragment(marker: Marker, controller: NavController) {
+    fun navigateLocationToMarkerDetailsFragment(marker: Marker) {
         val action: NavDirections =
-            LocationMarkersFragmentDirections.actionLocationMarkersFragmentToMarkerDetailsFragment(marker)
+            LocationMarkersFragmentDirections.actionLocationMarkersFragmentToMarkerDetailsFragment(
+                marker
+            )
 
-        navigate(action, controller)
+        navigate(action)
     }
 
-    fun onGetLocationMarkers(coordinates: String, controller: NavController){
+    fun onGetLocationMarkers(coordinates: String) {
+
         val positionString = coordinates.split("[\\s,]+".toRegex()).toTypedArray()
         val latitude = positionString[0].toDouble()
         val longitude = positionString[1].toDouble()
-        getLocationMarkers(latitude,longitude)
+        getLocationMarkers(latitude, longitude)
 
     }
 

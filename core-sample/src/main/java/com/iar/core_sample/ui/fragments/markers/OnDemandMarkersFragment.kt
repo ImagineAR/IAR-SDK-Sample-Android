@@ -2,26 +2,27 @@ package com.iar.core_sample.ui.fragments.markers
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.iar.core_sample.databinding.OnDemandMarkersFragmentBinding
+import com.iar.core_sample.ui.common.BaseFragment
+import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.core_sample.utils.Util
 import com.iar.core_sample.utils.Util.addDivider
 import com.iar.iar_core.Marker
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OnDemandMarkersFragment : Fragment() {
+class OnDemandMarkersFragment : BaseFragment() {
     private val viewModel by viewModels<MarkersViewModel>()
 
     private lateinit var binding: OnDemandMarkersFragmentBinding
     private lateinit var markerListView: RecyclerView
+    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
