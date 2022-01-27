@@ -11,6 +11,7 @@ import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.Marker
 import com.iar.surface_sdk.SurfaceAPI
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
@@ -98,10 +99,18 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
 
     fun onGetLocationMarkers(coordinates: String) {
         val positionString = coordinates.split("[\\s,]+".toRegex()).toTypedArray()
-        val latitude = positionString[0].toDouble()
-        val longitude = positionString[1].toDouble()
-        val distance = positionString[2].toInt()
+
+        var latitude = 0.0
+        var longitude = 0.0
+        var distance = 0
+
+        if (positionString.size > 2) {
+            latitude = positionString[0].toDouble()
+            longitude = positionString[1].toDouble()
+            distance = positionString[2].toInt()
+        }
         getLocationMarkers(latitude, longitude, distance)
+
     }
 
 }
