@@ -13,8 +13,21 @@
         android:layout_height="wrap_content"
         android:background = "@drawable/round_long_button"
         android:textSize = "13sp"
-        android:text="Get User Reward by ID"
+        android:text="@string/get_user_reward_by_id"
         android:layout_margin="16dp" />
+
+    <TextView
+        android:id="@+id/instruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:textSize = "16sp"
+        android:visibility="gone"
+        android:text = "@string/reward_instruction">
+
+    </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reward_list"
