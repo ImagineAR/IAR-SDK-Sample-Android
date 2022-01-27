@@ -52,14 +52,13 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
         )
     }
 
-    fun getLocationMarkers(latitude: Double, longitude: Double) {
+    fun getLocationMarkers(latitude: Double, longitude: Double, distance: Int) {
         SurfaceAPI.getLocationMarkers(
             latitude,
             longitude,
-            10000,
+            distance,
             { markers ->
                 _locationMarkers.postValue(markers)
-
             }
         )
         { errorCode: Int?, errorMessage: String? ->
@@ -98,12 +97,11 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
     }
 
     fun onGetLocationMarkers(coordinates: String) {
-
         val positionString = coordinates.split("[\\s,]+".toRegex()).toTypedArray()
         val latitude = positionString[0].toDouble()
         val longitude = positionString[1].toDouble()
-        getLocationMarkers(latitude, longitude)
-
+        val distance = positionString[2].toInt()
+        getLocationMarkers(latitude, longitude, distance)
     }
 
 }

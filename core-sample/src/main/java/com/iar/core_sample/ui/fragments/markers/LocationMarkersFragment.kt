@@ -30,7 +30,7 @@ class LocationMarkersFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         viewModel.validateLicense(requireContext())
-        viewModel.getLocationMarkers(48.166667, -100.166667)
+        viewModel.getLocationMarkers(48.166667, -100.166667, 10000)
     }
 
     override fun onCreateView(
@@ -85,10 +85,10 @@ class LocationMarkersFragment : BaseFragment() {
         val container = FrameLayout(requireActivity())
         val editText: EditText = Util.setupDialogEditText(requireContext())
         editText.setTextIsSelectable(true)
-        editText.hint = "48.166667, -100.166667"
+        editText.hint = "48.166667, -100.166667, 10000"
         container.addView(editText)
         builder.setView(container)
-        builder.setMessage("Enter location coordinates")
+        builder.setMessage("Enter location coordinates and distance")
         builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
             viewModel.onGetLocationMarkers(inputId)
