@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavController
 import com.iar.common.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.core_sample.utils.Util
@@ -60,29 +59,29 @@ class ARHuntsViewModel @Inject constructor(private val appConfig: AppConfig) :
 
     }
 
-    fun navigateToARHuntDetailsFragment(hunt: Hunt, controller: NavController) {
+    fun navigateToARHuntDetailsFragment(hunt: Hunt) {
         val huntString = Util.gson.toJson(hunt)
         val action =
             ARHuntsFragmentDirections.actionARHuntsFragmentToHuntDetailsFragment(huntString)
 
-        controller.navigate(action)
+        navigate(action)
     }
 
-    fun navigateToHuntMarkerFragment(huntMarker: HuntMarker, controller: NavController) {
+    fun navigateToHuntMarkerFragment(huntMarker: HuntMarker) {
         val huntMarkerString = Util.gson.toJson(huntMarker)
         val action = ARHuntDetailsFragmentDirections.actionHuntDetailsFragmentToHuntMarkersFragment(
             huntMarkerString
         )
 
-        controller.navigate(action)
+        navigate(action)
     }
 
-    fun navigateToHuntRewardFragment(huntReward: HuntReward, controller: NavController) {
+    fun navigateToHuntRewardFragment(huntReward: HuntReward) {
         val huntRewardString = Util.gson.toJson(huntReward)
         val action = ARHuntDetailsFragmentDirections.actionHuntDetailsFragmentToHuntRewardsFragment(
             huntRewardString
         )
-        controller.navigate(action)
+        navigate(action)
     }
 
     fun getHuntFromId(huntId: String, hunts: ArrayList<Hunt>): Hunt? {

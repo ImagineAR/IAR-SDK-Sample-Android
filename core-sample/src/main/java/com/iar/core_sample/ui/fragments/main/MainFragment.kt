@@ -41,8 +41,7 @@ class MainFragment : BaseFragment() {
             viewModel.navigateToARHuntsFragment()
         }
         binding.locationMarkerButton.setOnClickListener {
-            Log.d(LOGTAG, "location marker button clicked")
-            //TODO: Navigate to location markers screen
+            viewModel.navigateToLocationMarkersFragment()
         }
         binding.ondemandMarkerButton.setOnClickListener {
             viewModel.navigateToOnDemandMarkersFragment()

@@ -1,19 +1,16 @@
 package com.iar.core_sample.ui.fragments.arhunts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.iar.core_sample.databinding.FragmentHuntDetailsBinding
-
-
+import com.iar.core_sample.ui.common.BaseFragment
+import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.core_sample.utils.Util
 import com.iar.core_sample.utils.Util.addDivider
 import com.iar.core_sample.utils.Util.loadImage
@@ -23,7 +20,7 @@ import com.iar.iar_core.HuntReward
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ARHuntDetailsFragment : Fragment() {
+class ARHuntDetailsFragment : BaseFragment() {
 
     private val viewModel by viewModels<ARHuntsViewModel>()
 
@@ -32,6 +29,7 @@ class ARHuntDetailsFragment : Fragment() {
     private val args by navArgs<ARHuntDetailsFragmentArgs>()
     private lateinit var huntMarkerListView: RecyclerView
     private lateinit var huntRewardListView: RecyclerView
+    override fun getViewModel(): BaseViewModel = viewModel
 
 
     override fun onCreateView(
@@ -80,8 +78,7 @@ class ARHuntDetailsFragment : Fragment() {
                 override fun onHuntMarkerItemClick(huntMarker: HuntMarker) {
 
                     viewModel.navigateToHuntMarkerFragment(
-                        huntMarker,
-                        binding.root.findNavController()
+                        huntMarker
                     )
 
                 }
@@ -100,8 +97,7 @@ class ARHuntDetailsFragment : Fragment() {
                 override fun onHuntRewardItemClick(huntReward: HuntReward) {
 
                     viewModel.navigateToHuntRewardFragment(
-                        huntReward,
-                        binding.root.findNavController()
+                        huntReward
                     )
                 }
             })
