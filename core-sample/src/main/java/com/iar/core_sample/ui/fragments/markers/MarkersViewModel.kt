@@ -1,7 +1,9 @@
 package com.iar.core_sample.ui.fragments.markers
 
 import android.content.Context
+import android.text.InputFilter
 import android.util.Log
+import android.widget.EditText
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
@@ -111,6 +113,13 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
         }
         getLocationMarkers(latitude, longitude, distance)
 
+    }
+
+    fun editTextFilters(editText: EditText) {
+        val regex = Regex("[0-9.,-]+")
+        editText.filters = arrayOf(InputFilter { source, _, _, _, _, _ ->
+            source.filter { regex.matches(it.toString()) }
+        })
     }
 
 }
