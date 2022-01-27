@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -82,8 +83,7 @@ class UserRewardsFragment : BaseFragment() {
     }
 
     private fun setupDialog() {
-        val builder: android.app.AlertDialog.Builder =
-            android.app.AlertDialog.Builder(requireActivity())
+        val builder= AlertDialog.Builder(requireActivity())
         builder.setTitle("Get User Reward")
         val container = FrameLayout(requireActivity())
         val editText: EditText = Util.setupDialogEditText(requireContext())
