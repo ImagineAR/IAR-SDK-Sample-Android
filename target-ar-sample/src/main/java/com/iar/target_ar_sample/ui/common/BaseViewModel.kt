@@ -3,8 +3,8 @@ package com.iar.target_ar_sample.ui.common
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.iar.target_ar_sample.utils.NavigationCommand
-import com.iar.target_ar_sample.utils.SingleLiveEvent
+import com.iar.common.NavigationCommand
+import com.iar.common.SingleLiveEvent
 
 open class BaseViewModel: ViewModel() {
     // Mutable live data should always be private

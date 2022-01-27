@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_activity_edge">24dp</dimen>
+    <dimen name="dimen_corner_round">50dp</dimen>
+    <dimen name="dimen_button_20">20dp</dimen>
+</resources>
