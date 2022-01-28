@@ -13,7 +13,6 @@ import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.Marker
 import com.iar.surface_sdk.SurfaceAPI
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
@@ -55,11 +54,11 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
         )
     }
 
-    fun getLocationMarkers(latitude: Double, longitude: Double, distance: Int) {
+    fun getLocationMarkers(latitude: Double, longitude: Double) {
         SurfaceAPI.getLocationMarkers(
             latitude,
             longitude,
-            distance,
+            10000,
             { markers ->
                 _locationMarkers.postValue(markers)
             }
@@ -95,7 +94,6 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
             LocationMarkersFragmentDirections.actionLocationMarkersFragmentToMarkerDetailsFragment(
                 marker
             )
-
         navigate(action)
     }
 
@@ -104,14 +102,13 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
 
         var latitude = 0.0
         var longitude = 0.0
-        var distance = 0
 
-        if (positionString.size > 2) {
+        if (positionString.size > 1) {
             latitude = positionString[0].toDouble()
             longitude = positionString[1].toDouble()
-            distance = positionString[2].toInt()
         }
-        getLocationMarkers(latitude, longitude, distance)
+
+        getLocationMarkers(latitude, longitude)
 
     }
 

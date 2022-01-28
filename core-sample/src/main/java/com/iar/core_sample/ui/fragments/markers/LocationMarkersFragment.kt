@@ -1,10 +1,6 @@
 package com.iar.core_sample.ui.fragments.markers
 
 import android.os.Bundle
-import android.text.InputFilter
-import android.text.method.DigitsKeyListener
-import android.text.method.KeyListener
-import android.text.method.TextKeyListener
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,9 +29,8 @@ class LocationMarkersFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel.validateLicense(requireContext())
-        viewModel.getLocationMarkers(48.166667, -100.166667, 10000)
+        viewModel.getLocationMarkers(48.166667, -100.166667)
     }
 
     override fun onCreateView(
@@ -89,11 +84,11 @@ class LocationMarkersFragment : BaseFragment() {
         val container = FrameLayout(requireActivity())
         val editText: EditText = Util.setupDialogEditText(requireContext())
         editText.setTextIsSelectable(true)
-        editText.hint = "48.166667, -100.166667, 10000"
+        editText.hint = "48.166667, -100.166667"
         viewModel.editTextFilters(editText)
         container.addView(editText)
         builder.setView(container)
-        builder.setMessage("Enter location coordinates and distance")
+        builder.setMessage("Enter location coordinates")
         builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
             viewModel.onGetLocationMarkers(inputId)
