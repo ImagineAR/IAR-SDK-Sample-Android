@@ -12,9 +12,25 @@
         android:id="@+id/fragment_main"
         android:label="Main Fragment"
         tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_fragment_main_to_readNFCFragment"
+            app:destination="@id/readNFCFragment" />
+        <action
+            android:id="@+id/action_fragment_main_to_writeNFCFragment"
+            app:destination="@id/writeNFCFragment" />
     </fragment>
 
     <activity android:name="com.iar.surface_ar_sample.ui.activities.SurfaceARActivity"
         android:id="@+id/activity_surface_ar"
         android:label="@string/label_surface_ar_view"/>
+    <fragment
+        android:id="@+id/readNFCFragment"
+        android:name="com.iar.surface_ar_sample.ui.fragments.nfc.ReadNFCFragment"
+        android:label="fragment_read_nfc"
+        tools:layout="@layout/fragment_read_nfc" />
+    <fragment
+        android:id="@+id/writeNFCFragment"
+        android:name="com.iar.surface_ar_sample.ui.fragments.nfc.WriteNFCFragment"
+        android:label="fragment_write_nfc"
+        tools:layout="@layout/fragment_write_nfc" />
 </navigation>

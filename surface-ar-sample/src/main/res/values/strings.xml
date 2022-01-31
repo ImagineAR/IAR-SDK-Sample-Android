@@ -14,4 +14,6 @@
     <string name="button_label_ondemand">On Demand Markers</string>
     <string name="button_label_nfcwrite">NFC - Write</string>
     <string name="button_label_nfcread">NFC - Read</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
