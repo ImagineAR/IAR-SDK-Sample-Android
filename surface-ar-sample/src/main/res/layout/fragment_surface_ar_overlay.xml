@@ -21,24 +21,36 @@
         android:id="@+id/mediaButtonContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/screenshotButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
             android:text="@string/button_label_screenshot"
-            android:layout_margin="@dimen/dimen_button_20"/>
+            android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/videoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
             android:text="@string/button_label_record_video"
-            android:layout_margin="@dimen/dimen_button_20"/>
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/placeMoveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:text="@string/button_label_place" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

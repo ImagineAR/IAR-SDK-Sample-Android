@@ -14,4 +14,6 @@
     <string name="button_label_ondemand">On Demand Markers</string>
     <string name="button_label_nfcwrite">NFC - Write</string>
     <string name="button_label_nfcread">NFC - Read</string>
+    <string name="button_label_place">Place</string>
+    <string name="button_label_move">Move</string>
 </resources>

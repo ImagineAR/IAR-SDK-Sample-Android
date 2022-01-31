@@ -35,4 +35,13 @@ class SurfaceARActivity: IARSurfaceActivity() {
             mOverlay = WeakReference(overlayFragment)
         }
     }
+
+    /**
+     * We can override this to detect when an asset is anchored or not.
+     * We just pass this to the overlay which should handle the logic of what to display.
+     */
+    override fun onAssetAnchored(isPlaced: Boolean) {
+        super.onAssetAnchored(isPlaced)
+        mOverlay?.get()?.onAssetAnchored(isPlaced)
+    }
 }

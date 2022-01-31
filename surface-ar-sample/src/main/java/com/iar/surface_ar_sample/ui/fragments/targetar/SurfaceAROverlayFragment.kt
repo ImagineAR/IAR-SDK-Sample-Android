@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentSurfaceArOverlayBinding
+import com.iar.surface_ar_sample.ui.activities.SurfaceARViewModel
 import com.iar.surface_sdk.aractivity.IARSurfaceActivity
 import kotlinx.coroutines.*
 
@@ -17,6 +19,7 @@ class SurfaceAROverlayFragment: Fragment() {
     var binding: FragmentSurfaceArOverlayBinding? = null
 
     var recordingJob: Job? = null
+    var isAnchored = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +40,11 @@ class SurfaceAROverlayFragment: Fragment() {
             takeVideo()
         }
 
+        binding?.placeMoveButton?.setOnClickListener {
+            if (isAnchored) (activity as? IARSurfaceActivity)?.unanchorAsset()
+            else (activity as? IARSurfaceActivity)?.anchorAsset()
+        }
+
         return binding?.root
     }
 
@@ -51,9 +59,14 @@ class SurfaceAROverlayFragment: Fragment() {
         }
     }
 
-    fun onTrackingChanged(isTracking: Boolean) {
+    fun onAssetAnchored(isPlaced: Boolean) {
         Handler(Looper.getMainLooper()).post {
-            binding?.mediaButtonContainer?.visibility = if (isTracking) View.VISIBLE else View.GONE
+            val visibility = if (isPlaced) View.VISIBLE else View.GONE
+            binding?.screenshotButton?.visibility = visibility
+            binding?.videoButton?.visibility = visibility
+            binding?.placeMoveButton?.text =
+                if(isPlaced) getString(R.string.button_label_move)
+                else getString(R.string.button_label_place)
         }
     }
 
