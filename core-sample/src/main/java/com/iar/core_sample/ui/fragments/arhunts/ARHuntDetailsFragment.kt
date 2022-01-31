@@ -1,29 +1,27 @@
 package com.iar.core_sample.ui.fragments.arhunts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.iar.common.Utils.addDivider
+import com.iar.common.Utils.gson
+import com.iar.common.Utils.loadImage
+import com.iar.core_sample.R
 import com.iar.core_sample.databinding.FragmentHuntDetailsBinding
-
-
-import com.iar.core_sample.utils.Util
-import com.iar.core_sample.utils.Util.addDivider
-import com.iar.core_sample.utils.Util.loadImage
+import com.iar.core_sample.ui.common.BaseFragment
+import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.iar_core.Hunt
 import com.iar.iar_core.HuntMarker
 import com.iar.iar_core.HuntReward
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ARHuntDetailsFragment : Fragment() {
+class ARHuntDetailsFragment : BaseFragment() {
 
     private val viewModel by viewModels<ARHuntsViewModel>()
 
@@ -32,6 +30,7 @@ class ARHuntDetailsFragment : Fragment() {
     private val args by navArgs<ARHuntDetailsFragmentArgs>()
     private lateinit var huntMarkerListView: RecyclerView
     private lateinit var huntRewardListView: RecyclerView
+    override fun getViewModel(): BaseViewModel = viewModel
 
 
     override fun onCreateView(
@@ -40,7 +39,7 @@ class ARHuntDetailsFragment : Fragment() {
     ): View {
         binding = FragmentHuntDetailsBinding.inflate(inflater, container, false)
         val huntString = args.hunt
-        val hunt = Util.gson.fromJson(huntString, Hunt::class.java)
+        val hunt = gson.fromJson(huntString, Hunt::class.java)
 
         binding.huntName.text = hunt.name
         binding.huntId.text = hunt.id
@@ -72,7 +71,7 @@ class ARHuntDetailsFragment : Fragment() {
     private fun setupHuntMarkers(huntMarkers: ArrayList<HuntMarker>) {
         huntMarkerListView.layoutManager = LinearLayoutManager(requireContext())
 
-        huntMarkerListView.addDivider(requireContext())
+        huntMarkerListView.addDivider(requireContext(), R.color.lightGrey)
 
         val adapter = HuntMarkersAdapter(
             huntMarkers,
@@ -80,8 +79,7 @@ class ARHuntDetailsFragment : Fragment() {
                 override fun onHuntMarkerItemClick(huntMarker: HuntMarker) {
 
                     viewModel.navigateToHuntMarkerFragment(
-                        huntMarker,
-                        binding.root.findNavController()
+                        huntMarker
                     )
 
                 }
@@ -92,7 +90,7 @@ class ARHuntDetailsFragment : Fragment() {
     private fun setupHuntRewards(huntRewards: ArrayList<HuntReward>) {
         huntRewardListView.layoutManager = LinearLayoutManager(requireContext())
 
-        huntRewardListView.addDivider(requireContext())
+        huntRewardListView.addDivider(requireContext(), R.color.lightGrey)
 
         val adapter = HuntRewardsAdapter(
             huntRewards,
@@ -100,8 +98,7 @@ class ARHuntDetailsFragment : Fragment() {
                 override fun onHuntRewardItemClick(huntReward: HuntReward) {
 
                     viewModel.navigateToHuntRewardFragment(
-                        huntReward,
-                        binding.root.findNavController()
+                        huntReward
                     )
                 }
             })

@@ -90,10 +90,8 @@ dependencies {
 
     // IAR dependencies
     implementation 'com.imaginear.iar:iar_core-dev:1.5.8-dev'
+    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.5.8-dev'
 
     //Preference
     implementation 'androidx.preference:preference:1.1.1'
-
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
 }

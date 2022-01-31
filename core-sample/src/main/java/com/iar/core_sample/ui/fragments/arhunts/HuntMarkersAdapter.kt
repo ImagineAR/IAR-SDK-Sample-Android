@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.iar.common.Utils.loadImage
 import com.iar.core_sample.R
-import com.iar.core_sample.utils.Util.loadImage
 import com.iar.iar_core.HuntMarker
 
 class HuntMarkersAdapter(

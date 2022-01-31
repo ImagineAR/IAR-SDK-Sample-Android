@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.google.gson.GsonBuilder
+import com.iar.common.Utils.gson
+import com.iar.common.Utils.loadImage
 import com.iar.core_sample.databinding.FragmentHuntRewardsBinding
-import com.iar.core_sample.utils.Util
-import com.iar.core_sample.utils.Util.loadImage
 import com.iar.iar_core.HuntReward
 
 
@@ -26,7 +26,7 @@ class HuntRewardDetailsFragment : Fragment() {
         binding = FragmentHuntRewardsBinding.inflate(inflater, container, false)
 
         val huntRewardString = args.huntReward
-        val huntReward = Util.gson.fromJson(huntRewardString, HuntReward::class.java)
+        val huntReward = gson.fromJson(huntRewardString, HuntReward::class.java)
         huntReward?.reward?.image?.url?.let {
             binding.rewardImage.loadImage(it, requireContext())
         }

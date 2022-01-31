@@ -7,23 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.iar.common.Utils.addDivider
+import com.iar.common.Utils.showToastMessage
 import com.iar.core_sample.databinding.UserRewardsFragmentBinding
 import com.iar.iar_core.Reward
 import dagger.hilt.android.AndroidEntryPoint
 import com.iar.core_sample.R
-import com.iar.core_sample.utils.Util
-import com.iar.core_sample.utils.Util.addDivider
+import com.iar.core_sample.ui.common.BaseFragment
+import com.iar.core_sample.ui.common.BaseViewModel
+import com.iar.core_sample.utils.Util.setupDialogEditText
 
 @AndroidEntryPoint
-class UserRewardsFragment : Fragment() {
+class UserRewardsFragment : BaseFragment() {
 
 
     private val viewModel by viewModels<UserRewardsViewModel>()
@@ -31,6 +30,7 @@ class UserRewardsFragment : Fragment() {
     private lateinit var binding: UserRewardsFragmentBinding
     private lateinit var rewardList: RecyclerView
     private var userRewards: List<Reward>? = null
+    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,21 +43,20 @@ class UserRewardsFragment : Fragment() {
         //Initialize and load user Id
         viewModel.initialize(requireContext())
 
-        viewModel.userId.observe(viewLifecycleOwner, { userId ->
+        viewModel.userId.observe(viewLifecycleOwner) { userId ->
             userId?.let { viewModel.getUserRewards() }
+        }
 
-        })
-
-        viewModel.userRewards.observe(viewLifecycleOwner, { rewards ->
+        viewModel.userRewards.observe(viewLifecycleOwner) { rewards ->
             setupRewards(rewards)
             userRewards = rewards
-        })
+        }
 
-        viewModel.error.observe(viewLifecycleOwner, { error ->
+        viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
-                Util.showToastMessage( "There is error $error", requireContext())
+                showToastMessage("There is error $error", requireContext())
             }
-        })
+        }
 
         binding.getRewardButton.setOnClickListener {
             setupDialog()
@@ -69,13 +68,12 @@ class UserRewardsFragment : Fragment() {
     private fun setupRewards(rewards: List<Reward>) {
         rewardList.layoutManager = LinearLayoutManager(requireContext())
 
-        rewardList.addDivider(requireContext())
+        rewardList.addDivider(requireContext(), R.color.lightGrey)
         val adapter =
             UserRewardsAdapter(rewards, object : UserRewardsAdapter.OnRewardItemClickListener {
                 override fun onRewardItemClick(reward: Reward) {
                     viewModel.navigateToRewardDetailsFragment(
-                        reward,
-                        binding.root.findNavController()
+                        reward
                     )
                 }
             })
@@ -85,11 +83,10 @@ class UserRewardsFragment : Fragment() {
     }
 
     private fun setupDialog() {
-        val builder: android.app.AlertDialog.Builder =
-            android.app.AlertDialog.Builder(requireActivity())
+        val builder= AlertDialog.Builder(requireActivity())
         builder.setTitle("Get User Reward")
         val container = FrameLayout(requireActivity())
-        val editText: EditText = Util.setupDialogEditText(requireContext())
+        val editText: EditText = setupDialogEditText(requireContext())
         container.addView(editText)
         builder.setView(container)
         builder.setMessage("Enter reward ID")
@@ -106,11 +103,9 @@ class UserRewardsFragment : Fragment() {
         userRewards?.let {
             val reward = viewModel.getRewardFromId(inputId, it)
             if (reward != null) {
-                viewModel.navigateToRewardDetailsFragment(reward, binding.root.findNavController())
-
+                viewModel.navigateToRewardDetailsFragment(reward)
             } else {
-
-                Util.showToastMessage("Don't have this reward id", requireContext())
+                showToastMessage("Don't have this reward id", requireContext())
             }
         }
     }
