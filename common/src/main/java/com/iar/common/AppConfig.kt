@@ -14,19 +14,24 @@ class AppConfig {
     private val QA_ORG_KEY = "pk_org_c7a686bf2b4a4a3c95b817cbf95b1198"
     private val QA_REGION = Region.QA
 
-    fun getCurRegion() = QA_REGION
+    private val PUB_ORG_KEY = "pk_org_d5f1fca52da847c9a1a064619b91c74e"
+    private val PUB_REGION = Region.QA
 
-    fun getCurLicense() = QA_ORG_KEY
+    private val CUR_ORG_KEY = QA_ORG_KEY
+    private val CUR_REGION = QA_REGION
+
+    fun getCurLicense() = CUR_ORG_KEY
+    fun getCurRegion() = CUR_REGION
 
     fun getOrgKeyRegion(): Pair<String, Region> {
-        return Pair(QA_ORG_KEY,QA_REGION )
+        return Pair(CUR_ORG_KEY,CUR_REGION )
     }
 
     fun initialize(context: Context,
                    success: (() -> Unit)?,
                    onError: ((errCode: Int, errMsg: String?) -> Unit)?) {
         // First we initialize the Core API.
-        CoreAPI.initialize(QA_ORG_KEY, QA_REGION, context)
+        CoreAPI.initialize(CUR_ORG_KEY, CUR_REGION, context)
 
         // Then we need to create a user (or use an existing one. Here we just create a new one everytime.)
         val newUUID = UUID.randomUUID().toString()
