@@ -13,12 +13,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.iar.common.Utils.addDivider
+import com.iar.common.Utils.showToastMessage
 import com.iar.core_sample.R
 import com.iar.core_sample.databinding.FragmentLocationMarkersBinding
 import com.iar.core_sample.ui.common.BaseFragment
 import com.iar.core_sample.ui.common.BaseViewModel
-import com.iar.core_sample.utils.Util
-import com.iar.core_sample.utils.Util.addDivider
+import com.iar.core_sample.utils.Util.setupDialogEditText
 import com.iar.iar_core.Marker
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,18 +46,17 @@ class LocationMarkersFragment : BaseFragment() {
         binding = FragmentLocationMarkersBinding.inflate(inflater, container, false)
         markerListView = binding.locationMarkerList
 
-        viewModel.locationMarkers.observe(viewLifecycleOwner, { markers ->
+        viewModel.locationMarkers.observe(viewLifecycleOwner) { markers ->
             markers?.let {
                 setupMarkersList(markers)
             }
+        }
 
-        })
-
-        viewModel.error.observe(viewLifecycleOwner, { error ->
+        viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
-                Util.showToastMessage("There is error $error", requireContext())
+                showToastMessage("There is error $error", requireContext())
             }
-        })
+        }
 
         binding.getMarkerButton.setOnClickListener {
             setupDialog()
@@ -68,7 +68,7 @@ class LocationMarkersFragment : BaseFragment() {
     private fun setupMarkersList(markers: List<Marker>) {
         markerListView.layoutManager = LinearLayoutManager(requireContext())
 
-        markerListView.addDivider(requireContext())
+        markerListView.addDivider(requireContext(), R.color.lightGrey)
         val adapter =
             MarkersAdapter(markers, object : MarkersAdapter.OnMarkerItemClickListener {
                 override fun onMarkerItemClick(marker: Marker) {
@@ -86,7 +86,7 @@ class LocationMarkersFragment : BaseFragment() {
         val builder = AlertDialog.Builder(requireActivity())
         builder.setTitle("Get Location Markers")
         val container = FrameLayout(requireActivity())
-        val editText: EditText = Util.setupDialogEditText(requireContext())
+        val editText: EditText = setupDialogEditText(requireContext())
         editText.setTextIsSelectable(true)
         editText.hint = "48.166667, -100.166667"
         container.addView(editText)

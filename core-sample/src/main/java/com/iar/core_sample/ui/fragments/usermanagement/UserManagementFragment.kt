@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.iar.common.Utils.showToastMessage
 import com.iar.core_sample.R
 import com.iar.core_sample.databinding.UserManagementFragmentBinding
 import com.iar.core_sample.ui.common.BaseFragment
 import com.iar.core_sample.ui.common.BaseViewModel
-import com.iar.core_sample.utils.Util
 import com.iar.core_sample.utils.Util.setupDialogEditText
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -37,31 +36,31 @@ class UserManagementFragment : BaseFragment() {
 
         viewModel.loadCurrentUser(requireContext())
 
-        viewModel.isAnonymous.observe(viewLifecycleOwner, { isAnonymous ->
+        viewModel.isAnonymous.observe(viewLifecycleOwner) { isAnonymous ->
             if (!isAnonymous) {
                 binding.createButton.visibility = View.GONE;
             } else {
                 binding.createButton.visibility = View.VISIBLE;
             }
-        })
+        }
 
-        viewModel.userId.observe(viewLifecycleOwner, { userId ->
+        viewModel.userId.observe(viewLifecycleOwner) { userId ->
             binding.userId.text = userId
-        })
+        }
 
-        viewModel.isLogin.observe(viewLifecycleOwner, { isLogin ->
+        viewModel.isLogin.observe(viewLifecycleOwner) { isLogin ->
             if (isLogin) {
                 binding.logButton.setText(R.string.logout)
             } else {
                 binding.logButton.setText(R.string.login)
             }
-        })
+        }
 
-        viewModel.error.observe(viewLifecycleOwner, { error ->
+        viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
-                Util.showToastMessage( "There is error $error", requireContext())
+                showToastMessage("There is error $error", requireContext())
             }
-        })
+        }
 
         binding.createButton.setOnClickListener {
             userDialog(getString(R.string.create_new_user), true, false)
@@ -123,9 +122,9 @@ class UserManagementFragment : BaseFragment() {
 
         var oldUserId = ""
 
-        viewModel.userId.observe(viewLifecycleOwner, {
+        viewModel.userId.observe(viewLifecycleOwner) {
             oldUserId = it
-        })
+        }
 
         val container = FrameLayout(requireActivity())
         val editText: EditText = setupDialogEditText(requireContext())

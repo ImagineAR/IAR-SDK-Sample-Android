@@ -42,6 +42,7 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
             appConfig.getOrgKeyRegion().second,
             context
         )
+        validateLicense(context)
         _userId.postValue(CoreAPI.getCurrentExternalUserId())
     }
 

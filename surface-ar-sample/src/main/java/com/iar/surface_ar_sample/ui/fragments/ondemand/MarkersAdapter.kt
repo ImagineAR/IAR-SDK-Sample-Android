@@ -1,4 +1,4 @@
-package com.iar.core_sample.ui.fragments.markers
+package com.iar.surface_ar_sample.ui.fragments.ondemand
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.iar.common.Utils.loadImage
-import com.iar.core_sample.R
 import com.iar.iar_core.Marker
+import com.iar.surface_ar_sample.R
 
 
 class MarkersAdapter(
@@ -25,9 +25,12 @@ class MarkersAdapter(
     override fun onBindViewHolder(holder: MarkerViewHolder, position: Int) {
         val marker = markersList[position]
 
-        marker.previewImageUrl?.let {
-            holder.markerImage.loadImage(it, holder.markerImage.getContext())
+        holder.markerImage.context?.let { imageContext ->
+            marker.previewImageUrl?.let {
+                holder.markerImage.loadImage(it, imageContext)
+            }
         }
+
 
         holder.markerName.text = marker.name
         holder.markerId.text = marker.id

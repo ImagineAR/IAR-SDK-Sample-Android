@@ -5,21 +5,40 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragment_main">
 
-    <action android:id="@+id/action_surface_ar"
-        app:destination="@id/activity_surface_ar"/>
+    <action
+        android:id="@+id/global_action_surface_ar"
+        app:destination="@id/activity_surface_ar" />
 
-    <fragment android:name="com.iar.surface_ar_sample.ui.fragments.main.MainFragment"
+    <fragment
         android:id="@+id/fragment_main"
+        android:name="com.iar.surface_ar_sample.ui.fragments.main.MainFragment"
         android:label="Main Fragment"
         tools:layout="@layout/fragment_main">
+
         <action
             android:id="@+id/action_fragment_main_to_locationMarkersFragment"
             app:destination="@id/locationMarkersFragment" />
+
+        <action
+            android:id="@+id/action_to_ondemand"
+            app:destination="@id/fragment_ondemand" />
     </fragment>
 
-    <activity android:name="com.iar.surface_ar_sample.ui.activities.SurfaceARActivity"
+    <fragment
+        android:id="@+id/fragment_ondemand"
+        android:name="com.iar.surface_ar_sample.ui.fragments.ondemand.OnDemandMarkersFragment"
+        android:label="On Demand"
+        tools:layout="@layout/fragment_on_demand_markers">
+        <action
+            android:id="@+id/action_surface_ar"
+            app:destination="@id/activity_surface_ar" />
+
+    </fragment>
+
+    <activity
         android:id="@+id/activity_surface_ar"
-        android:label="@string/label_surface_ar_view"/>
+        android:name="com.iar.surface_ar_sample.ui.activities.SurfaceARActivity"
+        android:label="@string/label_surface_ar_view" />
     <fragment
         android:id="@+id/locationMarkersFragment"
         android:name="com.iar.surface_ar_sample.ui.fragments.markers.LocationMarkersFragment"

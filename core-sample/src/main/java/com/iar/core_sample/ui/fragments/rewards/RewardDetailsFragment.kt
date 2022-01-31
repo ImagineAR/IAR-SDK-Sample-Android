@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.iar.common.Utils.loadImage
 import com.iar.core_sample.databinding.RewardDetailsFragmentBinding
-import com.iar.core_sample.utils.Util.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

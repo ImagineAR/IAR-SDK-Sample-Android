@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.iar.common.AppConfig
+import com.iar.common.Utils.gson
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.core_sample.utils.Util
 import com.iar.iar_core.CoreAPI
@@ -60,7 +61,7 @@ class ARHuntsViewModel @Inject constructor(private val appConfig: AppConfig) :
     }
 
     fun navigateToARHuntDetailsFragment(hunt: Hunt) {
-        val huntString = Util.gson.toJson(hunt)
+        val huntString = gson.toJson(hunt)
         val action =
             ARHuntsFragmentDirections.actionARHuntsFragmentToHuntDetailsFragment(huntString)
 
@@ -68,7 +69,7 @@ class ARHuntsViewModel @Inject constructor(private val appConfig: AppConfig) :
     }
 
     fun navigateToHuntMarkerFragment(huntMarker: HuntMarker) {
-        val huntMarkerString = Util.gson.toJson(huntMarker)
+        val huntMarkerString = gson.toJson(huntMarker)
         val action = ARHuntDetailsFragmentDirections.actionHuntDetailsFragmentToHuntMarkersFragment(
             huntMarkerString
         )
@@ -77,7 +78,7 @@ class ARHuntsViewModel @Inject constructor(private val appConfig: AppConfig) :
     }
 
     fun navigateToHuntRewardFragment(huntReward: HuntReward) {
-        val huntRewardString = Util.gson.toJson(huntReward)
+        val huntRewardString = gson.toJson(huntReward)
         val action = ARHuntDetailsFragmentDirections.actionHuntDetailsFragmentToHuntRewardsFragment(
             huntRewardString
         )
