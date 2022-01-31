@@ -1,4 +1,4 @@
-package com.iar.surface_ar_sample.ui.fragments.targetar
+package com.iar.surface_ar_sample.ui.fragments.surfacear
 
 import android.os.Bundle
 import android.os.Handler
@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentSurfaceArOverlayBinding
-import com.iar.surface_ar_sample.ui.activities.SurfaceARViewModel
 import com.iar.surface_sdk.aractivity.IARSurfaceActivity
 import kotlinx.coroutines.*
 
@@ -60,6 +59,7 @@ class SurfaceAROverlayFragment: Fragment() {
     }
 
     fun onAssetAnchored(isPlaced: Boolean) {
+        isAnchored = isPlaced
         Handler(Looper.getMainLooper()).post {
             val visibility = if (isPlaced) View.VISIBLE else View.GONE
             binding?.screenshotButton?.visibility = visibility
