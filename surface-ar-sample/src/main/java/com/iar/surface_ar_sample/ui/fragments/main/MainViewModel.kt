@@ -17,9 +17,10 @@ class MainViewModel @Inject constructor(private val appConfig: AppConfig) : Base
         if (!isInitialized) {
             appConfig.initialize(context, {
                 isInitialized = true
-                validateLicense(context)
                 success?.invoke()
             }, onError)
+
+            validateLicense(context)
         }
     }
 

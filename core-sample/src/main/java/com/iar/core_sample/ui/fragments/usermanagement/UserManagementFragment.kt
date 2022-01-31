@@ -144,7 +144,6 @@ class UserManagementFragment : BaseFragment() {
             if (!isMigrate) {
                 if (!createNew) {
                     login(inputId)
-
                 } else {
                     createNewUser(inputId)
                 }
