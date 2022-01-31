@@ -12,9 +12,17 @@
         android:id="@+id/fragment_main"
         android:label="Main Fragment"
         tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_fragment_main_to_locationMarkersFragment"
+            app:destination="@id/locationMarkersFragment" />
     </fragment>
 
     <activity android:name="com.iar.surface_ar_sample.ui.activities.SurfaceARActivity"
         android:id="@+id/activity_surface_ar"
         android:label="@string/label_surface_ar_view"/>
+    <fragment
+        android:id="@+id/locationMarkersFragment"
+        android:name="com.iar.surface_ar_sample.ui.fragments.markers.LocationMarkersFragment"
+        android:label="location_markers_fragment"
+        tools:layout="@layout/location_markers_fragment" />
 </navigation>
