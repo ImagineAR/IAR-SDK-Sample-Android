@@ -20,7 +20,7 @@ import javax.inject.Inject
 class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
     BaseViewModel() {
 
-    private val LOGTAG = "MarkersViewModel"
+    private val LOGTAG = "LocationMarkersViewModel"
 
     private val _onDemandMarkers = MutableLiveData<List<Marker>>()
     val onDemandMarkers: LiveData<List<Marker>>

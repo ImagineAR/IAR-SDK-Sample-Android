@@ -15,4 +15,7 @@
     <string name="button_label_nfcwrite">NFC - Write</string>
     <string name="button_label_nfcread">NFC - Read</string>
     <string name="text_label_download_asset">Downloading asset...</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
 </resources>

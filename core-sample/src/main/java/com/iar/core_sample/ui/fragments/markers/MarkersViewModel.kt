@@ -112,4 +112,5 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
 
     }
 
+
 }
