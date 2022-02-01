@@ -1,7 +1,9 @@
 package com.iar.core_sample.ui.fragments.markers
 
 import android.content.Context
+import android.text.InputFilter
 import android.util.Log
+import android.widget.EditText
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
@@ -11,7 +13,6 @@ import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.Marker
 import com.iar.surface_sdk.SurfaceAPI
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
@@ -61,7 +62,6 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
             10000,
             { markers ->
                 _locationMarkers.postValue(markers)
-
             }
         )
         { errorCode: Int?, errorMessage: String? ->
@@ -95,12 +95,12 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
             LocationMarkersFragmentDirections.actionLocationMarkersFragmentToMarkerDetailsFragment(
                 marker
             )
-
         navigate(action)
     }
 
     fun onGetLocationMarkers(coordinates: String) {
         val positionString = coordinates.split("[\\s,]+".toRegex()).toTypedArray()
+
         var latitude = 0.0
         var longitude = 0.0
 
@@ -108,8 +108,16 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
             latitude = positionString[0].toDouble()
             longitude = positionString[1].toDouble()
         }
+
         getLocationMarkers(latitude, longitude)
 
+    }
+
+    fun editTextFilters(editText: EditText) {
+        val regex = Regex("[0-9.,-]+")
+        editText.filters = arrayOf(InputFilter { source, _, _, _, _, _ ->
+            source.filter { regex.matches(it.toString()) }
+        })
     }
 
 }
