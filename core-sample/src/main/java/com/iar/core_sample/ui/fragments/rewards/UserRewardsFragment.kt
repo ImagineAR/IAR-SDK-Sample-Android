@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,7 @@ class UserRewardsFragment : BaseFragment() {
 
     private lateinit var binding: UserRewardsFragmentBinding
     private lateinit var rewardList: RecyclerView
+    private lateinit var instruction: TextView
     private var userRewards: List<Reward>? = null
     override fun getViewModel(): BaseViewModel = viewModel
 
@@ -38,11 +40,16 @@ class UserRewardsFragment : BaseFragment() {
 
         binding = UserRewardsFragmentBinding.inflate(inflater, container, false)
         rewardList = binding.rewardList
+        instruction = binding.instruction
 
         //Initialize and load user Id
         viewModel.initialize(requireContext())
 
         viewModel.userId.observe(viewLifecycleOwner, { userId ->
+            if (userId == null) {
+                instruction.visibility = View.VISIBLE
+            }
+
             userId?.let { viewModel.getUserRewards() }
 
         })
@@ -66,6 +73,12 @@ class UserRewardsFragment : BaseFragment() {
     }
 
     private fun setupRewards(rewards: List<Reward>) {
+        if (rewards.isNotEmpty()) {
+            instruction.visibility = View.GONE
+        } else {
+            instruction.visibility = View.VISIBLE
+        }
+
         rewardList.layoutManager = LinearLayoutManager(requireContext())
 
         rewardList.addDivider(requireContext())
@@ -83,7 +96,7 @@ class UserRewardsFragment : BaseFragment() {
     }
 
     private fun setupDialog() {
-        val builder= AlertDialog.Builder(requireActivity())
+        val builder = AlertDialog.Builder(requireActivity())
         builder.setTitle("Get User Reward")
         val container = FrameLayout(requireActivity())
         val editText: EditText = Util.setupDialogEditText(requireContext())
