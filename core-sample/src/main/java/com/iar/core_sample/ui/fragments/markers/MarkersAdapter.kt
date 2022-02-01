@@ -13,7 +13,7 @@ import com.iar.iar_core.Marker
 
 class MarkersAdapter(
     private val markersList: List<Marker>,
-    val listener: OnMarkerItemClickListener
+    private val listener: OnMarkerItemClickListener
 ) :
     RecyclerView.Adapter<MarkersAdapter.MarkerViewHolder>() {
 
@@ -30,7 +30,19 @@ class MarkersAdapter(
         }
 
         holder.markerName.text = marker.name
-        holder.markerId.text = marker.id
+
+        var textString = ""
+        if (marker.type == "Location") {
+            textString = "${marker.id}\n" +
+                    "Distance: ${marker.location.distance}"
+        }
+
+        if (marker.type == "On Demand") {
+            textString = marker.id
+        }
+
+        holder.markerId.text = textString
+
         holder.itemView.setOnClickListener {
             listener.onMarkerItemClick(marker)
         }
