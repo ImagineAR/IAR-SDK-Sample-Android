@@ -31,9 +31,15 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        kotlinOptions.freeCompilerArgs = ['-Xinline-classes']
     }
     buildFeatures {
         viewBinding true
+    }
+    // We use the .filamat extension for materials compiled with matc
+    // Telling aapt to not compress them allows to load them efficiently
+    aaptOptions {
+        noCompress 'filamat', 'ktx'
     }
 }
 
@@ -66,10 +72,15 @@ dependencies {
     // Kotlin navigation component deps
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // required to avoid crash on Android 12 API 31
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
     // IAR dependencies
-    implementation 'com.imaginear.iar:iar_core-dev:1.5.8-dev'
-    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.5.8-dev'
+//    implementation 'com.imaginear.iar:iar_core-dev:1.5.8-dev'
+//    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.5.8-dev'
+    implementation project(':iar-core')
+    implementation project(':surface-sdk')
+
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.0'

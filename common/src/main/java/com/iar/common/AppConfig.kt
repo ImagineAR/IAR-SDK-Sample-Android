@@ -39,6 +39,8 @@ class AppConfig {
             User(newUUID),
             {
                 CoreAPI.setExternalUserId(newUUID, true)
+                // Current work around for bug found in 1.5.0
+                CoreAPI.getHuntsForUser(onSuccess = {}, onFail = {_, _ -> })
                 success?.invoke()
             },
             { erCode, erMsg ->
