@@ -1,13 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/sampleApp_darkBlue"
+    android:orientation="vertical"
     tools:context=".ui.fragments.nfc.WriteNFCFragment">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Write NFC fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:gravity="center"
+        android:text="@string/write_nfc_tag"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_text_size">
+    </TextView>
 
-</FrameLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:textColorHint="@color/white"
+        app:boxStrokeColor="@color/primary"
+        app:boxStrokeWidth="2dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/write_marker_id"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/write_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/write_tag_to_nfc_device"
+        android:text="@string/write_tag_to_nfc_device"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/dimen_border_round" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/locationMarkers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:contentDescription="@string/randomize_id"
+        android:text="@string/randomize_id"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/dimen_border_round" />
+
+    <TextView
+        android:id="@+id/write_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:textColor="@color/white"
+        android:textSize="@dimen/message_text_size">
+    </TextView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
