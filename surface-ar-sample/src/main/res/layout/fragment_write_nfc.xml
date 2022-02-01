@@ -20,6 +20,7 @@
     </TextView>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/marker_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +48,7 @@
         app:cornerRadius="@dimen/dimen_border_round" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/locationMarkers"
+        android:id="@+id/randomize_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/large_margin"
@@ -61,6 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/large_margin"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/message_text_size">
     </TextView>

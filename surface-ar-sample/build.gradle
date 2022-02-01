@@ -68,8 +68,11 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // IAR dependencies
-    implementation 'com.imaginear.iar:iar_core-dev:1.5.8-dev'
-    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.5.8-dev'
+    implementation 'com.imaginear.iar:iar_core-dev:1.5.9-dev'
+    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.5.9-dev'
+    implementation 'com.imaginear.iar:iar_nfc-dev:1.5.9-dev'
+
+
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.0'
