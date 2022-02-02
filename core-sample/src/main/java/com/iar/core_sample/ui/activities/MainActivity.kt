@@ -20,29 +20,4 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        var hasDeniedAPermission = false
-        for (result in grantResults) {
-            if (result != PackageManager.PERMISSION_GRANTED) {
-                hasDeniedAPermission = true
-            }
-        }
-
-        if (hasDeniedAPermission) {
-            Toast.makeText(
-                applicationContext,
-                "All permissions requested are necessary for the app to run properly.",
-                Toast.LENGTH_LONG
-            ).show()
-
-            finish()
-        }
-    }
 }

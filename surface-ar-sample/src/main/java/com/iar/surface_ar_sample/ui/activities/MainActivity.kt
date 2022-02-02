@@ -55,6 +55,8 @@ class MainActivity : AppCompatActivity() {
                 "All permissions requested are necessary for the app to run properly.",
                 Toast.LENGTH_LONG
             ).show()
+
+            finish()
         }
     }
 }
