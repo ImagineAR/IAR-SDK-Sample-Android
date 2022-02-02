@@ -1,6 +1,7 @@
 package com.iar.surface_ar_sample.ui.fragments.location
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputFilter
 import android.util.Log
@@ -12,6 +13,7 @@ import com.iar.common.AppConfig
 import com.iar.common.Utils
 import com.iar.iar_core.Marker
 import com.iar.surface_ar_sample.R
+import com.iar.surface_ar_sample.ui.activities.SurfaceARActivity
 import com.iar.surface_ar_sample.ui.common.BaseViewModel
 import com.iar.surface_sdk.SurfaceAPI
 import com.iar.surface_sdk.aractivity.IARSurfaceActivity
@@ -86,13 +88,13 @@ class LocationMarkersViewModel @Inject constructor(private val appConfig: AppCon
             activity,
             marker,
             onSuccess = { assetInfo ->
-                val argsBundle = Bundle().apply {
-                    putBundle(IARSurfaceActivity.ARG_ASSET_INFO, assetInfo.toExtrasBundle())
-                    putString(IARSurfaceActivity.ARG_MARKER, Utils.gson.toJson(marker))
+                val intent = Intent(activity, SurfaceARActivity::class.java).apply {
+                    putExtras(assetInfo.toExtrasBundle())
+                    putExtra(IARSurfaceActivity.ARG_MARKER, Utils.gson.toJson(marker))
                 }
 
                 onComplete?.invoke()
-                navigate(R.id.action_locationMarkersFragment_to_activity_surface_ar, argsBundle)
+                navigate(intent)
             },
             onFail = { errorMsg ->
                 onComplete?.invoke()

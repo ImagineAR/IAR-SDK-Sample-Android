@@ -67,27 +67,29 @@ class LocationMarkersFragment : BaseFragment(){
 
     private fun setupMarkersList(markers: List<Marker>) {
         markerListView.layoutManager = LinearLayoutManager(requireContext())
+        context?.let { curContext ->
+            markerListView.addDivider(curContext, R.color.lightGrey)
 
-        markerListView.addDivider(requireContext(), R.color.lightGrey)
-        val adapter =
-            LocationMakersAdapter(markers, object : LocationMakersAdapter.OnLocationMarkerItemClickListener {
-                override fun onMarkerItemClick(marker: Marker) {
-                    println("Location Marker clicked")
+            val adapter =
+                LocationMakersAdapter(
+                    markers,
+                    object : LocationMakersAdapter.OnLocationMarkerItemClickListener {
+                        override fun onMarkerItemClick(marker: Marker) {
+                            (activity as? MainActivity)?.let {
+                                binding.downloadOverlay.visibility = View.VISIBLE
 
-//                    (activity as? MainActivity)?.let {
-//                        binding.downloadOverlay.visibility = View.VISIBLE
-//
-//                        viewModel.navigateLocationToSurfaceAR(it, marker) {
-//                            // OnComplete callback.
-//                            Handler(Looper.getMainLooper()).post {
-//                                binding.downloadOverlay.visibility = View.GONE
-//                            }
-//                        }
-//                    }
-                }
-            })
+                                viewModel.navigateLocationToSurfaceAR(it, marker) {
+                                    // OnComplete callback.
+                                    Handler(Looper.getMainLooper()).post {
+                                        binding.downloadOverlay.visibility = View.GONE
+                                    }
+                                }
+                            }
+                        }
+                    })
 
-        markerListView.adapter = adapter
+            markerListView.adapter = adapter
+        }
 
     }
 
