@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppDialog" parent="Theme.AppCompat.Light.Dialog.Alert"/>
+    <style name="AppDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorOnPrimary">#000000</item>
+    </style>
 </resources>
