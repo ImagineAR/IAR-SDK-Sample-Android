@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/sampleApp_darkBlue"
+    android:orientation="vertical"
     tools:context=".ui.fragments.nfc.ReadNFCFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/read_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Read NFC Fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:gravity="center"
+        android:text="@string/read_nfc_tag"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_text_size">
+    </TextView>
 
-</FrameLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/read_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/write_tag_to_nfc_device"
+        android:text="@string/read_nfc_tag"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/dimen_border_round" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/marker_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:contentDescription="@string/randomize_id"
+        android:text="@string/view_scanned_marker"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/dimen_border_round" />
+
+    <TextView
+        android:id="@+id/read_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/message_text_size">
+    </TextView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

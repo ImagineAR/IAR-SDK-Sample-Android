@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IAR SDK Samples</string>
+    <string name="app_name">Surface AR Sample</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -20,4 +20,6 @@
     <string name="write_marker_id">Write marker Id</string>
     <string name="write_tag_to_nfc_device">Write Tag to NFC Device</string>
     <string name="randomize_id">Randomize ID</string>
+    <string name="read_nfc_tag">Read NFC Tag</string>
+    <string name="view_scanned_marker">View the Scanned Marker</string>
 </resources>
