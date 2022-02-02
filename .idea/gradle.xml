@@ -15,9 +15,6 @@
             <option value="$PROJECT_DIR$/core-sample" />
             <option value="$PROJECT_DIR$/surface-ar-sample" />
             <option value="$PROJECT_DIR$/target-ar-sample" />
-            <option value="$PROJECT_DIR$/../iar-sdk-android/iar-core" />
-            <option value="$PROJECT_DIR$/../iar-sdk-android/iar-sdk" />
-            <option value="$PROJECT_DIR$/../iar-sdk-android/surface-sdk" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
