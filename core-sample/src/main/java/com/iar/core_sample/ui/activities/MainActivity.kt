@@ -1,7 +1,9 @@
 package com.iar.core_sample.ui.activities
 
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.iar.core_sample.databinding.ActivityMainBinding
 
 import dagger.hilt.android.AndroidEntryPoint
