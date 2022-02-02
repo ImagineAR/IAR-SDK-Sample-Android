@@ -45,10 +45,10 @@ include ':surface-ar-sample'
 include ':core-sample'
 include ':common'
 
-include ':iar-core'
-include ':iar-sdk'
-include ':surface-sdk'
-
-project(':iar-core').projectDir=new File('../iar-sdk-android/iar-core')
-project(':iar-sdk').projectDir=new File('../iar-sdk-android/iar-sdk')
-project(':surface-sdk').projectDir=new File('../iar-sdk-android/surface-sdk')
+//include ':iar-core'
+//include ':iar-sdk'
+//include ':surface-sdk'
+//
+//project(':iar-core').projectDir=new File('../iar-sdk-android/iar-core')
+//project(':iar-sdk').projectDir=new File('../iar-sdk-android/iar-sdk')
+//project(':surface-sdk').projectDir=new File('../iar-sdk-android/surface-sdk')
