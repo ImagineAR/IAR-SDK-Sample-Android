@@ -42,7 +42,6 @@ class WriteNFCFragment : Fragment() {
 
         currentActivity?.nfcViewModel?.currentIntent?.observe(viewLifecycleOwner) { intent ->
             nfcController?.let {
-
                 val writeMessage = currentActivity.nfcViewModel.writeNfc(markerId, it, intent)
 
                 binding.writeMessage.text = writeMessage

@@ -31,6 +31,9 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     val nfcController: LiveData<NFCController>
         get() = _nfcController
 
+    private val _isWrite = MutableLiveData<Boolean>()
+    val isWrite: LiveData<Boolean>
+        get() = _isWrite
 
     fun setIntent(intent: Intent) {
         _currentIntent.postValue(intent)
@@ -52,6 +55,7 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
 
         if (isWritten) {
             message = "Write NFC successfully,  $markerTag"
+            _isWrite.postValue(true)
         }
         return message
     }
@@ -59,6 +63,11 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     fun closeKeyBoard(view: View, activity: AppCompatActivity) {
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0)
+    }
+
+    fun readNfc(controller: NFCController, intent: Intent) : MarkerTag?{
+        _isWrite.postValue(false)
+        return controller.readNFCMarker(intent)
     }
 
 }
