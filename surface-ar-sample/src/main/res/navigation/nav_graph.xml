@@ -5,19 +5,32 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragment_main">
 
-    <action android:id="@+id/action_surface_ar"
+    <action android:id="@+id/global_action_surface_ar"
         app:destination="@id/activity_surface_ar"/>
 
     <fragment android:name="com.iar.surface_ar_sample.ui.fragments.main.MainFragment"
         android:id="@+id/fragment_main"
         android:label="Main Fragment"
         tools:layout="@layout/fragment_main">
+
         <action
             android:id="@+id/action_fragment_main_to_readNFCFragment"
             app:destination="@id/readNFCFragment" />
         <action
             android:id="@+id/action_fragment_main_to_writeNFCFragment"
             app:destination="@id/writeNFCFragment" />
+
+        <action android:id="@+id/action_to_ondemand"
+            app:destination="@id/fragment_ondemand"/>
+    </fragment>
+
+    <fragment android:name="com.iar.surface_ar_sample.ui.fragments.ondemand.OnDemandMarkersFragment"
+        android:id="@+id/fragment_ondemand"
+        android:label="On Demand"
+        tools:layout="@layout/fragment_on_demand_markers">
+        <action android:id="@+id/action_surface_ar"
+            app:destination="@id/activity_surface_ar"/>
+
     </fragment>
 
     <activity android:name="com.iar.surface_ar_sample.ui.activities.SurfaceARActivity"
