@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.google.gson.GsonBuilder
+import com.iar.common.Utils.gson
+import com.iar.common.Utils.loadImage
 import com.iar.core_sample.databinding.FragmentHuntMarkersBinding
-import com.iar.core_sample.utils.Util
-import com.iar.core_sample.utils.Util.loadImage
 import com.iar.iar_core.HuntMarker
 
 class HuntMarkersFragment : Fragment() {
@@ -25,7 +25,7 @@ class HuntMarkersFragment : Fragment() {
         binding = FragmentHuntMarkersBinding.inflate(inflater, container, false)
 
         val huntMarkerString = args.huntMarker
-        val huntMarker = Util.gson.fromJson(huntMarkerString, HuntMarker::class.java)
+        val huntMarker = gson.fromJson(huntMarkerString, HuntMarker::class.java)
 
         huntMarker.clueCard?.imageUrl?.let {
             binding.clueCardImage.loadImage(it, requireContext())

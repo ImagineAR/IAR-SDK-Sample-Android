@@ -11,12 +11,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.iar.common.Utils.addDivider
+import com.iar.common.Utils.showToastMessage
 import com.iar.core_sample.R
 import com.iar.core_sample.databinding.ArHuntsFragmentBinding
 import com.iar.core_sample.ui.common.BaseFragment
 import com.iar.core_sample.ui.common.BaseViewModel
-import com.iar.core_sample.utils.Util
-import com.iar.core_sample.utils.Util.addDivider
+import com.iar.core_sample.utils.Util.setupDialogEditText
 import com.iar.iar_core.Hunt
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,7 +53,7 @@ class ARHuntsFragment : BaseFragment() {
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
-                Util.showToastMessage(error, requireContext())
+                showToastMessage(error, requireContext())
             }
         }
 
@@ -66,7 +67,7 @@ class ARHuntsFragment : BaseFragment() {
     private fun setupHunts(hunts: ArrayList<Hunt>) {
         huntListView.layoutManager = LinearLayoutManager(requireContext())
 
-        huntListView.addDivider(requireContext())
+        huntListView.addDivider(requireContext(), R.color.lightGrey)
 
         val adapter = ARHuntsAdapter(hunts, object : ARHuntsAdapter.OnHuntItemClickListener {
             override fun onHuntItemClick(hunt: Hunt) {
@@ -80,7 +81,7 @@ class ARHuntsFragment : BaseFragment() {
         val builder= AlertDialog.Builder(requireActivity())
         builder.setTitle("Get AR Hunt")
         val container = FrameLayout(requireActivity())
-        val editText: EditText = Util.setupDialogEditText(requireContext())
+        val editText: EditText = setupDialogEditText(requireContext())
         container.addView(editText)
         builder.setView(container)
         builder.setMessage("Enter hunt ID")
@@ -104,7 +105,7 @@ class ARHuntsFragment : BaseFragment() {
                     singleHunt
                 )
             } else {
-                Util.showToastMessage("Don't have the hunt Id", requireContext())
+                showToastMessage("Don't have the hunt Id", requireContext())
             }
         }
 

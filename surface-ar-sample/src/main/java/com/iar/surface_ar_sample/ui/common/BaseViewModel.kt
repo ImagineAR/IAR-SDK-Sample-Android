@@ -1,5 +1,6 @@
 package com.iar.surface_ar_sample.ui.common
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -23,6 +24,10 @@ open class BaseViewModel: ViewModel() {
         val command = NavigationCommand.To(direction)
         command.args = args
         _navigationCommand.postValue(command)
+    }
+
+    fun navigate(intent: Intent) {
+        _navigationCommand.postValue(NavigationCommand.ToActivity(intent))
     }
 
     fun navigateRoot() {
