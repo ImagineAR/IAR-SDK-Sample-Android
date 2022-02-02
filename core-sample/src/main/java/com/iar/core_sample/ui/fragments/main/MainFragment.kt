@@ -7,15 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.iar.core_sample.BuildConfig
 import com.iar.core_sample.databinding.MainFragmentBinding
 import com.iar.core_sample.ui.common.BaseFragment
 import com.iar.core_sample.ui.common.BaseViewModel
+import com.iar.iar_core.debugshell.DevConsoleDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment : BaseFragment() {
+class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
     private val LOGTAG = "MainFragment"
     private val viewModel by viewModels<MainViewModel>()
+    private var devConsoleDialog: DevConsoleDialog? = null
 
     override fun getViewModel(): BaseViewModel = viewModel
 
@@ -35,7 +38,7 @@ class MainFragment : BaseFragment() {
         }
 
         binding.userRewardButton.setOnClickListener {
-           viewModel.navigateToUserRewardsFragment()
+            viewModel.navigateToUserRewardsFragment()
         }
         binding.arHuntButton.setOnClickListener {
             viewModel.navigateToARHuntsFragment()
@@ -47,11 +50,21 @@ class MainFragment : BaseFragment() {
             viewModel.navigateToOnDemandMarkersFragment()
         }
         binding.devToolsButton.setOnClickListener {
-            Log.d(LOGTAG, "dev tools button clicked")
-            //TODO: Navigate to dev console
+            if (devConsoleDialog != null) return@setOnClickListener
+
+            devConsoleDialog = DevConsoleDialog.show(
+                parentFragmentManager,
+                null,
+                "${BuildConfig.APPLICATION_ID}.provider",
+                this
+            )
         }
 
         return binding.root
+    }
+
+    override fun onDismiss() {
+        devConsoleDialog = null
     }
 
 }
