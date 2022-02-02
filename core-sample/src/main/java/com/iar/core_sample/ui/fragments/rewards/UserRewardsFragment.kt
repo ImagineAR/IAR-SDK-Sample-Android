@@ -46,7 +46,6 @@ class UserRewardsFragment : BaseFragment() {
         //Initialize and load user Id
         viewModel.initialize(requireContext())
 
-
         viewModel.userId.observe(viewLifecycleOwner) { userId ->
             if (userId == null) {
                 instruction.visibility = View.VISIBLE
