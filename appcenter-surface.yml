@@ -1,0 +1,42 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
+trigger: none
+
+pr: none
+
+pool:
+  vmImage: 'macos-latest'
+
+steps:
+- task: Gradle@2
+  env:
+    ACCESS_TOKEN: $(accessToken)
+  inputs:
+    workingDirectory: 'surface-ar-sample/'
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'assembleRelease'
+
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: './surface-ar-sample/build/outputs/apk/release/surface-ar-sample-release-unsigned.apk'
+    apksignerKeystoreFile: 'iar_keystore'
+    apksignerKeystorePassword: $(keystorePassword)
+    apksignerKeystoreAlias: 'iar'
+    apksignerKeyPassword: $(keystoreAliasPassword)
+    zipalign: false
+
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'IAR SDK Surface App Center - Android'
+    appSlug: 'iversoft-team/IAR-SDK-Surface-Example-Android'
+    appFile: './surface-ar-sample/build/outputs/apk/release/surface-ar-sample-release-unsigned.apk'
+    symbolsOption: 'Android'
+    releaseNotesOption: 'input'
+    releaseNotesInput: 'New Surface Sample QA Build'
+    destinationType: 'groups'
