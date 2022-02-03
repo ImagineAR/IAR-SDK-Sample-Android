@@ -77,7 +77,7 @@ dependencies {
 
     // IAR dependencies
     implementation 'com.imaginear.iar:iar_core-dev:1.6.1-dev'
-    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.5.8-dev'
+    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.6.1-dev'
  //   implementation project(':iar-core')
   //  implementation project(':surface-sdk')
 
