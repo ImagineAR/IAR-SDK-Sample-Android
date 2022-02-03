@@ -20,7 +20,6 @@ import javax.inject.Inject
 class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     BaseViewModel() {
 
-
     private val _currentIntent = MutableLiveData<Intent>()
 
     val currentIntent: LiveData<Intent>
@@ -30,7 +29,6 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
 
     val nfcController: LiveData<NFCController>
         get() = _nfcController
-
 
     fun setIntent(intent: Intent) {
         _currentIntent.postValue(intent)
