@@ -75,9 +75,9 @@ dependencies {
     // required to avoid crash on Android 12 API 31
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
-    // IAR dependencies
     implementation 'com.imaginear.iar:iar_core-dev:1.6.1-dev'
     implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.6.1-dev'
+    implementation 'com.imaginear.iar:iar_nfc-dev:1.6.1-dev'
  //   implementation project(':iar-core')
   //  implementation project(':surface-sdk')
 
