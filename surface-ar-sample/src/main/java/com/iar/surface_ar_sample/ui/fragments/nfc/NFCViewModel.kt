@@ -8,10 +8,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.iar.common.AppConfig
+import com.iar.common.Utils
+import com.iar.iar_core.Marker
 import com.iar.nfc_sdk.MarkerTag
 import com.iar.nfc_sdk.MarkerType
 import com.iar.nfc_sdk.NFCController
+import com.iar.surface_ar_sample.ui.activities.SurfaceARActivity
 import com.iar.surface_ar_sample.ui.common.BaseViewModel
+import com.iar.surface_sdk.SurfaceAPI
+import com.iar.surface_sdk.SurfaceAPI.getMarkerById
+import com.iar.surface_sdk.aractivity.IARSurfaceActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -34,6 +40,14 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     private val _isWrite = MutableLiveData<Boolean>()
     val isWrite: LiveData<Boolean>
         get() = _isWrite
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
+
+    private val _marker = MutableLiveData<Marker>()
+    val marker: LiveData<Marker>
+        get() = _marker
 
     fun setIntent(intent: Intent) {
         _currentIntent.postValue(intent)
@@ -68,6 +82,40 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     fun readNfc(controller: NFCController, intent: Intent) : MarkerTag?{
         _isWrite.postValue(false)
         return controller.readNFCMarker(intent)
+    }
+
+    fun getMarkerById(markerId: String ) {
+        getMarkerById(
+            markerId,
+            { marker ->
+                _marker.postValue(marker)
+            }
+        ) { errorCode: Int?, errorMessage: String? ->
+
+            _error.postValue("$errorMessage")
+        }
+    }
+
+    fun navigateNFCToSurfaceAR(activity: AppCompatActivity,
+                                    marker: Marker,
+                                    onComplete: (() -> Unit)? = null) {
+        SurfaceAPI.downloadDemandAssetsAndRewards(
+            activity,
+            marker,
+            onSuccess = { assetInfo ->
+                val intent = Intent(activity, SurfaceARActivity::class.java).apply {
+                    putExtras(assetInfo.toExtrasBundle())
+                    putExtra(IARSurfaceActivity.ARG_MARKER, Utils.gson.toJson(marker))
+                }
+
+                onComplete?.invoke()
+                navigate(intent)
+            },
+            onFail = { errorMsg ->
+                onComplete?.invoke()
+                _error.postValue("$errorMsg")
+            }
+        )
     }
 
 }

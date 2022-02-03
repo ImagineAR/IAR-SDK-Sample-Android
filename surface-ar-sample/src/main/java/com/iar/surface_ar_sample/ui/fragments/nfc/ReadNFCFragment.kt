@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.iar.iar_core.Marker
 import com.iar.nfc_sdk.NFCController
 import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentReadNfcBinding
@@ -15,6 +16,7 @@ import com.iar.surface_ar_sample.ui.activities.MainActivity
 class ReadNFCFragment : Fragment() {
     private lateinit var binding: FragmentReadNfcBinding
     private var nfcController: NFCController? = null
+    private var nfcMarker: Marker? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +41,27 @@ class ReadNFCFragment : Fragment() {
         currentActivity?.nfcViewModel?.currentIntent?.observe(viewLifecycleOwner) {intent ->
             nfcController?.let {
                 val markerTag = currentActivity.nfcViewModel.readNfc(it, intent)
-                println("marker Tag " + markerTag)
-                markerTag?.let{
-                 val   readMessage = "Read NFC successfully,  $it"
+                markerTag?.let{ tag ->
+                 val   readMessage = "Read NFC successfully,  $tag"
                     binding.readMessage.text = readMessage
+                    currentActivity.nfcViewModel.getMarkerById(tag.id)
                 }
+            }
+        }
+
+        currentActivity?.nfcViewModel?.marker?.observe(viewLifecycleOwner){marker ->
+
+            marker?.let{
+                nfcMarker = it
+                println(it.id)
+            }
+        }
+
+        binding.markerButton.setOnClickListener {
+
+            nfcMarker?.let{
+                 currentActivity?.nfcViewModel?.navigateNFCToSurfaceAR(currentActivity, it)
+
             }
         }
 
