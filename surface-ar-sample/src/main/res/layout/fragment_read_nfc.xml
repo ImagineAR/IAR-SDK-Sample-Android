@@ -49,4 +49,34 @@
         android:textSize="@dimen/message_text_size">
     </TextView>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/downloadOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/progressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_label_download_asset"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/progressView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>

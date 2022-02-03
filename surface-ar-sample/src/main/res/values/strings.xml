@@ -23,5 +23,8 @@
     <string name="randomize_id">Randomize ID</string>
     <string name="read_nfc_tag">Read NFC Tag</string>
     <string name="view_scanned_marker">View the Scanned Marker</string>
-    <string name="text_label_download_asset">Downloading asset...</string>
+    <string name="text_label_download_asset">Downloading asset…</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+
 </resources>

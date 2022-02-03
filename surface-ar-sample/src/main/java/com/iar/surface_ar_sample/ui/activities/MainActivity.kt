@@ -1,16 +1,16 @@
 package com.iar.surface_ar_sample.ui.activities
 
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.iar.nfc_sdk.NFCController
-import android.Manifest
-import android.content.pm.PackageManager
-import android.widget.Toast
 import com.iar.common.PermissionUtils
+import com.iar.nfc_sdk.NFCController
 import com.iar.surface_ar_sample.databinding.ActivityMainBinding
 import com.iar.surface_ar_sample.ui.fragments.nfc.NFCViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
 
             finish()
         }
+
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -78,14 +79,11 @@ class MainActivity : AppCompatActivity() {
 
         if (intent.action != null) {
             nfcViewModel.setIntent(intent)
-
         }
-
     }
 
     override fun onResume() {
         super.onResume()
-
         nfcController.onResume()
     }
 
@@ -93,6 +91,5 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         nfcController.onPause()
     }
-
 
 }

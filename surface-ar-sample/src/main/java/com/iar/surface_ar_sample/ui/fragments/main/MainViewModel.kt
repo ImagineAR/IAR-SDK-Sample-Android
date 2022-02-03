@@ -36,6 +36,10 @@ class MainViewModel @Inject constructor(private val appConfig: AppConfig) : Base
         )
     }
 
+    fun navigateToLocationMarkersFragment() {
+        navigate(R.id.action_fragment_main_to_locationMarkersFragment)
+    }
+
     fun navigateToReadNFCFragment() {
         navigate(R.id.action_fragment_main_to_readNFCFragment)
     }

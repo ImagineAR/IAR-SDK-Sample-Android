@@ -1,14 +1,16 @@
-package com.iar.surface_ar_sample.ui.fragments.ondemand
+package com.iar.surface_ar_sample.ui.fragments.location
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputFilter
 import android.util.Log
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.iar.common.AppConfig
 import com.iar.common.Utils
-import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.Marker
 import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.ui.activities.SurfaceARActivity
@@ -19,32 +21,67 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
+class LocationMarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
     BaseViewModel() {
 
     private val LOGTAG = "LocationMarkersViewModel"
 
-    private val _onDemandMarkers = MutableLiveData<List<Marker>>()
-    val onDemandMarkers: LiveData<List<Marker>>
-        get() = _onDemandMarkers
+    private val _locationMarkers = MutableLiveData<List<Marker>>()
+    val locationMarkers: LiveData<List<Marker>>
+        get() = _locationMarkers
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String>
         get() = _error
 
-    fun getOnDemandMarkers() {
-        val curUser = CoreAPI.getCurrentExternalUserId()
-        CoreAPI.getDemandMarkers("OnDemand",
-            { markers ->
-                _onDemandMarkers.postValue(markers)
-            })
-        { errorCode, errorMessage ->
-            Log.i(LOGTAG, "OnDemand Markers: $errorCode $errorMessage")
-            _error.postValue("$errorCode, $errorMessage")
-        }
+    fun validateLicense(context: Context) {
+        SurfaceAPI.validateLicense(
+            appConfig.getOrgKeyRegion().first,
+            appConfig.getOrgKeyRegion().second,
+            context
+        )
     }
 
-    fun navigateOnDemandToSurfaceAR(activity: AppCompatActivity,
+    fun getLocationMarkers(latitude: Double, longitude: Double) {
+        SurfaceAPI.getLocationMarkers(
+            latitude,
+            longitude,
+            10000,
+            { markers ->
+                _locationMarkers.postValue(markers)
+
+            }
+        )
+        { errorCode: Int?, errorMessage: String? ->
+            Log.i(LOGTAG, "getLocationMarkers: $errorMessage")
+            _error.postValue("$errorCode, $errorMessage")
+        }
+
+    }
+
+    fun onGetLocationMarkers(coordinates: String) {
+        val positionString = coordinates.split("[\\s,]+".toRegex()).toTypedArray()
+
+        var latitude = 0.0
+        var longitude = 0.0
+
+        if (positionString.size > 1) {
+            latitude = positionString[0].toDouble()
+            longitude = positionString[1].toDouble()
+        }
+
+        getLocationMarkers(latitude, longitude)
+
+    }
+
+    fun editTextFilters(editText: EditText) {
+        val regex = Regex("[0-9.,-]+")
+        editText.filters = arrayOf(InputFilter { source, _, _, _, _, _ ->
+            source.filter { regex.matches(it.toString()) }
+        })
+    }
+
+    fun navigateLocationToSurfaceAR(activity: AppCompatActivity,
                                     marker: Marker,
                                     onComplete: (() -> Unit)? = null) {
         SurfaceAPI.downloadDemandAssetsAndRewards(

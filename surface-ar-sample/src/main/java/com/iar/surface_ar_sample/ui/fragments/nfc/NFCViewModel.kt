@@ -26,7 +26,6 @@ import javax.inject.Inject
 class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     BaseViewModel() {
 
-
     private val _currentIntent = MutableLiveData<Intent>()
 
     val currentIntent: LiveData<Intent>
@@ -57,7 +56,16 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
         _nfcController.postValue(controller)
     }
 
-    fun startNfc(controller: NFCController) {
+    fun validateLicense(context: Context) {
+        SurfaceAPI.validateLicense(
+            appConfig.getOrgKeyRegion().first,
+            appConfig.getOrgKeyRegion().second,
+            context
+        )
+    }
+
+    fun startNfc(controller: NFCController, write: Boolean) {
+        _isWrite.postValue(write)
         controller.startReadingNFC()
     }
 
@@ -69,7 +77,6 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
 
         if (isWritten) {
             message = "Write NFC successfully,  $markerTag"
-            _isWrite.postValue(true)
         }
         return message
     }
@@ -80,7 +87,6 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     }
 
     fun readNfc(controller: NFCController, intent: Intent) : MarkerTag?{
-        _isWrite.postValue(false)
         return controller.readNFCMarker(intent)
     }
 
@@ -99,10 +105,12 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     fun navigateNFCToSurfaceAR(activity: AppCompatActivity,
                                     marker: Marker,
                                     onComplete: (() -> Unit)? = null) {
+
         SurfaceAPI.downloadDemandAssetsAndRewards(
             activity,
             marker,
             onSuccess = { assetInfo ->
+               // println
                 val intent = Intent(activity, SurfaceARActivity::class.java).apply {
                     putExtras(assetInfo.toExtrasBundle())
                     putExtra(IARSurfaceActivity.ARG_MARKER, Utils.gson.toJson(marker))

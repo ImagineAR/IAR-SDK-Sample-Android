@@ -72,6 +72,7 @@ class OnDemandMarkersFragment : BaseFragment() {
                                 }
                             }
                         }
+                        println(marker.id)
                     }
                 })
 

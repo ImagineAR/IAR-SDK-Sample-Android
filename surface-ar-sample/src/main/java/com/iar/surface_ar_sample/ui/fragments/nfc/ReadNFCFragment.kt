@@ -1,10 +1,15 @@
 package com.iar.surface_ar_sample.ui.fragments.nfc
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
+import com.iar.common.Utils
 import com.iar.iar_core.Marker
 import com.iar.nfc_sdk.NFCController
 import com.iar.surface_ar_sample.R
@@ -17,6 +22,9 @@ class ReadNFCFragment : Fragment() {
     private lateinit var binding: FragmentReadNfcBinding
     private var nfcController: NFCController? = null
     private var nfcMarker: Marker? = null
+    private val nfcViewModel by activityViewModels<NFCViewModel>()
+
+    private var isWrite: Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,9 +32,11 @@ class ReadNFCFragment : Fragment() {
     ): View {
         binding = FragmentReadNfcBinding.inflate(inflater,container, false)
 
+        nfcViewModel.validateLicense(requireContext())
+
         val currentActivity = activity as? MainActivity
 
-        currentActivity?.nfcViewModel?.nfcController?.observe(viewLifecycleOwner) { controller ->
+        nfcViewModel.nfcController.observe(viewLifecycleOwner) { controller ->
             controller?.let {
                 nfcController = controller
             }
@@ -34,37 +44,54 @@ class ReadNFCFragment : Fragment() {
 
         binding.readButton.setOnClickListener {
             nfcController?.let {
-                currentActivity?.nfcViewModel?.startNfc(it)
+                currentActivity?.nfcViewModel?.startNfc(it, false)
             }
         }
 
-        currentActivity?.nfcViewModel?.currentIntent?.observe(viewLifecycleOwner) {intent ->
-            nfcController?.let {
-                val markerTag = currentActivity.nfcViewModel.readNfc(it, intent)
-                markerTag?.let{ tag ->
-                 val   readMessage = "Read NFC successfully,  $tag"
-                    binding.readMessage.text = readMessage
-                    currentActivity.nfcViewModel.getMarkerById(tag.id)
+        nfcViewModel.isWrite.observe(viewLifecycleOwner) { write ->
+            isWrite = write
+        }
+
+        nfcViewModel.currentIntent.observe(viewLifecycleOwner) { intent ->
+            nfcController?.let { controller ->
+                if (!isWrite) {
+                    val markerTag = nfcViewModel.readNfc(controller, intent)
+                    markerTag?.let { tag ->
+                        val readMessage = "Read NFC successfully,  $tag"
+                        binding.readMessage.text = readMessage
+                        nfcViewModel.getMarkerById(tag.id)
+                    }
                 }
             }
         }
 
-        currentActivity?.nfcViewModel?.marker?.observe(viewLifecycleOwner){marker ->
-
+        nfcViewModel.marker.observe(viewLifecycleOwner){marker ->
             marker?.let{
                 nfcMarker = it
-                println(it.id)
             }
         }
 
         binding.markerButton.setOnClickListener {
 
-            nfcMarker?.let{
-                 currentActivity?.nfcViewModel?.navigateNFCToSurfaceAR(currentActivity, it)
-
+            nfcMarker?.let { marker ->
+                println(marker.id)
+                currentActivity?.let { activity ->
+                    binding.downloadOverlay.visibility = View.VISIBLE
+                    nfcViewModel.navigateNFCToSurfaceAR(activity, marker)
+                    // OnComplete callback.
+                    Handler(Looper.getMainLooper()).post {
+                        binding.downloadOverlay.visibility = View.GONE
+                    }
+                }
             }
+
         }
 
+        nfcViewModel.error.observe(viewLifecycleOwner, { error ->
+            error?.let {
+                Utils.showToastMessage("There is error $error", requireContext())
+            }
+        })
         return binding.root
     }
 
