@@ -41,8 +41,11 @@ abstract class BaseFragment : Fragment() {
                     // back button.
                     if (!navController.navigateUp()) activity?.finish()
                 }
-                else -> {
-                    // Ignore.
+                is NavigationCommand.ToActivity -> {
+                    startActivity(it.intent)
+                }
+                is NavigationCommand.ToDir -> {
+                    navController.navigate(it.direction)
                 }
             }
         }

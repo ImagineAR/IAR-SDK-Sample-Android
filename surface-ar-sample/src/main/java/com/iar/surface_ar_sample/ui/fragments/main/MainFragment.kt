@@ -35,11 +35,11 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
 
 
         binding.locationMarkers.setOnClickListener {
-            //TODO Handle location marker click.
+            viewModel.navigateToLocationMarkersFragment()
         }
 
         binding.onDemandMarkers.setOnClickListener {
-            //TODO Handle ondemand marker click.
+            viewModel.navigate(R.id.action_to_ondemand)
         }
 
         binding.nfcWrite.setOnClickListener {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">core-sample</string>
+    <string name="app_name">Core Sample</string>
     <string name="button_label_user_management">User Management</string>
     <string name="button_label_user_rewards">User Rewards</string>
     <string name="button_label_arhunts">ARHunts</string>
