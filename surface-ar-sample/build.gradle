@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
+    id 'kotlin-android'
 }
 
 android {
@@ -60,6 +61,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.38.1"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation project(path: ':common')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     kapt "com.google.dagger:hilt-android-compiler:2.38.1"
 
     // Navigation components dependencies
@@ -73,11 +75,11 @@ dependencies {
     // required to avoid crash on Android 12 API 31
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
-    // IAR dependencies
-    implementation 'com.imaginear.iar:iar_core-dev:1.5.8-dev'
-    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.5.8-dev'
-//    implementation project(':iar-core')
-//    implementation project(':surface-sdk')
+    implementation 'com.imaginear.iar:iar_core-dev:1.6.1-dev'
+    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.6.1-dev'
+    implementation 'com.imaginear.iar:iar_nfc-dev:1.6.1-dev'
+ //   implementation project(':iar-core')
+  //  implementation project(':surface-sdk')
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'

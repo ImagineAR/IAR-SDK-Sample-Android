@@ -16,5 +16,15 @@
     <string name="button_label_nfcread">NFC - Read</string>
     <string name="button_label_place">Place</string>
     <string name="button_label_move">Move</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="write_nfc_tag">Write NFC Tag</string>
+    <string name="write_marker_id">Write marker Id</string>
+    <string name="write_tag_to_nfc_device">Write Tag to NFC Device</string>
+    <string name="randomize_id">Randomize ID</string>
     <string name="text_label_download_asset">Downloading asset...</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+
 </resources>

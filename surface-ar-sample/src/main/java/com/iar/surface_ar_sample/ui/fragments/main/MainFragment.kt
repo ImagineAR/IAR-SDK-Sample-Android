@@ -35,7 +35,7 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
 
 
         binding.locationMarkers.setOnClickListener {
-            //TODO Handle location marker click.
+            viewModel.navigateToLocationMarkersFragment()
         }
 
         binding.onDemandMarkers.setOnClickListener {
@@ -43,11 +43,11 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
         }
 
         binding.nfcWrite.setOnClickListener {
-            //TODO Handle nfc write click.
+            viewModel.navigateToWriteNFCFragment()
         }
 
         binding.nfcRead.setOnClickListener {
-            //TODO Handle nfc read click.
+            viewModel.navigateToReadNFCFragment()
         }
 
         binding.userButton.setOnClickListener {
