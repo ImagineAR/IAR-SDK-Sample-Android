@@ -36,7 +36,9 @@ class UserRewardsViewModel @Inject constructor(private val appConfig: AppConfig)
             appConfig.getOrgKeyRegion().second,
             context
         )
-        _userId.postValue(CoreAPI.getCurrentExternalUserId())
+        CoreAPI.getCurrentExternalUserId()?.let {
+            _userId.postValue(it)
+        }
     }
 
     fun getUserRewards() {
