@@ -2,7 +2,11 @@ package com.iar.common
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
+import android.text.InputType
 import android.util.TypedValue
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -52,5 +56,22 @@ object Utils {
             .error(R.drawable.splash_icon)
             .apply(requestOptions)
             .into(this)
+    }
+
+    fun setupDialogEditText(context: Context): EditText {
+        val padding = dpToPx(20, context).toInt()
+        val params = FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        params.leftMargin = padding
+        params.rightMargin = padding
+        val editText = EditText(context)
+        editText.layoutParams = params
+        editText.inputType = InputType.TYPE_CLASS_TEXT
+        editText.isSingleLine = false
+        editText.maxLines = 2
+        editText.textSize = 14f
+        return editText
     }
 }

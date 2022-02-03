@@ -35,7 +35,7 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
 
 
         binding.locationMarkers.setOnClickListener {
-            //TODO Handle location marker click.
+            viewModel.navigateToLocationMarkersFragment()
         }
 
         binding.onDemandMarkers.setOnClickListener {
