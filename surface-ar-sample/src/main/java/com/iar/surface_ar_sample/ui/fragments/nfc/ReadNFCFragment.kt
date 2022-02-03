@@ -3,28 +3,28 @@ package com.iar.surface_ar_sample.ui.fragments.nfc
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.iar.common.Utils
 import com.iar.iar_core.Marker
 import com.iar.nfc_sdk.NFCController
-import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentReadNfcBinding
-import com.iar.surface_ar_sample.databinding.FragmentWriteNfcBinding
 import com.iar.surface_ar_sample.ui.activities.MainActivity
+import com.iar.surface_ar_sample.ui.common.BaseFragment
+import com.iar.surface_ar_sample.ui.common.BaseViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class ReadNFCFragment : Fragment() {
+@AndroidEntryPoint
+class ReadNFCFragment : BaseFragment(){
     private lateinit var binding: FragmentReadNfcBinding
     private var nfcController: NFCController? = null
     private var nfcMarker: Marker? = null
     private val nfcViewModel by activityViewModels<NFCViewModel>()
 
     private var isWrite: Boolean = true
+    override fun getViewModel(): BaseViewModel = nfcViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,6 +60,7 @@ class ReadNFCFragment : Fragment() {
                         val readMessage = "Read NFC successfully,  $tag"
                         binding.readMessage.text = readMessage
                         nfcViewModel.getMarkerById(tag.id)
+                        nfcViewModel.setIsWrite(true)
                     }
                 }
             }
@@ -74,8 +75,7 @@ class ReadNFCFragment : Fragment() {
         binding.markerButton.setOnClickListener {
 
             nfcMarker?.let { marker ->
-                println(marker.id)
-                currentActivity?.let { activity ->
+                (activity as MainActivity).let { activity ->
                     binding.downloadOverlay.visibility = View.VISIBLE
                     nfcViewModel.navigateNFCToSurfaceAR(activity, marker)
                     // OnComplete callback.

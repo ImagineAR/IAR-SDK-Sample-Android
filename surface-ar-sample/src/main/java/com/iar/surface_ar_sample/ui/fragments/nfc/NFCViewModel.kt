@@ -56,6 +56,10 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
         _nfcController.postValue(controller)
     }
 
+    fun setIsWrite(isWrite: Boolean) {
+        _isWrite.postValue(isWrite)
+    }
+
     fun validateLicense(context: Context) {
         SurfaceAPI.validateLicense(
             appConfig.getOrgKeyRegion().first,
@@ -86,11 +90,11 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0)
     }
 
-    fun readNfc(controller: NFCController, intent: Intent) : MarkerTag?{
+    fun readNfc(controller: NFCController, intent: Intent): MarkerTag? {
         return controller.readNFCMarker(intent)
     }
 
-    fun getMarkerById(markerId: String ) {
+    fun getMarkerById(markerId: String) {
         getMarkerById(
             markerId,
             { marker ->
@@ -102,20 +106,20 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
         }
     }
 
-    fun navigateNFCToSurfaceAR(activity: AppCompatActivity,
-                                    marker: Marker,
-                                    onComplete: (() -> Unit)? = null) {
+    fun navigateNFCToSurfaceAR(
+        activity: AppCompatActivity,
+        marker: Marker,
+        onComplete: (() -> Unit)? = null
+    ) {
 
         SurfaceAPI.downloadDemandAssetsAndRewards(
             activity,
             marker,
             onSuccess = { assetInfo ->
-               // println
                 val intent = Intent(activity, SurfaceARActivity::class.java).apply {
                     putExtras(assetInfo.toExtrasBundle())
                     putExtra(IARSurfaceActivity.ARG_MARKER, Utils.gson.toJson(marker))
                 }
-
                 onComplete?.invoke()
                 navigate(intent)
             },
@@ -125,5 +129,4 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
             }
         )
     }
-
 }

@@ -21,6 +21,7 @@ class WriteNFCFragment : Fragment() {
     private var nfcController: NFCController? = null
     var markerId = ""
     private val nfcViewModel by activityViewModels<NFCViewModel>()
+    private var isWrite: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +45,17 @@ class WriteNFCFragment : Fragment() {
             }
         }
 
+        nfcViewModel.isWrite.observe(viewLifecycleOwner) { write ->
+            isWrite = write
+        }
+
         nfcViewModel.currentIntent.observe(viewLifecycleOwner) { intent ->
             nfcController?.let {
-                val writeMessage = nfcViewModel.writeNfc(markerId, it, intent)
-                binding.writeMessage.text = writeMessage
+                if (isWrite) {
+                    val writeMessage = nfcViewModel.writeNfc(markerId, it, intent)
+                    binding.writeMessage.text = writeMessage
+
+                }
             }
         }
 
