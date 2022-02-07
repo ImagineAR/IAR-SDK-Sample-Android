@@ -29,6 +29,8 @@
     <string name="marker_data">Marker Data</string>
     <string name="reward_instruction">You will get reward after engaging AR experience.</string>
     <string name="get_user_reward_by_id">Get User Reward by ID</string>
+    <string name="app_logo">App Logo</string>
+    <string name="iar_core_sdk">IAR Core SDK</string>
 
 
 </resources>
