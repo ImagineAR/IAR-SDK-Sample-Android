@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -38,22 +39,22 @@
             android:id="@+id/scanButton"
             style="@style/main_button_style"
             android:contentDescription="@string/button_label_scanartarget"
-            app:icon="@drawable/ic_baseline_scan_24"
-            android:text="@string/button_label_scanartarget" />
+            android:text="@string/button_label_scanartarget"
+            app:icon="@drawable/ic_baseline_scan_24" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/userButton"
             style="@style/main_button_style"
             android:contentDescription="@string/button_label_user"
-            app:icon="@drawable/ic_baseline_user_24"
-            android:text="@string/button_label_user" />
+            android:text="@string/button_label_user"
+            app:icon="@drawable/ic_baseline_user_24" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/devToolsButton"
             style="@style/main_button_style"
             android:contentDescription="@string/button_label_dev_tools"
-            app:icon="@drawable/ic_baseline_code_24"
-            android:text="@string/button_label_dev_tools" />
+            android:text="@string/button_label_dev_tools"
+            app:icon="@drawable/ic_baseline_code_24" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
