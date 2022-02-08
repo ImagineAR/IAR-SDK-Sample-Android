@@ -89,8 +89,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // IAR dependencies
-    implementation 'com.imaginear.iar:iar_core-dev:1.5.8-dev'
-    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.5.8-dev'
+    implementation 'com.imaginear.iar:iar_core-dev:1.6.1-dev'
+    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.6.1-dev'
 
     //Preference
     implementation 'androidx.preference:preference:1.1.1'
