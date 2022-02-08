@@ -44,7 +44,9 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
             context
         )
         validateLicense(context)
-        _userId.postValue(CoreAPI.getCurrentExternalUserId())
+        CoreAPI.getCurrentExternalUserId()?.let {
+            _userId.postValue(it)
+        }
     }
 
     fun validateLicense(context: Context) {
