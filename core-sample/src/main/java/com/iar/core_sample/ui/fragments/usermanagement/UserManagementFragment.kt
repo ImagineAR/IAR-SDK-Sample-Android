@@ -133,6 +133,10 @@ class UserManagementFragment : BaseFragment() {
             builder.setMessage(getString(R.string.migrate_message))
             editText.setText(oldUserId)
             editText.textAlignment = View.TEXT_ALIGNMENT_CENTER
+
+            builder.setNeutralButton("Migrate") { dialogInterface, i ->
+                migrateUser(oldUserId)
+            }
         } else {
             builder.setMessage(getString(R.string.enter_external_unserId))
         }
@@ -146,7 +150,8 @@ class UserManagementFragment : BaseFragment() {
                     createNewUser(inputId)
                 }
             } else {
-                migrateUser(oldUserId)
+                val newUserId = UUID.randomUUID().toString()
+                createNewUser(newUserId)
             }
 
             dialogInterface.dismiss()
