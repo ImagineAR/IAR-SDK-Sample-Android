@@ -30,8 +30,6 @@ class UserManagementFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        viewModel.initialize(requireContext())
-
         binding = UserManagementFragmentBinding.inflate(inflater, container, false)
 
         viewModel.loadCurrentUser(requireContext())

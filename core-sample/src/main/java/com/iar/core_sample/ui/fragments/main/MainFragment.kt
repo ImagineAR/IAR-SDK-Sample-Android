@@ -2,7 +2,6 @@ package com.iar.core_sample.ui.fragments.main
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +10,15 @@ import com.iar.core_sample.BuildConfig
 import com.iar.core_sample.databinding.MainFragmentBinding
 import com.iar.core_sample.ui.common.BaseFragment
 import com.iar.core_sample.ui.common.BaseViewModel
+import com.iar.core_sample.ui.fragments.usermanagement.UserManagementViewModel
 import com.iar.iar_core.debugshell.DevConsoleDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
-    private val LOGTAG = "MainFragment"
     private val viewModel by viewModels<MainViewModel>()
     private var devConsoleDialog: DevConsoleDialog? = null
+    private val userManagementViewModel by viewModels<UserManagementViewModel>()
 
     override fun getViewModel(): BaseViewModel = viewModel
 
@@ -27,9 +27,8 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
         savedInstanceState: Bundle?
     ): View {
 
-        val (orgKey, region) = viewModel.getOrgKeyRegion()
-        Log.d(LOGTAG, orgKey)
-        Log.d(LOGTAG, region.toString())
+        userManagementViewModel.initialize(requireContext())
+        userManagementViewModel.loadCurrentUser(requireContext())
 
         val binding = MainFragmentBinding.inflate(inflater, container, false)
 
