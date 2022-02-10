@@ -84,6 +84,17 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
         }
     }
 
+    fun getMarkerById(markerId: String) {
+        SurfaceAPI.getMarkerById(markerId,
+            { marker ->
+                navigateOnDemandToMarkerDetailsFragment(marker)
+            })
+        { errorCode, errorMessage ->
+            Log.i(LOGTAG, "Get Marker by ID: $errorCode $errorMessage")
+            _error.postValue("$errorCode, $errorMessage")
+        }
+    }
+
     fun navigateOnDemandToMarkerDetailsFragment(marker: Marker) {
         val action: NavDirections =
             OnDemandMarkersFragmentDirections.actionOnDemandMarkersFragmentToMarkerDetailsFragment(
