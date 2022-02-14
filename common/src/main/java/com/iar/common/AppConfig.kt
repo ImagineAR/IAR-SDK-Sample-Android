@@ -15,10 +15,10 @@ class AppConfig {
     private val QA_REGION = Region.QA
 
     private val PUB_ORG_KEY = "pk_org_d5f1fca52da847c9a1a064619b91c74e"
-    private val PUB_REGION = Region.QA
+    private val PUB_REGION = Region.NA
 
-    private val CUR_ORG_KEY = QA_ORG_KEY
-    private val CUR_REGION = QA_REGION
+    private val CUR_ORG_KEY = PUB_ORG_KEY
+    private val CUR_REGION = PUB_REGION
 
     fun getCurLicense() = CUR_ORG_KEY
     fun getCurRegion() = CUR_REGION
