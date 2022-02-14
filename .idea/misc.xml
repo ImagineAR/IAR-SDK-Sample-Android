@@ -8,10 +8,12 @@
         <entry key="surface-ar-sample/src/main/res/layout/activity_main.xml" value="0.125" />
         <entry key="surface-ar-sample/src/main/res/layout/fragment_main.xml" value="0.125" />
         <entry key="surface-ar-sample/src/main/res/layout/fragment_on_demand_markers.xml" value="0.19610507246376813" />
+        <entry key="surface-ar-sample/src/main/res/layout/fragment_read_nfc.xml" value="0.1515625" />
         <entry key="surface-ar-sample/src/main/res/layout/fragment_surface_ar_overlay.xml" value="0.335" />
         <entry key="surface-ar-sample/src/main/res/layout/fragment_target_ar_overlay.xml" value="0.125" />
         <entry key="surface-ar-sample/src/main/res/layout/marker_item.xml" value="0.19610507246376813" />
         <entry key="surface-ar-sample/src/main/res/layout/on_demand_markers_fragment.xml" value="0.19610507246376813" />
+        <entry key="target-ar-sample/src/main/res/drawable/ic_cellphone_screenshot.xml" value="0.1935" />
         <entry key="target-ar-sample/src/main/res/layout/activity_main.xml" value="0.2703125" />
         <entry key="target-ar-sample/src/main/res/layout/fragment_main.xml" value="0.1203125" />
         <entry key="target-ar-sample/src/main/res/layout/fragment_target_ar_overlay.xml" value="0.165" />
