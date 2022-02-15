@@ -11,8 +11,6 @@ import java.util.*
  * of IAR core/IAR target/IAR surface
  */
 class AppConfig {
-    private val QA_ORG_KEY = "pk_org_c7a686bf2b4a4a3c95b817cbf95b1198"
-    private val QA_REGION = Region.QA
 
     private val PUB_ORG_KEY = "pk_org_d5f1fca52da847c9a1a064619b91c74e"
     private val PUB_REGION = Region.NA
