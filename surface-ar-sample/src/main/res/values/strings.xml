@@ -26,5 +26,8 @@
     <string name="text_label_download_asset">Downloading asset...</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="app_logo">App Logo</string>
+    <string name="iar_surface_sdk">IAR Surface SDK</string>
+
 
 </resources>
