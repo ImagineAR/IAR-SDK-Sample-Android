@@ -75,11 +75,12 @@ class UserManagementFragment : BaseFragment() {
         return binding.root
     }
 
-    private fun migrateUser(oldUserId: String?) {
+    private fun migrateUser(oldUserId: String?, isMigrate: Boolean) {
         oldUserId?.let {
             viewModel.migrateUser(
                 requireActivity(),
                 oldUserId,
+                isMigrate
             )
         }
     }
@@ -131,7 +132,7 @@ class UserManagementFragment : BaseFragment() {
             editText.textAlignment = View.TEXT_ALIGNMENT_CENTER
 
             builder.setNeutralButton("Migrate") { dialogInterface, i ->
-                migrateUser(oldUserId)
+                migrateUser(oldUserId,true)
             }
         } else {
             builder.setMessage(getString(R.string.enter_external_unserId))
@@ -146,8 +147,7 @@ class UserManagementFragment : BaseFragment() {
                     createNewUser(inputId)
                 }
             } else {
-                val newUserId = UUID.randomUUID().toString()
-                createNewUser(newUserId)
+                migrateUser(oldUserId,false)
             }
 
             dialogInterface.dismiss()
