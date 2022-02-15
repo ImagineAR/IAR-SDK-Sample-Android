@@ -69,7 +69,12 @@ class OnDemandMarkersFragment : BaseFragment() {
                 override fun onMarkerItemClick(marker: Marker) {
                     viewModel.navigateOnDemandToMarkerDetailsFragment(marker)
                 }
-            })
+            },
+                object : MarkersAdapter.OnTakeMeThereClickListener {
+                    override fun onTakeMeThereClick(marker: Marker) {
+
+                    }
+                })
 
         markerListView.adapter = adapter
 

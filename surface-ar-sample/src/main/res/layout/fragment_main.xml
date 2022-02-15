@@ -14,60 +14,68 @@
     android:padding="@dimen/dimen_activity_edge"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent">
+    app:layout_constraintEnd_toEndOf="parent">
 
-    <com.google.android.material.button.MaterialButton
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/app_logo"
+        android:background="@color/white"
+        android:src="@drawable/logo">
+    </ImageView>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_activity_edge"
-        app:cornerRadius="@dimen/dimen_corner_round"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/iar_surface_sdk"
+        android:textColor="@color/white"
+        android:textSize="20sp">
+    </TextView>
+
+    <com.google.android.material.button.MaterialButton
         android:contentDescription="@string/button_label_locationmarkers"
         android:text="@string/button_label_locationmarkers"
-        android:id="@+id/locationMarkers"/>
+        android:id="@+id/locationMarkers"
+        style="@style/main_button_style"
+        app:icon="@drawable/ic_baseline_near_me_24" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_activity_edge"
-        app:cornerRadius="@dimen/dimen_corner_round"
         android:contentDescription="@string/button_label_ondemand"
         android:text="@string/button_label_ondemand"
-        android:id="@+id/onDemandMarkers"/>
+        android:id="@+id/onDemandMarkers"
+        style="@style/main_button_style"
+        app:icon="@drawable/ic_baseline_ondemand_24" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_activity_edge"
-        app:cornerRadius="@dimen/dimen_corner_round"
         android:contentDescription="@string/button_label_nfcwrite"
         android:text="@string/button_label_nfcwrite"
-        android:id="@+id/nfcWrite"/>
+        android:id="@+id/nfcWrite"
+        style="@style/main_button_style"
+        app:icon="@drawable/ic_baseline_nfc_write_24"/>
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_activity_edge"
-        app:cornerRadius="@dimen/dimen_corner_round"
         android:contentDescription="@string/button_label_nfcread"
         android:text="@string/button_label_nfcread"
-        android:id="@+id/nfcRead"/>
+        android:id="@+id/nfcRead"
+        style="@style/main_button_style"
+        app:icon="@drawable/ic_baseline_nfc_read_24" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_activity_edge"
-        app:cornerRadius="@dimen/dimen_corner_round"
         android:contentDescription="@string/button_label_user"
         android:text="@string/button_label_user"
-        android:id="@+id/userButton"/>
+        android:id="@+id/userButton"
+        style="@style/main_button_style"
+        app:icon="@drawable/ic_baseline_user_24" />
+
     <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:contentDescription="@string/button_label_dev_tools"
-        app:cornerRadius="@dimen/dimen_corner_round"
         android:text="@string/button_label_dev_tools"
-        android:id="@+id/devToolsButton"/>
+        android:id="@+id/devToolsButton"
+        style="@style/main_button_style"
+        app:icon="@drawable/ic_baseline_code_24"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

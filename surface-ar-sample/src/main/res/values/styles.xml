@@ -8,4 +8,12 @@
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+    <style name="main_button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/dimen_activity_edge</item>
+        <item name="cornerRadius">@dimen/dimen_corner_round</item>
+        <item name="iconGravity">textStart</item>
+    </style>
 </resources>
