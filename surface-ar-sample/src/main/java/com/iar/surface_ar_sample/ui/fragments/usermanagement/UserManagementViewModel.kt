@@ -1,14 +1,14 @@
-package com.iar.core_sample.ui.fragments.usermanagement
+package com.iar.surface_ar_sample.ui.fragments.usermanagement
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.preference.PreferenceManager
 import com.iar.common.AppConfig
-import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.common.Constants
 import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.User
+import com.iar.surface_ar_sample.ui.common.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
 import javax.inject.Inject
@@ -32,14 +32,6 @@ class UserManagementViewModel @Inject constructor(private val appConfig: AppConf
     private val _error = MutableLiveData<String>()
     val error: LiveData<String>
         get() = _error
-
-    fun initialize(context: Context) {
-        CoreAPI.initialize(
-            appConfig.getOrgKeyRegion().first,
-            appConfig.getOrgKeyRegion().second,
-            context
-        )
-    }
 
     fun createNewUser(
         context: Context,
@@ -153,21 +145,27 @@ class UserManagementViewModel @Inject constructor(private val appConfig: AppConf
     fun migrateUser(
         context: Context,
         oldUserId: String,
-        newUserId: String
+        isMigrate: Boolean
     ) {
+        val newUserId = UUID.randomUUID().toString()
+        if (isMigrate) {
+            CoreAPI.migrateDataFrom(
+                oldUserId,
+                newUserId,
+                onSuccess = {
+                    CoreAPI.setExternalUserId(newUserId, true)
+                    saveUserId(context, newUserId, false)
+                    _isLogin.postValue(true)
 
-        CoreAPI.migrateDataFrom(
-            oldUserId,
-            newUserId,
-            onSuccess = {
-                CoreAPI.setExternalUserId(newUserId, true)
-                saveUserId(context, newUserId, false)
-                _isLogin.postValue(true)
-
-            }, onFail = { errCode, errMsg ->
-                _error.postValue("$errCode, $errMsg")
-            })
-
+                }, onFail = { errCode, errMsg ->
+                    _error.postValue("$errCode, $errMsg")
+                })
+        } else {
+            createNewUser(
+                context,
+                newUserId
+            )
+        }
     }
 
     fun loadCurrentUser(context: Context) {
