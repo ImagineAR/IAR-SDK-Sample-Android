@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.FrameLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +17,7 @@ import com.iar.core_sample.R
 import com.iar.core_sample.databinding.OnDemandMarkersFragmentBinding
 import com.iar.core_sample.ui.common.BaseFragment
 import com.iar.core_sample.ui.common.BaseViewModel
+import com.iar.core_sample.utils.Util
 import com.iar.iar_core.Marker
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,6 +48,10 @@ class OnDemandMarkersFragment : BaseFragment() {
             }
         }
 
+        binding.getMarkerButton.setOnClickListener {
+            setupDialog()
+        }
+
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
                 showToastMessage("There is error $error", requireContext())
@@ -70,6 +78,23 @@ class OnDemandMarkersFragment : BaseFragment() {
 
         markerListView.adapter = adapter
 
+    }
+
+    private fun setupDialog() {
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.setTitle("Get Marker by ID")
+        val container = FrameLayout(requireActivity())
+        val editText: EditText = Util.setupDialogEditText(requireContext())
+        container.addView(editText)
+        builder.setView(container)
+        builder.setMessage("Enter Marker ID:")
+        builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
+            val inputId = editText.text.toString()
+            viewModel.getMarkerById(inputId)
+            dialogInterface.dismiss()
+        }
+        builder.setNegativeButton(getString(R.string.cancel)) { dialogInterface, i -> dialogInterface.dismiss() }
+        builder.create().show()
     }
 
 }
