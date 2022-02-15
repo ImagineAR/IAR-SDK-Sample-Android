@@ -76,15 +76,11 @@ class UserManagementFragment : BaseFragment() {
     }
 
     private fun migrateUser(oldUserId: String?) {
-        val newUserId = UUID.randomUUID().toString()
-
         oldUserId?.let {
             viewModel.migrateUser(
                 requireActivity(),
                 oldUserId,
-                newUserId
             )
-
         }
     }
 

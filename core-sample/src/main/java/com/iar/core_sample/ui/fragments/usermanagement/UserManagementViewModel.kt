@@ -152,10 +152,9 @@ class UserManagementViewModel @Inject constructor(private val appConfig: AppConf
 
     fun migrateUser(
         context: Context,
-        oldUserId: String,
-        newUserId: String
+        oldUserId: String
     ) {
-
+        val newUserId = UUID.randomUUID().toString()
         CoreAPI.migrateDataFrom(
             oldUserId,
             newUserId,
