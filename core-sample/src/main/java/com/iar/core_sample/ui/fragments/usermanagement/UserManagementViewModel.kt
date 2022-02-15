@@ -153,21 +153,27 @@ class UserManagementViewModel @Inject constructor(private val appConfig: AppConf
     fun migrateUser(
         context: Context,
         oldUserId: String,
-        newUserId: String
+        isMigrate: Boolean
     ) {
+        val newUserId = UUID.randomUUID().toString()
+        if (isMigrate) {
+            CoreAPI.migrateDataFrom(
+                oldUserId,
+                newUserId,
+                onSuccess = {
+                    CoreAPI.setExternalUserId(newUserId, true)
+                    saveUserId(context, newUserId, false)
+                    _isLogin.postValue(true)
 
-        CoreAPI.migrateDataFrom(
-            oldUserId,
-            newUserId,
-            onSuccess = {
-                CoreAPI.setExternalUserId(newUserId, true)
-                saveUserId(context, newUserId, false)
-                _isLogin.postValue(true)
-
-            }, onFail = { errCode, errMsg ->
-                _error.postValue("$errCode, $errMsg")
-            })
-
+                }, onFail = { errCode, errMsg ->
+                    _error.postValue("$errCode, $errMsg")
+                })
+        } else {
+            createNewUser(
+                context,
+                newUserId
+            )
+        }
     }
 
     fun loadCurrentUser(context: Context) {
