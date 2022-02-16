@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sampleApp_darkBlue"
-    tools:context=".ui.fragments.arhunts.ARHuntsFragment"
-    android:orientation="vertical">
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.arhunts.ARHuntsFragment">
 
     <Button
         android:id="@+id/get_hunt_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background = "@drawable/round_long_button"
-        android:textSize = "13sp"
-        android:text="Get AR Hunt by ID"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"
+        android:background="@drawable/round_long_button"
+        android:text="@string/get_ar_hunt_by_id"
+        android:textSize="13sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hunt_list"
@@ -22,5 +22,11 @@
         android:layout_height="wrap_content">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/lightGrey">
+    </View>
 
 </LinearLayout>

@@ -31,9 +31,10 @@
     <string name="get_user_reward_by_id">Get User Reward by ID</string>
     <string name="get_marker_by_id">Get Marker by ID</string>
     <string name="app_logo">App Logo</string>
-    <string name="iar_core_sdk">IAR Core SDK</string>
+    <string name="iar_core_sdk">Core SDK</string>
     <string name="get_location_markers">Get Location Markers</string>
     <string name="nearby">Nearby</string>
     <string name="take_me_there">Take me there</string>
+    <string name="get_ar_hunt_by_id">Get AR Hunt by ID</string>
 
 </resources>

@@ -27,7 +27,7 @@
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="app_logo">App Logo</string>
-    <string name="iar_surface_sdk">IAR Surface SDK</string>
+    <string name="iar_surface_sdk">Surface SDK</string>
 
 
 </resources>
