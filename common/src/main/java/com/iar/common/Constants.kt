@@ -1,4 +1,4 @@
-package com.iar.core_sample.utils
+package com.iar.common
 
 object Constants {
     const val KEY_USER_ID = "USER_ID"

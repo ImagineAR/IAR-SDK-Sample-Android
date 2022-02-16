@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_to_ondemand"
             app:destination="@id/fragment_ondemand" />
+        <action
+            android:id="@+id/action_fragment_main_to_userManagementFragment"
+            app:destination="@id/userManagementFragment" />
 
     </fragment>
 
@@ -69,5 +72,10 @@
             android:id="@+id/action_locationMarkersFragment_to_activity_surface_ar"
             app:destination="@id/activity_surface_ar" />
     </fragment>
+    <fragment
+        android:id="@+id/userManagementFragment"
+        android:name="com.iar.surface_ar_sample.ui.fragments.usermanagement.UserManagementFragment"
+        android:label="user_management_fragment"
+        tools:layout="@layout/user_management_fragment" />
 
 </navigation>
