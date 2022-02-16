@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
 import com.iar.common.Utils.loadImage
 import com.iar.iar_core.Marker
 import com.iar.surface_ar_sample.R
@@ -13,7 +14,8 @@ import com.iar.surface_ar_sample.R
 
 class LocationMakersAdapter (
     private val markersList: List<Marker>,
-    val listener: OnLocationMarkerItemClickListener
+    val listener: OnLocationMarkerItemClickListener,
+    private val takeMeListener: OnTakeMeThereClickListener
 ): RecyclerView.Adapter<LocationMakersAdapter.MarkerViewHolder>()
 {
 
@@ -36,6 +38,11 @@ class LocationMakersAdapter (
         holder.markerId.text = marker.id
         val distanceString = "Distance: ${marker.location.distance}"
         holder.markerDistance.text = distanceString
+
+        holder.takeMeButton.setOnClickListener {
+            takeMeListener.onTakeMeThereClick(marker)
+        }
+
         holder.itemView.setOnClickListener {
             listener.onMarkerItemClick(marker)
         }
@@ -50,9 +57,14 @@ class LocationMakersAdapter (
         val markerId: TextView = itemView.findViewById<TextView>(R.id.marker_id)
         val markerImage: ImageView = itemView.findViewById<ImageView>(R.id.marker_image)
         val markerDistance: TextView = itemView.findViewById<TextView>(R.id.marker_distance)
+        val takeMeButton: MaterialButton = itemView.findViewById(R.id.take_me_button)
     }
 
     interface OnLocationMarkerItemClickListener {
         fun onMarkerItemClick(marker: Marker)
+    }
+
+    interface OnTakeMeThereClickListener {
+        fun onTakeMeThereClick(marker: Marker)
     }
 }

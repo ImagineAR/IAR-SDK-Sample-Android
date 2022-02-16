@@ -23,6 +23,14 @@
             android:text="Get Location Markers"
             android:textSize="13sp" />
 
+        <TextView
+            android:id="@+id/marker_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white">
+        </TextView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/location_marker_list"
             android:layout_width="match_parent"

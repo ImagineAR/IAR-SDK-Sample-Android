@@ -46,6 +46,9 @@ class LocationMarkersFragment : BaseFragment(){
         binding = LocationMarkersFragmentBinding.inflate(inflater, container, false)
         markerListView = binding.locationMarkerList
 
+        val defaultLocation = "Coordinates: 48.166667,-100.166667 Radius: 10000"
+        binding.markerLocation.text = defaultLocation
+
         viewModel.locationMarkers.observe(viewLifecycleOwner, { markers ->
             markers?.let {
                 setupMarkersList(markers)
@@ -85,6 +88,17 @@ class LocationMarkersFragment : BaseFragment(){
                                     }
                                 }
                             }
+                        }
+                    },
+                    object : LocationMakersAdapter.OnTakeMeThereClickListener {
+                        override fun onTakeMeThereClick(marker: Marker) {
+                            val lat = String.format("%.6f", marker.location.latitude)
+                            val long= String.format("%.6f", marker.location.longitude)
+                            val markerLocation = "${marker.location.latitude},${marker.location.longitude}"
+                            val locationString = "Coordinates: $lat,$long Radius: 10000"
+
+                            viewModel.onGetLocationMarkers(markerLocation)
+                            binding.markerLocation.text = locationString
                         }
                     })
 
