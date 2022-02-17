@@ -1,37 +1,34 @@
-package com.iar.core_sample.ui.fragments.usermanagement
+package com.iar.common.user
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.fragment.app.viewModels
+import com.iar.common.R
+import com.iar.common.Utils.setupDialogEditText
 import com.iar.common.Utils.showToastMessage
-import com.iar.core_sample.R
-import com.iar.core_sample.databinding.UserManagementFragmentBinding
-import com.iar.core_sample.ui.common.BaseFragment
-import com.iar.core_sample.ui.common.BaseViewModel
-import com.iar.core_sample.utils.Util.setupDialogEditText
+import com.iar.common.base.BaseFragment
+import com.iar.common.base.BaseViewModel
+import com.iar.common.databinding.UserFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
-class UserManagementFragment : BaseFragment() {
-
-    private val viewModel by viewModels<UserManagementViewModel>()
-
+class UserFragment : BaseFragment() {
+    private val viewModel by viewModels<UserViewModel>()
     override fun getViewModel(): BaseViewModel = viewModel
 
-    private lateinit var binding: UserManagementFragmentBinding
+    private lateinit var binding:UserFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        binding = UserManagementFragmentBinding.inflate(inflater, container, false)
-
+        binding = UserFragmentBinding.inflate(inflater,container, false)
         viewModel.loadCurrentUser(requireContext())
 
         viewModel.isAnonymous.observe(viewLifecycleOwner) { isAnonymous ->
@@ -71,7 +68,6 @@ class UserManagementFragment : BaseFragment() {
         binding.migrateButton.setOnClickListener {
             userDialog(getString(R.string.migrate_user), false, true)
         }
-
         return binding.root
     }
 

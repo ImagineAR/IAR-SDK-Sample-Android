@@ -1,12 +1,12 @@
-package com.iar.core_sample.ui.fragments.usermanagement
+package com.iar.common.user
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.preference.PreferenceManager
 import com.iar.common.AppConfig
-import com.iar.core_sample.ui.common.BaseViewModel
-import com.iar.core_sample.utils.Constants
+import com.iar.common.Constants
+import com.iar.common.base.BaseViewModel
 import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.User
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class UserManagementViewModel @Inject constructor(private val appConfig: AppConfig) :
+class UserViewModel @Inject constructor(private val appConfig: AppConfig) :
     BaseViewModel() {
 
     private val _isAnonymous = MutableLiveData<Boolean>()

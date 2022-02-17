@@ -11,9 +11,6 @@
         android:label="main_fragment"
         tools:layout="@layout/main_fragment">
         <action
-            android:id="@+id/action_mainFragment_to_userManagementFragment"
-            app:destination="@id/userManagementFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_userRewardsFragment"
             app:destination="@id/userRewardsFragment" />
         <action
@@ -25,14 +22,11 @@
         <action
             android:id="@+id/action_mainFragment_to_locationMarkersFragment"
             app:destination="@id/locationMarkersFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_userFragment"
+            app:destination="@id/userFragment" />
 
-    </fragment>
 
-    <fragment
-        android:id="@+id/userManagementFragment"
-        android:name="com.iar.core_sample.ui.fragments.usermanagement.UserManagementFragment"
-        android:label="user_management_fragment"
-        tools:layout="@layout/user_management_fragment">
     </fragment>
 
     <fragment
@@ -123,6 +117,10 @@
             android:id="@+id/action_locationMarkersFragment_to_markerDetailsFragment"
             app:destination="@id/markerDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.iar.common.user.UserFragment"
+        android:label="UserFragment" />
 
 
 </navigation>

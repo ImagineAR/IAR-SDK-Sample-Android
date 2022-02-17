@@ -11,7 +11,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val appConfig: AppConfig) : BaseViewModel() {
 
     fun navigateToUserManagementFragment() {
-        navigate(R.id.action_mainFragment_to_userManagementFragment)
+        navigate(R.id.action_mainFragment_to_userFragment)
     }
 
     fun navigateToUserRewardsFragment() {
