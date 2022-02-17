@@ -19,8 +19,17 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:background="@drawable/round_long_button"
-            android:text="Get Location Markers"
+            android:textAllCaps="false"
+            android:text="@string/get_location_markers"
             android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/marker_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/grey">
+        </TextView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/location_marker_list"

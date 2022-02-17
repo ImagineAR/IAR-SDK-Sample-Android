@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="common/src/main/res/drawable/checker_track.xml" value="0.1475" />
+        <entry key="common/src/main/res/drawable/ripple_effect.xml" value="0.1475" />
+        <entry key="common/src/main/res/drawable/round_rect_small.xml" value="0.1475" />
+        <entry key="common/src/main/res/layout/custom_preference.xml" value="0.19610507246376813" />
+        <entry key="common/src/main/res/layout/custom_preference_switch.xml" value="0.19610507246376813" />
+        <entry key="common/src/main/res/layout/debug_button.xml" value="0.19610507246376813" />
+        <entry key="common/src/main/res/layout/fragment_settings.xml" value="0.19610507246376813" />
+        <entry key="common/src/main/res/layout/location_preference_layout.xml" value="0.19610507246376813" />
+        <entry key="common/src/main/res/layout/switch_layout.xml" value="0.1375" />
+        <entry key="common/src/main/res/xml/settings.xml" value="0.1" />
         <entry key="core-sample/src/main/res/layout/main_fragment.xml" value="0.17760416666666667" />
         <entry key="core-sample/src/main/res/layout/user_management_fragment.xml" value="0.17760416666666667" />
         <entry key="surface-ar-sample/src/main/res/layout/activity_main.xml" value="0.125" />

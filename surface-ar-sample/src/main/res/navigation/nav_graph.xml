@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_to_ondemand"
             app:destination="@id/fragment_ondemand" />
+        <action
+            android:id="@+id/action_fragment_main_to_userFragment"
+            app:destination="@id/userFragment" />
 
     </fragment>
 
@@ -37,6 +40,7 @@
         android:name="com.iar.surface_ar_sample.ui.fragments.ondemand.OnDemandMarkersFragment"
         android:label="On Demand"
         tools:layout="@layout/fragment_on_demand_markers">
+
         <action
             android:id="@+id/action_surface_ar"
             app:destination="@id/activity_surface_ar" />
@@ -52,7 +56,11 @@
         android:id="@+id/readNFCFragment"
         android:name="com.iar.surface_ar_sample.ui.fragments.nfc.ReadNFCFragment"
         android:label="fragment_read_nfc"
-        tools:layout="@layout/fragment_read_nfc" />
+        tools:layout="@layout/fragment_read_nfc" >
+        <action
+            android:id="@+id/action_readNFCFragment_to_activity_surface_ar"
+            app:destination="@id/activity_surface_ar" />
+    </fragment>
 
     <fragment
         android:id="@+id/writeNFCFragment"
@@ -69,5 +77,9 @@
             android:id="@+id/action_locationMarkersFragment_to_activity_surface_ar"
             app:destination="@id/activity_surface_ar" />
     </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.iar.common.user.UserFragment"
+        android:label="UserFragment" />
 
 </navigation>

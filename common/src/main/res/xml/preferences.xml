@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/debug_mode_key"
+        android:layout="@layout/switch_parent_layout"
+        android:title="@string/enable_debug_mode"
+        app:iconSpaceReserved="false" />
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/log_key"
+        android:layout="@layout/switch_layout"
+        android:title="@string/enable_log_file"
+        app:iconSpaceReserved="false" />
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/api_log_key"
+        android:layout="@layout/switch_layout"
+        android:title="@string/enable_api_log"
+        app:iconSpaceReserved="false" />
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/analytics_key"
+        android:layout="@layout/switch_layout"
+        android:title="@string/enable_analytics"
+        app:iconSpaceReserved="false" />
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/analytics_log_key"
+        android:layout="@layout/switch_layout"
+        android:title="@string/enable_analytics_log"
+        app:iconSpaceReserved="false" />
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/validate_analytics_log_key"
+        android:layout="@layout/switch_layout"
+        android:title="@string/enable_validate_analytics_log"
+        app:iconSpaceReserved="false" />
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/ar_debug_key"
+        android:layout="@layout/switch_layout"
+        android:title="@string/enable_ar_debug"
+        app:iconSpaceReserved="false" />
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/ar_points_key"
+        android:layout="@layout/switch_layout"
+        android:title="@string/enable_ar_points"
+        app:iconSpaceReserved="false" />
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/ar_shadows_key"
+        android:layout="@layout/switch_layout"
+        android:title="@string/enable_model_shadows"
+        app:iconSpaceReserved="false" />
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/light_detection_key"
+        android:layout="@layout/switch_layout"
+        android:title="@string/light_auto_detection"
+        app:iconSpaceReserved="false" />
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/simulated_location_key"
+        android:layout="@layout/switch_layout"
+        android:title="@string/enable_simulated_location"
+        app:iconSpaceReserved="false" />
+
+    <com.iar.common.LocationPreference
+        android:key="@string/location_coordinates_key"
+        android:layout="@layout/location_preference_layout"
+        app:iconSpaceReserved="false">
+    </com.iar.common.LocationPreference>
+
+    <com.iar.common.DebugButtonPreference
+        android:key="debugButton"
+        android:layout="@layout/debug_button"
+        app:iconSpaceReserved="false">
+    </com.iar.common.DebugButtonPreference>
+
+</androidx.preference.PreferenceScreen>
