@@ -31,5 +31,10 @@
     <string name="app_logo">App Logo</string>
     <string name="iar_surface_sdk">IAR Surface SDK</string>
 
+    <string name="nearby">Nearby</string>
+    <string name="take_me_there">Take me there</string>
+    <string name="get_marker_by_id">Get Marker by ID</string>
+    <string name="get_location_markers">Get Location Markers</string>
+
 
 </resources>
