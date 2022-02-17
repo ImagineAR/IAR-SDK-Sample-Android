@@ -49,8 +49,7 @@ class MainViewModel @Inject constructor(private val appConfig: AppConfig) : Base
     }
 
     fun navigateToUserManagementFragment() {
-        navigate(R.id.action_fragment_main_to_userManagementFragment)
+        navigate(R.id.action_fragment_main_to_userFragment)
     }
-
 
 }

@@ -12,9 +12,17 @@
         android:id="@+id/fragment_main"
         android:label="Main Fragment"
         tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_fragment_main_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
 
     <activity android:name="com.iar.target_ar_sample.ui.activities.TargetARActivity"
         android:id="@+id/activity_target_ar"
         android:label="@string/label_target_ar_view"/>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.iar.common.user.UserFragment"
+        android:label="UserFragment" />
+
 </navigation>

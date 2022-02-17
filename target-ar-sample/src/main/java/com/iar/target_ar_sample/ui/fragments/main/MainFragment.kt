@@ -29,7 +29,7 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         context?.let {
             // Initialize CoreAPI when we start.
             viewModel.initializeCore(it)
@@ -43,7 +43,7 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
         }
 
         binding.userButton.setOnClickListener {
-            showUserDialog()
+            viewModel.navigateToUserManagementFragment()
         }
 
         binding.devToolsButton.setOnClickListener {

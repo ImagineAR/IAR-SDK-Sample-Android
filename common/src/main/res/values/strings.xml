@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="create_new_user">Create New User</string>
+    <string name="migrate_user">Migrate User</string>
+    <string name="login_user">Login User</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="enter_external_unserId">Enter external userId:</string>
+    <string name="migrate_message">After id regeneration, the data of current userId will be lost. If you would like to migrate data, click MIGRATE, otherwise click OK.</string>
+</resources>
