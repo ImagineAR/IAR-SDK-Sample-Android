@@ -44,9 +44,11 @@ class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppCon
         }
     }
 
-    fun navigateOnDemandToSurfaceAR(activity: AppCompatActivity,
-                                    marker: Marker,
-                                    onComplete: (() -> Unit)? = null) {
+    fun navigateOnDemandToSurfaceAR(
+        activity: AppCompatActivity,
+        marker: Marker,
+        onComplete: (() -> Unit)? = null
+    ) {
         SurfaceAPI.downloadDemandAssetsAndRewards(
             activity,
             marker,
@@ -64,5 +66,20 @@ class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppCon
                 _error.postValue("$errorMsg")
             }
         )
+    }
+
+    fun getMarkerById(
+        activity: AppCompatActivity,
+        markerId: String,
+        onComplete: (() -> Unit)? = null
+    ) {
+        SurfaceAPI.getMarkerById(markerId,
+            { marker ->
+                navigateOnDemandToSurfaceAR(activity, marker, onComplete)
+            })
+        { errorCode, errorMessage ->
+            Log.i(LOGTAG, "Get Marker by ID: $errorCode $errorMessage")
+            _error.postValue("$errorCode, $errorMessage")
+        }
     }
 }

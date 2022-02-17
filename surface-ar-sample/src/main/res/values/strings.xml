@@ -23,11 +23,14 @@
     <string name="write_marker_id">Write marker Id</string>
     <string name="write_tag_to_nfc_device">Write Tag to NFC Device</string>
     <string name="randomize_id">Randomize ID</string>
-    <string name="text_label_download_asset">Downloading asset...</string>
+    <string name="read_nfc_tag">Read NFC Tag</string>
+    <string name="view_scanned_marker">View the Scanned Marker</string>
+    <string name="text_label_download_asset">Downloading asset…</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="app_logo">App Logo</string>
     <string name="iar_surface_sdk">IAR Surface SDK</string>
+
     <string name="account_settings">Account Settings</string>
     <string name="external_userid">External UserID:</string>
     <string name="create_user">Create User</string>
@@ -38,5 +41,11 @@
     <string name="login_user">Login User</string>
     <string name="migrate_message">After id regeneration, the data of current userId will be lost. If you would like to migrate data, click MIGRATE, otherwise click OK.</string>
     <string name="enter_external_unserId">Enter external userId:</string>
+
+    <string name="nearby">Nearby</string>
+    <string name="take_me_there">Take me there</string>
+    <string name="get_marker_by_id">Get Marker by ID</string>
+    <string name="get_location_markers">Get Location Markers</string>
+
 
 </resources>

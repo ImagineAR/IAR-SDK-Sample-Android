@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.fragment.app.viewModels
+import com.iar.common.SettingsFragment
 import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.analytics.AnalyticsController
 import com.iar.iar_core.controllers.DebugSettingsController
@@ -19,10 +20,8 @@ import com.iar.target_ar_sample.ui.common.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
+class MainFragment : BaseFragment() {
     private val viewModel by viewModels<MainViewModel>()
-
-    private var devConsoleDialog: DevConsoleDialog? = null
 
     override fun getViewModel(): BaseViewModel = viewModel
 
@@ -47,12 +46,10 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
         }
 
         binding.devToolsButton.setOnClickListener {
-            if (devConsoleDialog != null) return@setOnClickListener
-
-            devConsoleDialog = DevConsoleDialog.show(parentFragmentManager,
-                null,
-                "${BuildConfig.APPLICATION_ID}.provider",
-                this)
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.add(android.R.id.content, SettingsFragment(BuildConfig.APPLICATION_ID), null)
+                ?.addToBackStack(SettingsFragment::class.java.name)
+                ?.commit()
         }
 
         return binding.root
@@ -68,11 +65,5 @@ class MainFragment : BaseFragment(), DevConsoleDialog.DevConsoleListener {
             dialogInterface.dismiss()
         }
         builder.create().show()
-    }
-    /**
-     * DevConsoleDialog.DevConsoleListener
-     */
-    override fun onDismiss() {
-        devConsoleDialog = null
     }
 }

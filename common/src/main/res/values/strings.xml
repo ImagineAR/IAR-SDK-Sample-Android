@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="create_new_user">Create New User</string>
@@ -9,4 +10,35 @@
     <string name="ok">OK</string>
     <string name="enter_external_unserId">Enter external userId:</string>
     <string name="migrate_message">After id regeneration, the data of current userId will be lost. If you would like to migrate data, click MIGRATE, otherwise click OK.</string>
+
+    <string name="debug_mode_key">debug_switch</string>
+    <string name="log_key">log_switch</string>
+    <string name="api_log_key">api_log_switch</string>
+    <string name="analytics_key">analytics_switch</string>
+    <string name="analytics_log_key">analytics_log_switch</string>
+    <string name="validate_analytics_log_key">validate_analytics_log_switch</string>
+    <string name="ar_debug_key">ar_debug_switch</string>
+    <string name="ar_points_key">ar_points_switch</string>
+    <string name="ar_shadows_key">ar_shadows_switch</string>
+    <string name="light_detection_key">light_detection_switch</string>
+    <string name="simulated_location_key">simulated_location_switch</string>
+    <string name="location_coordinates_key">location_coordinates</string>
+    <string name="open_developer_console">Open Developer Console</string>
+    <string name="center_coordinates">48.166667, -100.166667</string>
+    <string name="center_of_na">Center of NA</string>
+
+    <string name="enable_debug_mode">Reset to Default</string>
+    <string name="enable_log_file">Log to File</string>
+    <string name="enable_api_log">\u0020\u0020\u0020\u0020>\u0020API Logs</string>
+    <string name="enable_analytics">Analytics</string>
+    <string name="enable_analytics_log">\u0020\u0020\u0020\u0020>\u0020Analytics Logs</string>
+    <string name="enable_validate_analytics_log">\u0020\u0020\u0020\u0020>\u0020Validate Analytics Payload</string>
+    <string name="enable_ar_debug">AR Debug Layer</string>
+    <string name="enable_ar_points">AR Feature Points</string>
+    <string name="enable_model_shadows">Shadows</string>
+    <string name="light_auto_detection">\u0020\u0020\u0020\u0020>\u0020Environment Light Auto Detection</string>
+    <string name="enable_simulated_location">Simulated Location</string>
+
+    <string name="apply">Apply</string>
+
 </resources>
