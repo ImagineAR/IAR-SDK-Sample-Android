@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import com.iar.iar_core.controllers.DebugSettingsController
+import com.iar.iar_core.controllers.DebugSettingsController.getSavedPreferences
 import com.iar.iar_core.debugshell.DevConsoleDialog
 import com.iar.iar_core.debugshell.DevConsoleDialog.DevConsoleListener
 
@@ -49,7 +51,14 @@ class SettingsFragment(private var applicationId: String) : PreferenceFragmentCo
         setupPreferences()
     }
 
+    private fun updateSettings() {
+        // Update the current settings
+        context?.let { getSavedPreferences(it) }
+    }
+
     private fun setupPreferences() {
+        // Get our current settings
+        updateSettings()
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
         val debugMode =
@@ -191,4 +200,10 @@ class SettingsFragment(private var applicationId: String) : PreferenceFragmentCo
         }
     }
 
+    override fun onPreferenceTreeClick(preference: Preference): Boolean {
+        val res = super.onPreferenceTreeClick(preference)
+        // We need to update our settings everytime a preference was clicked.
+        updateSettings()
+        return res
+    }
 }
