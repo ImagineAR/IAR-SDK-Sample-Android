@@ -24,7 +24,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/white"
+        android:textColor="@color/navy"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textColor="@color/lightGrey"
+        android:textColor="@color/grey"
         android:textIsSelectable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/marker_image"
@@ -51,7 +51,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textColor="@color/lightGrey"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/marker_image"
         app:layout_constraintTop_toBottomOf="@+id/marker_id" />
@@ -74,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:text="@string/nearby"
-            android:textColor="@color/white"
+            android:textColor="@color/navy"
             android:textStyle="bold">
         </TextView>
 

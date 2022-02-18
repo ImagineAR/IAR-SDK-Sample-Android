@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/sampleApp_darkBlue"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.fragments.nfc.ReadNFCFragment">
 
@@ -15,7 +15,7 @@
         android:layout_margin="@dimen/large_margin"
         android:gravity="center"
         android:text="@string/read_nfc_tag"
-        android:textColor="@color/white"
+        android:textColor="@color/navy"
         android:textSize="@dimen/title_text_size">
     </TextView>
 
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/large_margin"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/grey"
         android:textSize="@dimen/message_text_size">
     </TextView>
 

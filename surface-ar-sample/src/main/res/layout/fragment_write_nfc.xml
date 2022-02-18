@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sampleApp_darkBlue"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.fragments.nfc.WriteNFCFragment">
 
@@ -15,7 +15,7 @@
         android:layout_margin="@dimen/large_margin"
         android:gravity="center"
         android:text="@string/write_nfc_tag"
-        android:textColor="@color/white"
+        android:textColor="@color/navy"
         android:textSize="@dimen/title_text_size">
     </TextView>
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/large_margin"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/grey"
         app:boxStrokeColor="@color/primary"
         app:boxStrokeWidth="2dp">
 
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/write_marker_id"
-            android:textColor="@color/white" />
+            android:textColor="@color/navy" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/large_margin"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/navy"
         android:textSize="@dimen/message_text_size">
     </TextView>
 

@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background = "@color/sampleApp_darkBlue"
     tools:context=".user.UserFragment">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:layout_marginEnd="16dp"
             android:text="Account Settings"
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textColor="@color/navy"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="External UserID:"
-            android:textColor="@color/white"
+            android:textColor="@color/navy"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/settingsTitle" />
@@ -50,15 +50,13 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:textIsSelectable="true"
-            android:background="@drawable/round_rect_small"
+            android:background="@drawable/edit_text_border"
             android:textSize="14sp"
             android:padding="10dp"
             android:textColor="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/settingsMessage" />
-
-
 
         <Button
             android:id="@+id/createButton"
@@ -67,8 +65,7 @@
             style="@style/long_button_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userId"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/userId" />
 
         <Button
             android:id="@+id/logButton"

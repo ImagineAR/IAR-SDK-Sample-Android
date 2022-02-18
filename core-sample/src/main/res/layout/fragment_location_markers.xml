@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sampleApp_darkBlue"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.fragments.markers.LocationMarkersFragment">
 
@@ -21,13 +21,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/white">
+        android:textColor="@color/navy">
     </TextView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="16dp"
+        android:background="@color/lightGrey">
+    </View>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/location_marker_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/lightGrey">
+    </View>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

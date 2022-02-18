@@ -22,6 +22,7 @@
         <activity
             android:name="com.iar.target_ar_sample.ui.activities.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.IARSDKSamples.Fullscreen">
@@ -35,6 +36,7 @@
         <activity android:name=".ui.activities.TargetARActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:label="@string/label_target_ar_view"/>
     </application>
 
