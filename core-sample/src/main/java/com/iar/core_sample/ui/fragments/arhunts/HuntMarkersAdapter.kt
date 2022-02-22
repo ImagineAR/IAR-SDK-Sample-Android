@@ -25,9 +25,17 @@ class HuntMarkersAdapter(
     override fun onBindViewHolder(holder: HuntMarkerViewHolder, position: Int) {
         val huntMarker = huntMarkerList[position]
 
+        var imageUrl = ""
+
         huntMarker.clueCard?.imageUrl?.let {
-            holder.clueImage.loadImage(it, holder.clueImage.getContext())
+            imageUrl = it
+        } ?: run {
+            huntMarker.marker?.previewImageUrl?.let {
+                imageUrl = it
+            }
         }
+
+        holder.clueImage.loadImage(imageUrl, holder.clueImage.getContext())
 
         val IdString = "ID:\n ${huntMarker.id}"
         holder.huntMarkerId.text = IdString
