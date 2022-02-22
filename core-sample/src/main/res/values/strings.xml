@@ -36,5 +36,6 @@
     <string name="nearby">Nearby</string>
     <string name="take_me_there">Take me there</string>
     <string name="get_ar_hunt_by_id">Get AR Hunt by ID</string>
+    <string name="marker_details">Marker Details</string>
 
 </resources>

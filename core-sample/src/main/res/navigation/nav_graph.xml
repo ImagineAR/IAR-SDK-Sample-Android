@@ -74,9 +74,10 @@
     </fragment>
     <fragment
         android:id="@+id/huntMarkersFragment"
-        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntMarkersFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntMarkerDetailsFragment"
         android:label="fragment_hunt_markers"
         tools:layout="@layout/fragment_hunt_markers" >
+
         <argument
             android:name="huntMarker"
             app:argType="string" />
