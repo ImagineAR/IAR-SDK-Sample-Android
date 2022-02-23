@@ -2,7 +2,6 @@ package com.iar.surface_ar_sample.ui.fragments.location
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.text.InputFilter
 import android.util.Log
 import android.widget.EditText
@@ -12,7 +11,6 @@ import androidx.lifecycle.MutableLiveData
 import com.iar.common.AppConfig
 import com.iar.common.Utils
 import com.iar.iar_core.Marker
-import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.ui.activities.SurfaceARActivity
 import com.iar.surface_ar_sample.ui.common.BaseViewModel
 import com.iar.surface_sdk.SurfaceAPI

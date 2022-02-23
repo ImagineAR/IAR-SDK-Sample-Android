@@ -1,7 +1,6 @@
 package com.iar.surface_ar_sample.ui.fragments.ondemand
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -10,7 +9,6 @@ import com.iar.common.AppConfig
 import com.iar.common.Utils
 import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.Marker
-import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.ui.activities.SurfaceARActivity
 import com.iar.surface_ar_sample.ui.common.BaseViewModel
 import com.iar.surface_sdk.SurfaceAPI

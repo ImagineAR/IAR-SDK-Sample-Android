@@ -12,10 +12,10 @@ import com.iar.common.Utils.loadImage
 import com.iar.core_sample.databinding.FragmentHuntMarkersBinding
 import com.iar.iar_core.HuntMarker
 
-class HuntMarkersFragment : Fragment() {
+class HuntMarkerDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentHuntMarkersBinding
-    private val args by navArgs<HuntMarkersFragmentArgs>()
+    private val args by navArgs<HuntMarkerDetailsFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,11 +27,11 @@ class HuntMarkersFragment : Fragment() {
         val huntMarkerString = args.huntMarker
         val huntMarker = gson.fromJson(huntMarkerString, HuntMarker::class.java)
 
-        huntMarker.clueCard?.imageUrl?.let {
-            binding.clueCardImage.loadImage(it, requireContext())
+        huntMarker.marker?.previewImageUrl?.let {
+            binding.markerImage.loadImage(it, requireContext())
         }
-        binding.clueCardId.text = huntMarker.clueCard?.id
-        binding.clueCardDescription.text = huntMarker.clueCard?.description
+        binding.markerName.text = huntMarker.marker?.name
+        binding.markerId.text = huntMarker.marker?.id
 
         val gson = GsonBuilder().setPrettyPrinting().create()
         val huntMarkerData = gson.toJson(huntMarker)
