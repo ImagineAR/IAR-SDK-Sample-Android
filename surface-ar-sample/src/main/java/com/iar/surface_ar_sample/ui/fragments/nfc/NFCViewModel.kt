@@ -115,7 +115,7 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
         marker: Marker,
         onComplete: (() -> Unit)? = null
     ) {
-
+        _isComplete.postValue(false)
         SurfaceAPI.downloadDemandAssetsAndRewards(
             activity,
             marker,
