@@ -2,6 +2,7 @@ package com.iar.surface_ar_sample.ui.fragments.nfc
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +27,7 @@ import javax.inject.Inject
 class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     BaseViewModel() {
 
+    private val LOGTAG = "NFCViewModel"
     private val _currentIntent = MutableLiveData<Intent>()
 
     val currentIntent: LiveData<Intent>
@@ -44,9 +46,7 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     val error: LiveData<String>
         get() = _error
 
-    private val _marker = MutableLiveData<Marker>()
-    val marker: LiveData<Marker>
-        get() = _marker
+    var currentMarker: Marker? = null
 
     fun setIntent(intent: Intent) {
         _currentIntent.postValue(intent)
@@ -59,6 +59,10 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
     fun setIsWrite(isWrite: Boolean) {
         _isWrite.postValue(isWrite)
     }
+
+    private val _isComplete = MutableLiveData<Boolean>()
+    val isComplete: LiveData<Boolean>
+        get() = _isComplete
 
     fun validateLicense(context: Context) {
         SurfaceAPI.validateLicense(
@@ -98,11 +102,11 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
         getMarkerById(
             markerId,
             { marker ->
-                _marker.postValue(marker)
+                currentMarker = marker
             }
         ) { errorCode: Int?, errorMessage: String? ->
 
-            _error.postValue("$errorMessage")
+            Log.i(LOGTAG, "Get marker by Id: $errorCode $errorMessage")
         }
     }
 
@@ -122,6 +126,7 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
                 }
                 onComplete?.invoke()
                 navigate(intent)
+                _isComplete.postValue(true)
             },
             onFail = { errorMsg ->
                 onComplete?.invoke()

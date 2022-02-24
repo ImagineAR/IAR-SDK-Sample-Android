@@ -17,10 +17,9 @@ import com.iar.surface_ar_sample.ui.common.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ReadNFCFragment : BaseFragment(){
+class ReadNFCFragment : BaseFragment() {
     private lateinit var binding: FragmentReadNfcBinding
     private var nfcController: NFCController? = null
-    private var nfcMarker: Marker? = null
     private val nfcViewModel by activityViewModels<NFCViewModel>()
 
     private var isWrite: Boolean = true
@@ -30,7 +29,7 @@ class ReadNFCFragment : BaseFragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentReadNfcBinding.inflate(inflater,container, false)
+        binding = FragmentReadNfcBinding.inflate(inflater, container, false)
 
         nfcViewModel.validateLicense(requireContext())
 
@@ -66,25 +65,27 @@ class ReadNFCFragment : BaseFragment(){
             }
         }
 
-        nfcViewModel.marker.observe(viewLifecycleOwner){marker ->
-            marker?.let{
-                nfcMarker = it
-            }
-        }
-
         binding.markerButton.setOnClickListener {
 
-            nfcMarker?.let { marker ->
-                (activity as MainActivity).let { activity ->
-                    binding.downloadOverlay.visibility = View.VISIBLE
-                    nfcViewModel.navigateNFCToSurfaceAR(activity, marker)
-                    // OnComplete callback.
-                    Handler(Looper.getMainLooper()).post {
+            val currentMarker = nfcViewModel.currentMarker
+
+            if (currentMarker == null) {
+                Utils.showToastMessage("Could not find the marker", requireContext())
+                return@setOnClickListener
+            }
+            (activity as MainActivity).let { activity ->
+                binding.downloadOverlay.visibility = View.VISIBLE
+
+                nfcViewModel.navigateNFCToSurfaceAR(activity, currentMarker)
+                nfcViewModel.isComplete.observe(viewLifecycleOwner) { isComplete ->
+                    if (isComplete) {
                         binding.downloadOverlay.visibility = View.GONE
+
                     }
                 }
             }
 
+            nfcViewModel.currentMarker = null
         }
 
         nfcViewModel.error.observe(viewLifecycleOwner, { error ->
