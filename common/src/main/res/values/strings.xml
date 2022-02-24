@@ -40,5 +40,6 @@
     <string name="enable_simulated_location">Simulated Location</string>
 
     <string name="apply">Apply</string>
+    <string name="user_management">User Management</string>
 
 </resources>

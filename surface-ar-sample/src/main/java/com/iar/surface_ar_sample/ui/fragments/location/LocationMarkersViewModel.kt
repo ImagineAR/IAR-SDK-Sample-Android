@@ -64,8 +64,13 @@ class LocationMarkersViewModel @Inject constructor(private val appConfig: AppCon
         var longitude = 0.0
 
         if (positionString.size > 1) {
-            latitude = positionString[0].toDouble()
-            longitude = positionString[1].toDouble()
+            try {
+                latitude = positionString[0].toDouble()
+                longitude = positionString[1].toDouble()
+            } catch (e: NumberFormatException) {
+                _error.postValue(". Please enter valid coordinates.")
+
+            }
         }
 
         getLocationMarkers(latitude, longitude)
