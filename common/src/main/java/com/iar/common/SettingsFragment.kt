@@ -1,5 +1,7 @@
 package com.iar.common
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,8 +23,8 @@ class SettingsFragment(private var applicationId: String) : PreferenceFragmentCo
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = super.onCreateView(inflater!!, container, savedInstanceState)
-        context?.getColor(android.R.color.background_dark)?.let {
+        val view = super.onCreateView(inflater, container, savedInstanceState)
+        context?.getColor(android.R.color.white)?.let {
             view.setBackgroundColor(it)
         }
         return view
@@ -36,14 +38,16 @@ class SettingsFragment(private var applicationId: String) : PreferenceFragmentCo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val swipeView: View? = view.findViewById(R.id.swipeView)
-
-        swipeView?.setOnTouchListener(object : OnSwipeTouchListener(activity) {
-
-            override fun onSwipeRight() {
-                activity?.supportFragmentManager?.popBackStack()
-            }
-        })
+        setDivider(ColorDrawable(Color.TRANSPARENT))
+        setDividerHeight(0)
+//        val swipeView: View? = view.findViewById(R.id.swipeView)
+//
+//        swipeView?.setOnTouchListener(object : OnSwipeTouchListener(activity) {
+//
+//            override fun onSwipeRight() {
+//                activity?.supportFragmentManager?.popBackStack()
+//            }
+//        })
     }
 
     override fun onDismiss() {

@@ -13,7 +13,7 @@
         android:background="@drawable/ripple_effect"
         android:padding="8dp"
         android:text="@string/enable_debug_mode"
-        android:textColor="@color/sampleApp_lightBlue"
+        android:textColor="@color/navy"
         android:textSize="18sp" />
 
 </LinearLayout>
