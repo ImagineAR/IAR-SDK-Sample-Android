@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.iar.common.Utils
 import com.iar.common.Utils.addDivider
 import com.iar.iar_core.Marker
+import com.iar.iar_core.controllers.DebugSettingsController
 import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.LocationMarkersFragmentBinding
 import com.iar.surface_ar_sample.ui.activities.MainActivity
@@ -48,6 +49,12 @@ class LocationMarkersFragment : BaseFragment(){
 
         val defaultLocation = "Coordinates: 48.166667,-100.166667 Radius: 10000"
         binding.markerLocation.text = defaultLocation
+
+        if(DebugSettingsController.simulatedLocation){
+            val coordinateString = "Coordinates: ${viewModel.getCoordinates()} Radius: 10000"
+            binding.markerLocation.text = coordinateString
+            viewModel.onGetLocationMarkers(viewModel.getCoordinates())
+        }
 
         viewModel.locationMarkers.observe(viewLifecycleOwner, { markers ->
             markers?.let {
