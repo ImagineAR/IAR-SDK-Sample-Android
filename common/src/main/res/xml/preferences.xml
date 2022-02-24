@@ -2,6 +2,12 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <com.iar.common.ApplyButtonPreference
+        android:key="applyButton"
+        android:layout="@layout/apply_button"
+        app:iconSpaceReserved="false">
+    </com.iar.common.ApplyButtonPreference>
+
     <androidx.preference.SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="@string/debug_mode_key"

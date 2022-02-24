@@ -100,6 +100,14 @@ class SettingsFragment(private var applicationId: String) : PreferenceFragmentCo
                 this@SettingsFragment)
         }
 
+        preferenceManager.findPreference<ApplyButtonPreference>("applyButton")?.clickListener =
+            listener@{
+                DebugSettingsController.getSavedPreferences(requireContext())
+                getParentFragmentManager().beginTransaction()
+                    .remove(this@SettingsFragment)
+                    .commit();
+            }
+
         debugMode?.setOnPreferenceChangeListener { _, _ ->
             logSwitch?.isChecked = false
             apiLogSwitch?.isChecked = false
