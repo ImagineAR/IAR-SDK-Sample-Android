@@ -11,6 +11,7 @@ import com.iar.common.AppConfig
 import com.iar.core_sample.ui.common.BaseViewModel
 import com.iar.iar_core.CoreAPI
 import com.iar.iar_core.Marker
+import com.iar.iar_core.controllers.DebugSettingsController
 import com.iar.surface_sdk.SurfaceAPI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -136,6 +137,12 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
         editText.filters = arrayOf(InputFilter { source, _, _, _, _, _ ->
             source.filter { regex.matches(it.toString()) }
         })
+    }
+
+    fun getCoordinates(): String {
+        val latitude = DebugSettingsController.simulatedLatitude
+        val longitude = DebugSettingsController.simulatedLongitude
+        return "$latitude,$longitude"
     }
 
 }
