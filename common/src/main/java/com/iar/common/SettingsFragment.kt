@@ -40,14 +40,6 @@ class SettingsFragment(private var applicationId: String) : PreferenceFragmentCo
         super.onViewCreated(view, savedInstanceState)
         setDivider(ColorDrawable(Color.TRANSPARENT))
         setDividerHeight(0)
-//        val swipeView: View? = view.findViewById(R.id.swipeView)
-//
-//        swipeView?.setOnTouchListener(object : OnSwipeTouchListener(activity) {
-//
-//            override fun onSwipeRight() {
-//                activity?.supportFragmentManager?.popBackStack()
-//            }
-//        })
     }
 
     override fun onDismiss() {
