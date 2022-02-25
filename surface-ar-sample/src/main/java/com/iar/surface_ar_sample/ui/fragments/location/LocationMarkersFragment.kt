@@ -129,7 +129,9 @@ class LocationMarkersFragment : BaseFragment(){
             val inputId = editText.text.toString()
             viewModel.onGetLocationMarkers(inputId)
             val locationString = "Coordinates: $inputId Radius: 10000"
-            binding.markerLocation.text = locationString
+            if (viewModel.isValidCoordinates) {
+                binding.markerLocation.text = locationString
+            }
             dialogInterface.dismiss()
         }
         builder.setNegativeButton(getString(R.string.cancel)) { dialogInterface, i -> dialogInterface.dismiss() }

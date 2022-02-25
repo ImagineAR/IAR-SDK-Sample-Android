@@ -33,6 +33,8 @@ class LocationMarkersViewModel @Inject constructor(private val appConfig: AppCon
     val error: LiveData<String>
         get() = _error
 
+    var isValidCoordinates: Boolean = false
+
     fun validateLicense(context: Context) {
         SurfaceAPI.validateLicense(
             appConfig.getOrgKeyRegion().first,
@@ -68,10 +70,14 @@ class LocationMarkersViewModel @Inject constructor(private val appConfig: AppCon
             try {
                 latitude = positionString[0].toDouble()
                 longitude = positionString[1].toDouble()
+                isValidCoordinates = true
             } catch (e: NumberFormatException) {
                 _error.postValue(". Please enter valid coordinates.")
-
+                isValidCoordinates = false
             }
+        } else {
+            _error.postValue(". Please enter valid coordinates.")
+            isValidCoordinates = false
         }
 
         getLocationMarkers(latitude, longitude)

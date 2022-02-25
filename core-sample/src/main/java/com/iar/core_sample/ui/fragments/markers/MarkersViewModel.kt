@@ -38,6 +38,8 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
     val error: LiveData<String>
         get() = _error
 
+    var isValidCoordinates: Boolean = false
+
     fun initialize(context: Context) {
         CoreAPI.initialize(
             appConfig.getOrgKeyRegion().first,
@@ -122,10 +124,14 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
             try {
                 latitude = positionString[0].toDouble()
                 longitude = positionString[1].toDouble()
+                isValidCoordinates = true
             } catch (e: NumberFormatException) {
                 _error.postValue(". Please enter valid coordinates.")
-
+                isValidCoordinates = false
             }
+        } else {
+            _error.postValue(". Please enter valid coordinates.")
+            isValidCoordinates = false
         }
 
         getLocationMarkers(latitude, longitude)
