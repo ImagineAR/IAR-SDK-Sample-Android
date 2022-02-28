@@ -40,6 +40,7 @@ class OnDemandMarkersFragment : BaseFragment() {
         binding = FragmentOnDemandMarkersBinding.inflate(inflater, container, false)
         markerListView = binding.onDemandMarkerList
 
+        viewModel.initialize(requireContext())
         viewModel.getOnDemandMarkers()
 
         viewModel.onDemandMarkers.observe(viewLifecycleOwner) { markers ->
@@ -80,7 +81,6 @@ class OnDemandMarkersFragment : BaseFragment() {
                                 }
                             }
                         }
-                        println(marker.id)
                     }
                 })
 
@@ -104,9 +104,15 @@ class OnDemandMarkersFragment : BaseFragment() {
 
                 viewModel.getMarkerById(it, inputId) {
                     // OnComplete callback.
+
                     Handler(Looper.getMainLooper()).post {
                         binding.downloadOverlay.visibility = View.GONE
                     }
+                    viewModel.isValidMarker = false
+                }
+
+                if (!viewModel.isValidMarker) {
+                    binding.downloadOverlay.visibility = View.GONE
                 }
 
             }
