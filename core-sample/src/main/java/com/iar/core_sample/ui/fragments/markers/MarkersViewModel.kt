@@ -40,6 +40,10 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
 
     var isValidCoordinates: Boolean = false
 
+    private val _marker = MutableLiveData<Marker>()
+    val marker: LiveData<Marker>
+        get() = _marker
+
     fun initialize(context: Context) {
         CoreAPI.initialize(
             appConfig.getOrgKeyRegion().first,
@@ -94,6 +98,17 @@ class MarkersViewModel @Inject constructor(private val appConfig: AppConfig) :
             })
         { errorCode, errorMessage ->
             Log.i(LOGTAG, "Get Marker by ID: $errorCode $errorMessage")
+            _error.postValue("$errorCode, $errorMessage")
+        }
+    }
+
+    fun getMarkerDetail(markerId: String) {
+        SurfaceAPI.getMarkerById(markerId,
+            { marker ->
+                _marker.postValue(marker)
+            })
+        { errorCode, errorMessage ->
+            Log.i(LOGTAG, "Get Marker Info: $errorCode $errorMessage")
             _error.postValue("$errorCode, $errorMessage")
         }
     }
