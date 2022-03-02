@@ -26,7 +26,6 @@ class MarkerDetailsFragment : Fragment() {
         viewModel.getMarkerDetail(marker.id)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
