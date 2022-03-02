@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.gson.GsonBuilder
 import com.iar.common.Utils.loadImage
@@ -16,12 +17,19 @@ class MarkerDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentMarkerDetailsBinding
     private val args by navArgs<MarkerDetailsFragmentArgs>()
+    private val viewModel by viewModels<MarkersViewModel>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val marker = args.marker
+        viewModel.initialize(requireContext())
+        viewModel.getMarkerDetail(marker.id)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
+    ): View {
         binding = FragmentMarkerDetailsBinding.inflate(inflater, container, false)
 
         val marker = args.marker
@@ -32,9 +40,12 @@ class MarkerDetailsFragment : Fragment() {
         binding.markerName.text = marker.name
         binding.markerId.text = marker.id
 
-        val gson = GsonBuilder().setPrettyPrinting().create()
-         val prettyJsonString = gson.toJson(marker)
-        binding.markerData.text = prettyJsonString
+        viewModel.marker.observe(viewLifecycleOwner) {
+            val gson = GsonBuilder().setPrettyPrinting().create()
+            val prettyJsonString = gson.toJson(it)
+            binding.markerData.text = prettyJsonString
+        }
+
         return binding.root
     }
 
