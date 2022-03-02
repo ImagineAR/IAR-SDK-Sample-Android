@@ -1,5 +1,6 @@
 package com.iar.surface_ar_sample.ui.fragments.ondemand
 
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +30,27 @@ class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppCon
     private val _error = MutableLiveData<String>()
     val error: LiveData<String>
         get() = _error
+
+    var isValidMarker = false
+
+    fun initialize(context: Context) {
+        CoreAPI.initialize(
+            appConfig.getOrgKeyRegion().first,
+            appConfig.getOrgKeyRegion().second,
+            context
+        )
+        validateLicense(context)
+        CoreAPI.getCurrentExternalUserId()?.let {
+        }
+    }
+
+    fun validateLicense(context: Context) {
+        SurfaceAPI.validateLicense(
+            appConfig.getOrgKeyRegion().first,
+            appConfig.getOrgKeyRegion().second,
+            context
+        )
+    }
 
     fun getOnDemandMarkers() {
         val curUser = CoreAPI.getCurrentExternalUserId()
@@ -73,11 +95,13 @@ class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppCon
     ) {
         SurfaceAPI.getMarkerById(markerId,
             { marker ->
+                isValidMarker = true
                 navigateOnDemandToSurfaceAR(activity, marker, onComplete)
             })
         { errorCode, errorMessage ->
             Log.i(LOGTAG, "Get Marker by ID: $errorCode $errorMessage")
             _error.postValue("$errorCode, $errorMessage")
+            isValidMarker = false
         }
     }
 }
