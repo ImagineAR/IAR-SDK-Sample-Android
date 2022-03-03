@@ -1,5 +1,7 @@
 package com.iar.surface_ar_sample.ui.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.widget.FrameLayout
 import androidx.activity.viewModels
 import com.iar.surface_ar_sample.ui.fragments.surfacear.SurfaceAROverlayFragment
@@ -44,4 +46,22 @@ class SurfaceARActivity: IARSurfaceActivity() {
         super.onAssetAnchored(isPlaced)
         mOverlay?.get()?.onAssetAnchored(isPlaced)
     }
+
+    override fun onVideoRecordingSaved(fileUri: Uri?, fileName: String?) {
+        fileUri?.let { uri ->
+            fileName?.let { file ->
+                mOverlay?.get()?.onVideoRecordingSaved(uri)
+            }
+        }
+    }
+
+    fun shareScreenShot(uri: Uri) {
+        val sendIntent = Intent()
+        sendIntent.action = Intent.ACTION_SEND
+        sendIntent.type = "image/*"
+        sendIntent.putExtra(Intent.EXTRA_STREAM, uri)
+        val shareIntent: Intent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+    }
+
 }

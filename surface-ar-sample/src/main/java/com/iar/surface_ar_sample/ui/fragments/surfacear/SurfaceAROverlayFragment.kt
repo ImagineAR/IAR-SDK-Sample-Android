@@ -1,8 +1,10 @@
 package com.iar.surface_ar_sample.ui.fragments.surfacear
 
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentSurfaceArOverlayBinding
+import com.iar.surface_ar_sample.ui.activities.SurfaceARActivity
 import com.iar.surface_sdk.aractivity.IARSurfaceActivity
 import kotlinx.coroutines.*
 
@@ -111,13 +114,17 @@ class SurfaceAROverlayFragment: Fragment() {
     private fun stopRecording() {
         binding?.progressBar?.visibility = View.GONE
         binding?.videoButton?.isEnabled = true
-        val uri = (activity as? IARSurfaceActivity)?.stopRecording()
-        context?.let {
-            Toast.makeText(it, "Video saved at: $uri", Toast.LENGTH_SHORT).show()
-        }
+        (activity as? IARSurfaceActivity)?.stopRecording()
     }
 
     private fun updateProgress(progress:Int) {
         binding?.progressBar?.progress = progress
+    }
+
+    fun onVideoRecordingSaved(fileUri: Uri) {
+        context?.let {
+            Toast.makeText(it, "Video saved at: $fileUri", Toast.LENGTH_SHORT).show()
+        }
+        (activity as? SurfaceARActivity)?.shareScreenShot(fileUri)
     }
 }
