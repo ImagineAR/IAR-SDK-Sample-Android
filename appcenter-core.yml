@@ -34,7 +34,7 @@ steps:
 - task: AppCenterDistribute@3
   inputs:
     serverEndpoint: 'IAR SDK Core App Center - Android'
-    appSlug: 'iversoft-team/IAR-SDK-Core-Example-Android'
+    appSlug: $(appslug)
     appFile: './core-sample/build/outputs/apk/release/core-sample-release-unsigned.apk'
     symbolsOption: 'Android'
     releaseNotesOption: 'input'
