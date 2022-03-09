@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavDirections
 import com.iar.common.AppConfig
 import com.iar.common.Utils
 import com.iar.iar_core.Marker
@@ -133,5 +134,10 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
                 _error.postValue("$errorMsg")
             }
         )
+    }
+
+    fun navigateToOnDemandMarkersFragment(isNfc: Boolean) {
+        val action: NavDirections = WriteNFCFragmentDirections.actionWriteNFCFragmentToFragmentOndemand(isNfc)
+        navigate(action)
     }
 }

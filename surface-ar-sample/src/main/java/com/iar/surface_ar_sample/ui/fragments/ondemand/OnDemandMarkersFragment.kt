@@ -12,6 +12,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.iar.common.Utils
@@ -30,6 +31,8 @@ class OnDemandMarkersFragment : BaseFragment() {
 
     private lateinit var binding: FragmentOnDemandMarkersBinding
     private lateinit var markerListView: RecyclerView
+    private val args by navArgs<OnDemandMarkersFragmentArgs>()
+
     override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
@@ -71,6 +74,12 @@ class OnDemandMarkersFragment : BaseFragment() {
             val adapter =
                 MarkersAdapter(markers, object : MarkersAdapter.OnMarkerItemClickListener {
                     override fun onMarkerItemClick(marker: Marker) {
+                        if(args.isNfc){
+                            val id = marker.id
+                            viewModel.navigateToWriteNFCFragment(id)
+                            return
+                        }
+
                         (activity as? MainActivity)?.let {
                             binding.downloadOverlay.visibility = View.VISIBLE
 
