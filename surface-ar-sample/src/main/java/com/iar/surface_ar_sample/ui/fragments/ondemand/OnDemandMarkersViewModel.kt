@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavDirections
 import com.iar.common.AppConfig
 import com.iar.common.Utils
 import com.iar.iar_core.CoreAPI
@@ -103,5 +104,11 @@ class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppCon
             _error.postValue("$errorCode, $errorMessage")
             isValidMarker = false
         }
+    }
+
+    fun navigateToWriteNFCFragment(markerId: String) {
+        val action: NavDirections = OnDemandMarkersFragmentDirections.actionFragmentOndemandToWriteNFCFragment(markerId)
+
+        navigate(action)
     }
 }

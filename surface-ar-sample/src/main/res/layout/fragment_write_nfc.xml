@@ -45,6 +45,8 @@
         android:contentDescription="@string/write_tag_to_nfc_device"
         android:text="@string/write_tag_to_nfc_device"
         android:textAllCaps="false"
+        app:icon="@drawable/ic_baseline_check"
+        app:iconGravity = "textStart"
         app:cornerRadius="@dimen/dimen_border_round" />
 
     <com.google.android.material.button.MaterialButton
@@ -55,6 +57,20 @@
         android:contentDescription="@string/randomize_id"
         android:text="@string/randomize_id"
         android:textAllCaps="false"
+        app:icon="@drawable/ic_baseline_random"
+        app:iconGravity = "textStart"
+        app:cornerRadius="@dimen/dimen_border_round" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pick_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:contentDescription="@string/pick_id"
+        android:text="@string/pick_id"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_baseline_pick"
+        app:iconGravity = "textStart"
         app:cornerRadius="@dimen/dimen_border_round" />
 
     <TextView

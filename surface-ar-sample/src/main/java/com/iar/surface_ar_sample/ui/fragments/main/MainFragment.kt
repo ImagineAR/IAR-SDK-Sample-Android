@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import com.iar.common.SettingsFragment
 import com.iar.surface_ar_sample.BuildConfig
@@ -18,6 +19,15 @@ class MainFragment : BaseFragment() {
     private val viewModel by viewModels<MainViewModel>()
 
     override fun getViewModel(): BaseViewModel = viewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                activity?.finishAffinity()
+            }
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

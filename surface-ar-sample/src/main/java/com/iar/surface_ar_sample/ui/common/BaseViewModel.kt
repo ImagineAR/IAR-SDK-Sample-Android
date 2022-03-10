@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavDirections
 import com.iar.common.NavigationCommand
 import com.iar.common.SingleLiveEvent
 
@@ -28,6 +29,11 @@ open class BaseViewModel: ViewModel() {
 
     fun navigate(intent: Intent) {
         _navigationCommand.postValue(NavigationCommand.ToActivity(intent))
+    }
+
+    fun navigate(direction: NavDirections) {
+        val command = NavigationCommand.ToDir(direction)
+        _navigationCommand.postValue(command)
     }
 
     fun navigateRoot() {
