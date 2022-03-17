@@ -82,7 +82,7 @@ class OnDemandMarkersFragment : BaseFragment() {
 
                         (activity as? MainActivity)?.let {
                             binding.downloadOverlay.visibility = View.VISIBLE
-
+                            marker.rewards = null
                             viewModel.navigateOnDemandToSurfaceAR(it, marker) {
                                 // OnComplete callback.
                                 Handler(Looper.getMainLooper()).post {

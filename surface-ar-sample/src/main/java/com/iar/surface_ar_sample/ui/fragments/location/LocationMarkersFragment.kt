@@ -87,7 +87,7 @@ class LocationMarkersFragment : BaseFragment(){
                         override fun onMarkerItemClick(marker: Marker) {
                             (activity as? MainActivity)?.let {
                                 binding.downloadOverlay.visibility = View.VISIBLE
-
+                                marker.rewards = null
                                 viewModel.navigateLocationToSurfaceAR(it, marker) {
                                     // OnComplete callback.
                                     Handler(Looper.getMainLooper()).post {
@@ -100,8 +100,9 @@ class LocationMarkersFragment : BaseFragment(){
                     object : LocationMakersAdapter.OnTakeMeThereClickListener {
                         override fun onTakeMeThereClick(marker: Marker) {
                             val lat = String.format("%.6f", marker.location.latitude)
-                            val long= String.format("%.6f", marker.location.longitude)
-                            val markerLocation = "${marker.location.latitude},${marker.location.longitude}"
+                            val long = String.format("%.6f", marker.location.longitude)
+                            val markerLocation =
+                                "${marker.location.latitude},${marker.location.longitude}"
                             val locationString = "Coordinates: $lat,$long Radius: 10000"
 
                             viewModel.onGetLocationMarkers(markerLocation)
