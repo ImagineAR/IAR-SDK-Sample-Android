@@ -2,6 +2,7 @@ package com.iar.target_ar_sample.ui.activities
 
 import android.net.Uri
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.iar.iar_core.Region
 import com.iar.target_ar_sample.ui.fragments.targetar.TargetAROverlayFragment
@@ -60,5 +61,16 @@ class TargetARActivity: IARActivity() {
     override fun shareScreenShot(uri: Uri?) {
         // Default behavior brings up a share modal.
         super.shareScreenShot(uri)
+    }
+
+    override fun onVideoRecordingSaved(uri: Uri?) {
+        super.onVideoRecordingSaved(uri)
+
+        if(uri!=null){
+            mOverlay?.get()?.onVideoRecordingSaved(uri)
+        }else{
+            Toast.makeText(this, "No file saved, video Uri is null", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }

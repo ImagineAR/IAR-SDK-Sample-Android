@@ -1,5 +1,6 @@
 package com.iar.target_ar_sample.ui.fragments.targetar
 
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -99,12 +100,19 @@ class TargetAROverlayFragment: Fragment() {
         binding?.progressBar?.visibility = View.GONE
         binding?.videoButton?.isEnabled = true
         val uri = (activity as? IARActivity)?.stopRecording()
-        context?.let {
-            Toast.makeText(it, "Video saved at: $uri", Toast.LENGTH_SHORT).show()
-        }
+//        context?.let {
+//            Toast.makeText(it, "Video saved at: $uri", Toast.LENGTH_SHORT).show()
+//        }
     }
 
     private fun updateProgress(progress:Int) {
         binding?.progressBar?.progress = progress
+    }
+
+    fun onVideoRecordingSaved(fileUri: Uri){
+        context?.let {
+            Toast.makeText(it, "Video saved at: $fileUri", Toast.LENGTH_SHORT).show()
+        }
+        (activity as? IARActivity)?.shareScreenShot(fileUri)
     }
 }
