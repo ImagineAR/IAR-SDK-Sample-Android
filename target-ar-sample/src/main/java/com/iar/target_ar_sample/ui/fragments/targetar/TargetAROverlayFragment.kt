@@ -100,9 +100,6 @@ class TargetAROverlayFragment: Fragment() {
         binding?.progressBar?.visibility = View.GONE
         binding?.videoButton?.isEnabled = true
         val uri = (activity as? IARActivity)?.stopRecording()
-//        context?.let {
-//            Toast.makeText(it, "Video saved at: $uri", Toast.LENGTH_SHORT).show()
-//        }
     }
 
     private fun updateProgress(progress:Int) {
