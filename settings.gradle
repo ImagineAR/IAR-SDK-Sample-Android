@@ -30,12 +30,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven {
-            url 'https://pkgs.dev.azure.com/xenoholographicit/ImagineAR/_packaging/iar_sdk/maven/v1'
-            credentials {
-                username "xenoholographicit"
-                password accessToken
-
-            }
+            url "https://jitpack.io"
         }
     }
 }

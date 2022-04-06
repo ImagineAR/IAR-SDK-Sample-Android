@@ -76,11 +76,9 @@ dependencies {
     // required to avoid crash on Android 12 API 31
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
-    implementation 'com.imaginear.iar:iar_core-dev:1.6.8-dev'
-    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.6.8-dev'
-    implementation 'com.imaginear.iar:iar_nfc-dev:1.6.8-dev'
- //   implementation project(':iar-core')
-  //  implementation project(':surface-sdk')
+    implementation 'com.github.ImagineAR:iar-core-android:1.5.2'
+    implementation 'com.github.ImagineAR:iar-surface-android:1.5.2'
+    implementation 'com.github.ImagineAR:iar-nfc-android:1.5.2'
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
@@ -104,4 +102,5 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
 }

@@ -64,7 +64,7 @@ class TargetARActivity: IARActivity() {
     }
 
     override fun onVideoRecordingSaved(uri: Uri?) {
-        super.onVideoRecordingSaved(uri)
+       super.onVideoRecordingSaved(uri)
 
         if(uri!=null){
             mOverlay?.get()?.onVideoRecordingSaved(uri)
