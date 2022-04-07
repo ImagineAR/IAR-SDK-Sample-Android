@@ -11,38 +11,117 @@
         android:label="main_fragment"
         tools:layout="@layout/main_fragment">
         <action
-            android:id="@+id/action_mainFragment_to_userManagementFragment"
-            app:destination="@id/userManagementFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_userRewardsFragment"
             app:destination="@id/userRewardsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/userManagementFragment"
-        android:name="com.iar.core_sample.ui.fragments.usermanagement.UserManagementFragment"
-        android:label="user_management_fragment"
-        tools:layout="@layout/user_management_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_ARHuntsFragment"
+            app:destination="@id/ARHuntsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_onDemandMarkersFragment"
+            app:destination="@id/onDemandMarkersFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_locationMarkersFragment"
+            app:destination="@id/locationMarkersFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+
 
     </fragment>
+
     <fragment
         android:id="@+id/userRewardsFragment"
         android:name="com.iar.core_sample.ui.fragments.rewards.UserRewardsFragment"
         android:label="user_rewards_fragment"
-        tools:layout="@layout/user_rewards_fragment" >
-
+        tools:layout="@layout/user_rewards_fragment">
         <action
             android:id="@+id/action_userRewardsFragment_to_rewardDetailsFragment"
             app:destination="@id/rewardDetailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/rewardDetailsFragment"
         android:name="com.iar.core_sample.ui.fragments.rewards.RewardDetailsFragment"
-        android:label="reward_details_fragment"
-        tools:layout="@layout/reward_details_fragment" >
-
+        android:label="RewardDetailsFragment" >
         <argument
             android:name="reward"
             app:argType="com.iar.iar_core.Reward" />
     </fragment>
+
+    <fragment
+        android:id="@+id/ARHuntsFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.ARHuntsFragment"
+        android:label="ar_hunts_fragment"
+        tools:layout="@layout/ar_hunts_fragment">
+        <action
+            android:id="@+id/action_ARHuntsFragment_to_huntDetailsFragment"
+            app:destination="@id/huntDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/huntDetailsFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.ARHuntDetailsFragment"
+        android:label="fragment_hunt_details"
+        tools:layout="@layout/fragment_hunt_details" >
+        <argument
+            android:name="hunt"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_huntDetailsFragment_to_huntMarkersFragment"
+            app:destination="@id/huntMarkersFragment" />
+        <action
+            android:id="@+id/action_huntDetailsFragment_to_huntRewardsFragment"
+            app:destination="@id/huntRewardsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/huntMarkersFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntMarkerDetailsFragment"
+        android:label="fragment_hunt_markers"
+        tools:layout="@layout/fragment_hunt_markers" >
+
+        <argument
+            android:name="huntMarker"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/huntRewardsFragment"
+        android:name="com.iar.core_sample.ui.fragments.arhunts.HuntRewardDetailsFragment"
+        android:label="fragment_hunt_rewards"
+        tools:layout="@layout/fragment_hunt_rewards" >
+        <argument
+            android:name="huntReward"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/onDemandMarkersFragment"
+        android:name="com.iar.core_sample.ui.fragments.markers.OnDemandMarkersFragment"
+        android:label="on_demand_markers_fragment"
+        tools:layout="@layout/on_demand_markers_fragment" >
+        <action
+            android:id="@+id/action_onDemandMarkersFragment_to_markerDetailsFragment"
+            app:destination="@id/markerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/markerDetailsFragment"
+        android:name="com.iar.core_sample.ui.fragments.markers.MarkerDetailsFragment"
+        android:label="fragment_marker_details"
+        tools:layout="@layout/fragment_marker_details" >
+        <argument
+            android:name="marker"
+            app:argType="com.iar.iar_core.Marker" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationMarkersFragment"
+        android:name="com.iar.core_sample.ui.fragments.markers.LocationMarkersFragment"
+        android:label="fragment_location_markers"
+        tools:layout="@layout/fragment_location_markers" >
+        <action
+            android:id="@+id/action_locationMarkersFragment_to_markerDetailsFragment"
+            app:destination="@id/markerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.iar.common.user.UserFragment"
+        android:label="UserFragment" />
+
 
 </navigation>

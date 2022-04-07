@@ -1,21 +1,26 @@
 package com.iar.core_sample.ui.fragments.main
 
-
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.iar.common.user.UserViewModel
+import com.iar.common.SettingsFragment
+import com.iar.core_sample.BuildConfig
 import com.iar.core_sample.databinding.MainFragmentBinding
 import com.iar.core_sample.ui.common.BaseFragment
 import com.iar.core_sample.ui.common.BaseViewModel
+import com.iar.iar_core.debugshell.DevConsoleDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment() {
-    private val LOGTAG = "MainFragment"
     private val viewModel by viewModels<MainViewModel>()
+
+    private var devConsoleDialog: DevConsoleDialog? = null
+    private val userManagementViewModel by viewModels<UserViewModel>()
+
 
     override fun getViewModel(): BaseViewModel = viewModel
 
@@ -24,35 +29,32 @@ class MainFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val (orgKey, region) = viewModel.getOrgKeyRegion()
-        Log.d(LOGTAG, orgKey)
-        Log.d(LOGTAG, region.toString())
+        userManagementViewModel.initialize(requireContext())
+        userManagementViewModel.loadCurrentUser(requireContext())
 
         val binding = MainFragmentBinding.inflate(inflater, container, false)
 
         binding.userManagementButton.setOnClickListener {
-               viewModel.navigateToUserManagementFragment()
+            viewModel.navigateToUserManagementFragment()
         }
 
         binding.userRewardButton.setOnClickListener {
-            Log.d(LOGTAG, "user reward button clicked")
-           viewModel.navigateToUserRewardsFragment()
+            viewModel.navigateToUserRewardsFragment()
         }
         binding.arHuntButton.setOnClickListener {
-            Log.d(LOGTAG, "AR hunt button clicked")
-            //TODO: Navigate to arHunt screen
+            viewModel.navigateToARHuntsFragment()
         }
         binding.locationMarkerButton.setOnClickListener {
-            Log.d(LOGTAG, "location marker button clicked")
-            //TODO: Navigate to location markers screen
+            viewModel.navigateToLocationMarkersFragment()
         }
         binding.ondemandMarkerButton.setOnClickListener {
-            Log.d(LOGTAG, "ondemand marker button clicked")
-            //TODO: Navigate to ondemand markers screen
+            viewModel.navigateToOnDemandMarkersFragment()
         }
         binding.devToolsButton.setOnClickListener {
-            Log.d(LOGTAG, "dev tools button clicked")
-            //TODO: Navigate to dev console
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.add(android.R.id.content, SettingsFragment(BuildConfig.APPLICATION_ID), null)
+                ?.addToBackStack(SettingsFragment::class.java.name)
+                ?.commit()
         }
 
         return binding.root

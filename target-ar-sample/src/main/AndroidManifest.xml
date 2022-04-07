@@ -15,6 +15,7 @@
         android:allowBackup="true"
         android:name="com.iar.target_ar_sample.MyApplication"
         android:icon="@mipmap/ic_launcher"
+
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -22,9 +23,9 @@
         <activity
             android:name="com.iar.target_ar_sample.ui.activities.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.IARSDKSamples.Fullscreen">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +36,7 @@
         <activity android:name=".ui.activities.TargetARActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:label="@string/label_target_ar_view"/>
     </application>
 

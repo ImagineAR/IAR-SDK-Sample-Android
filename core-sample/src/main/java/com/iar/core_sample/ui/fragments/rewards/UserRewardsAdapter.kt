@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.iar.common.Utils.loadImage
 import com.iar.core_sample.R
-import com.iar.core_sample.utils.Util.loadImage
-import com.iar.iar_core.Marker
 import com.iar.iar_core.Reward
 
 
-class UserRewardsAdapter(private val rewardsList: List<Reward>, val listener : OnRewardItemClickListener) :
+class UserRewardsAdapter(
+    private val rewardsList: List<Reward>,
+    val listener: OnRewardItemClickListener
+) :
     RecyclerView.Adapter<UserRewardsAdapter.RewardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RewardViewHolder {
@@ -25,7 +25,7 @@ class UserRewardsAdapter(private val rewardsList: List<Reward>, val listener : O
     override fun onBindViewHolder(holder: RewardViewHolder, position: Int) {
         val reward = rewardsList[position]
 
-        reward.image?.let{
+        reward.image?.let {
             holder.rewardImage.loadImage(it.url, holder.rewardImage.getContext())
         }
 

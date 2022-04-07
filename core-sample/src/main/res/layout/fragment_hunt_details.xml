@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        tools:context=".ui.fragments.arhunts.ARHuntDetailsFragment">
+
+        <RelativeLayout
+            android:id="@+id/huntDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp">
+
+            <TextView
+                android:id="@+id/huntName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:textColor="@color/navy"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Hunt Name" />
+
+            <ImageView
+                android:id="@+id/huntImage"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_below="@id/huntName"
+                android:layout_margin="8dp"
+                android:src="@drawable/splash_icon">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/huntId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/huntName"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/huntImage"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Hunt Id" />
+
+            <TextView
+                android:id="@+id/huntDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/huntId"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/huntImage"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                tools:text="Hunt Description" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/huntData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            tools:text="Hunt Data" />
+
+        <TextView
+            android:id="@+id/hunt_marker_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/hunt_markers"
+            android:textColor="@color/navy"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hunt_marker_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/hunt_reward_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/hunt_rewards"
+            android:textColor="@color/navy"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hunt_reward_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never">
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

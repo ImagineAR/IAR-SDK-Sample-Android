@@ -1,0 +1,15 @@
+package com.iar.surface_ar_sample.ui.activities
+
+import com.iar.common.AppConfig
+import com.iar.iar_core.Region
+import com.iar.surface_ar_sample.ui.common.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+@HiltViewModel
+class SurfaceARViewModel @Inject constructor(private val appConfig: AppConfig): BaseViewModel() {
+
+    fun getRegion(): Region = appConfig.getCurRegion()
+
+    fun getLicense(): String = appConfig.getCurLicense()
+}

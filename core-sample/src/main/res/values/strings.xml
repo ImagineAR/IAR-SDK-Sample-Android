@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">core-sample</string>
+    <string name="app_name">Core Sample</string>
     <string name="button_label_user_management">User Management</string>
     <string name="button_label_user_rewards">User Rewards</string>
     <string name="button_label_arhunts">ARHunts</string>
@@ -15,7 +15,27 @@
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="enter_external_unserId">Enter external userId:</string>
-    <string name="migrate_message">Would like to migrate the userId to new userId:</string>
+    <string name="migrate_message">After id regeneration, the data of current userId will be lost. If you would like to migrate data, click MIGRATE, otherwise click OK.</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="clue_card">Clue Card</string>
+    <string name="hunt_markers">Hunt Markers</string>
+    <string name="hunt_rewards">Hunt Rewards</string>
+    <string name="huntmarker_data">Hunt Marker Data</string>
+    <string name="reward">Reward</string>
+    <string name="huntreward_data">Hunt Reward Data</string>
+    <string name="marker_name">Marker Name</string>
+    <string name="marker_image">Marker Image</string>
+    <string name="marker_data">Marker Data</string>
+    <string name="reward_instruction">You will get reward after engaging AR experience.</string>
+    <string name="get_user_reward_by_id">Get User Reward by ID</string>
+    <string name="get_marker_by_id">Get Marker by ID</string>
+    <string name="app_logo">App Logo</string>
+    <string name="iar_core_sdk">Core SDK</string>
+    <string name="get_location_markers">Get Location Markers</string>
+    <string name="nearby">Nearby</string>
+    <string name="take_me_there">Take me there</string>
+    <string name="get_ar_hunt_by_id">Get AR Hunt by ID</string>
+    <string name="marker_details">Marker Details</string>
 
 </resources>

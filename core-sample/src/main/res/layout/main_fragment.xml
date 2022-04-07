@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/sampleApp_darkBlue"
+    android:background="@color/white"
     tools:context=".ui.fragments.main.MainFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -12,58 +13,69 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/dimen_activity_edge"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="46dp"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/app_logo"
+            android:src="@drawable/logo">
+        </ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/iar_core_sdk"
+            android:textColor="@color/navy"
+            android:textSize="20sp">
+        </TextView>
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dimen_activity_edge"
-            app:cornerRadius="@dimen/dimen_corner_round"
+            android:id="@+id/userManagementButton"
+            style="@style/main_button_style"
             android:contentDescription="@string/button_label_user_management"
             android:text="@string/button_label_user_management"
-            android:id="@+id/userManagementButton"/>
+            app:icon="@drawable/ic_baseline_user_24" />
+
         <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dimen_activity_edge"
-            app:cornerRadius="@dimen/dimen_corner_round"
+            android:id="@+id/userRewardButton"
+            style="@style/main_button_style"
             android:contentDescription="@string/button_label_user_rewards"
             android:text="@string/button_label_user_rewards"
-            android:id="@+id/userRewardButton"/>
+            app:icon="@drawable/ic_baseline_gift_24" />
+
         <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dimen_activity_edge"
-            app:cornerRadius="@dimen/dimen_corner_round"
+            android:id="@+id/arHuntButton"
+            style="@style/main_button_style"
             android:contentDescription="@string/button_label_arhunts"
             android:text="@string/button_label_arhunts"
-            android:id="@+id/arHuntButton"/>
+            app:icon="@drawable/ic_baseline_map_24" />
+
         <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dimen_activity_edge"
-            app:cornerRadius="@dimen/dimen_corner_round"
+            android:id="@+id/locationMarkerButton"
+            style="@style/main_button_style"
             android:contentDescription="@string/button_label_location_markers"
             android:text="@string/button_label_location_markers"
-            android:id="@+id/locationMarkerButton"/>
+            app:icon="@drawable/ic_baseline_near_me_24" />
+
         <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dimen_activity_edge"
-            app:cornerRadius="@dimen/dimen_corner_round"
+            android:id="@+id/ondemandMarkerButton"
+            style="@style/main_button_style"
             android:contentDescription="@string/button_label_ondemand_markers"
             android:text="@string/button_label_ondemand_markers"
-            android:id="@+id/ondemandMarkerButton"/>
+            app:icon="@drawable/ic_baseline_ondemand_24" />
+
         <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/devToolsButton"
+            style="@style/main_button_style"
             android:contentDescription="@string/button_label_dev_tools"
-            app:cornerRadius="@dimen/dimen_corner_round"
             android:text="@string/button_label_dev_tools"
-            android:id="@+id/devToolsButton"/>
+            app:icon="@drawable/ic_baseline_code_24" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

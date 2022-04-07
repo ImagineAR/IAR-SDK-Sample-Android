@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_main">
+
+    <action
+        android:id="@+id/global_action_surface_ar"
+        app:destination="@id/activity_surface_ar" />
+
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="com.iar.surface_ar_sample.ui.fragments.main.MainFragment"
+        android:label="Main Fragment"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_fragment_main_to_readNFCFragment"
+            app:destination="@id/readNFCFragment" />
+        <action
+            android:id="@+id/action_fragment_main_to_writeNFCFragment"
+            app:destination="@id/writeNFCFragment" />
+
+        <action
+            android:id="@+id/action_fragment_main_to_locationMarkersFragment"
+            app:destination="@id/locationMarkersFragment" />
+
+        <action
+            android:id="@+id/action_to_ondemand"
+            app:destination="@id/fragment_ondemand" />
+        <action
+            android:id="@+id/action_fragment_main_to_userFragment"
+            app:destination="@id/userFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_ondemand"
+        android:name="com.iar.surface_ar_sample.ui.fragments.ondemand.OnDemandMarkersFragment"
+        android:label="On Demand"
+        tools:layout="@layout/fragment_on_demand_markers">
+
+        <action
+            android:id="@+id/action_surface_ar"
+            app:destination="@id/activity_surface_ar" />
+
+        <action
+            android:id="@+id/action_fragment_ondemand_to_writeNFCFragment"
+            app:destination="@id/writeNFCFragment" />
+
+        <argument
+            android:name="isNfc"
+            app:argType="boolean"
+            android:defaultValue="false" />
+
+    </fragment>
+
+    <activity
+        android:id="@+id/activity_surface_ar"
+        android:name="com.iar.surface_ar_sample.ui.activities.SurfaceARActivity"
+        android:label="@string/label_surface_ar_view" />
+
+    <fragment
+        android:id="@+id/readNFCFragment"
+        android:name="com.iar.surface_ar_sample.ui.fragments.nfc.ReadNFCFragment"
+        android:label="fragment_read_nfc"
+        tools:layout="@layout/fragment_read_nfc" >
+        <action
+            android:id="@+id/action_readNFCFragment_to_activity_surface_ar"
+            app:destination="@id/activity_surface_ar" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/writeNFCFragment"
+        android:name="com.iar.surface_ar_sample.ui.fragments.nfc.WriteNFCFragment"
+        android:label="fragment_write_nfc"
+        tools:layout="@layout/fragment_write_nfc" >
+        <action
+            android:id="@+id/action_writeNFCFragment_to_fragment_ondemand"
+            app:destination="@id/fragment_ondemand" />
+
+        <argument
+            android:name="markerId"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/locationMarkersFragment"
+        android:name="com.iar.surface_ar_sample.ui.fragments.location.LocationMarkersFragment"
+        android:label="location_markers_fragment"
+        tools:layout="@layout/location_markers_fragment">
+        <action
+            android:id="@+id/action_locationMarkersFragment_to_activity_surface_ar"
+            app:destination="@id/activity_surface_ar" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.iar.common.user.UserFragment"
+        android:label="UserFragment" />
+
+</navigation>

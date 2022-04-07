@@ -14,7 +14,7 @@ android {
         applicationId "com.example.core_sample"
         minSdk 26
         targetSdk 31
-        versionCode 1
+        versionCode 4
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -55,6 +55,7 @@ dependencies {
 
     // DI lib
     implementation "com.google.dagger:hilt-android:2.38.1"
+    implementation project(path: ':common')
     kapt "com.google.dagger:hilt-android-compiler:2.38.1"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -88,11 +89,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // IAR dependencies
-    implementation 'com.imaginear.iar:iar_core-dev:1.5.8-dev'
+    implementation 'com.github.ImagineAR:iar-core-android:1.5.2'
+    implementation 'com.github.ImagineAR:iar-surface-android:1.5.2'
 
     //Preference
     implementation 'androidx.preference:preference:1.1.1'
 
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
 }

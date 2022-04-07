@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import com.iar.common.NavigationCommand
 import com.iar.target_ar_sample.R
-import com.iar.target_ar_sample.utils.NavigationCommand
 
 /**
  * This base fragment will handle the basic navigation

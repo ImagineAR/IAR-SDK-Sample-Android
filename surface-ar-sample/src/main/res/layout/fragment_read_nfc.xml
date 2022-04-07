@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.nfc.ReadNFCFragment">
+
+    <TextView
+        android:id="@+id/read_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:gravity="center"
+        android:text="@string/read_nfc_tag"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/title_text_size">
+    </TextView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/read_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/write_tag_to_nfc_device"
+        android:text="@string/read_nfc_tag"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/dimen_border_round" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/marker_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:contentDescription="@string/randomize_id"
+        android:text="@string/view_scanned_marker"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/dimen_border_round" />
+
+    <TextView
+        android:id="@+id/read_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_margin"
+        android:gravity="center"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/message_text_size">
+    </TextView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/downloadOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/progressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_label_download_asset"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/progressView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
