@@ -35,7 +35,6 @@ steps:
   inputs:
     serverEndpoint: 'IAR SDK Surface App Center - Android'
     appSlug: $(appslug)
-
     appFile: './surface-ar-sample/build/outputs/apk/release/surface-ar-sample-release-unsigned.apk'
     symbolsOption: 'Android'
     releaseNotesOption: 'input'
