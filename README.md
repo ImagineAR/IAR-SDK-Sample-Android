@@ -5,7 +5,7 @@
     <br />
     <br />
     <a href="https://docs.imaginear.com/" alt="ImagineAR-SDK" title="ImagineAR-SDK"><img src="img/version.svg" /></a>
-  <img src="img/platform.svg" alt="Supported Platforms: Android" />
+    <a href="https://docs.dev.imaginear.com/docs/v1.5/android#imaginear--android-sdk-integration-guide" alt="Supported Platforms: Android" title="Supported Platforms: Android"><img src="img/platform.svg" /></a>
 </p>
 
 # IAR-SDK-Samples-Android
@@ -162,7 +162,7 @@ The ImagineAR SDK is a paid service with flexible pricing, access to the Imagine
 
 Read-only sample content is provided for test integrations to help ensure ImagineAR is the right tool for your application. If you're ready to test the integration into your mobile app, head to our [integration documentation](https://docs.dev.imaginear.com/docs/v1.5/android/integration#integrate-the-sdk-into-your-application) for all the details.
 
-Have questions about integration or are ready to discuss pricing? Don't hesitate to reach out to us at info@imaginear.com](https://imaginear.com/contact-us).
+Have questions about integration or are ready to discuss pricing? Don't hesitate to reach out to us at [info@imaginear.com](https://imaginear.com/contact-us).
 
 
 # License
