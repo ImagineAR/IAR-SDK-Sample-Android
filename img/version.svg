@@ -6,7 +6,7 @@
    aria-label="POD: V1.5.0"
    version="1.1"
    id="svg23"
-   sodipodi:docname="pod.svg"
+   sodipodi:docname="pod-1.5.2.svg"
    inkscape:version="1.1 (c4e8f9e, 2021-05-24)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -57,22 +57,26 @@
      font-size="100"
      id="g21">
     <text
-       transform="matrix(0.1,0,0,0.1,7.0339336,0)"
-       x="243.75"
-       y="175"
-       textLength="247.5"
-       fill="#ffffff"
-       id="text17"
-       lengthAdjust="spacing"
-       style="letter-spacing:-150px">Version</text>
+       xml:space="preserve"
+       style="font-size:10.0392px;line-height:1.25;font-family:sans-serif;stroke-width:0.947096"
+       x="23.919601"
+       y="17.548027"
+       id="text717"><tspan
+         sodipodi:role="line"
+         id="tspan715"
+         x="23.919601"
+         y="17.548027"
+         style="stroke-width:0.947096">Version</tspan></text>
     <text
-       transform="scale(0.1)"
-       x="825"
-       y="175"
-       textLength="435"
-       fill="#ffffff"
-       font-weight="bold"
-       id="text19"
-       lengthAdjust="spacing">V1.5.2</text>
+       xml:space="preserve"
+       style="font-size:10.0392px;line-height:1.25;font-family:sans-serif;stroke-width:0.947096"
+       x="83.144852"
+       y="17.641165"
+       id="text717-9"><tspan
+         sodipodi:role="line"
+         id="tspan715-1"
+         x="83.144852"
+         y="17.641165"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.947096">V 1.5.2</tspan></text>
   </g>
 </svg>

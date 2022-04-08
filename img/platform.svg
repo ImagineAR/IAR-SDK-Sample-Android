@@ -25,7 +25,7 @@
      showgrid="false"
      inkscape:zoom="8.1841621"
      inkscape:cx="67.875"
-     inkscape:cy="13.990437"
+     inkscape:cy="13.990436"
      inkscape:window-width="1280"
      inkscape:window-height="747"
      inkscape:window-x="0"
@@ -57,22 +57,26 @@
      font-size="100"
      id="g21">
     <text
-       transform="scale(.1)"
-       x="435"
-       y="175"
-       textLength="630"
-       fill="#fff"
-       id="text17">PLATFORM</text>
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.74441px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.919281"
+       x="111.06679"
+       y="17.403467"
+       id="text8907"><tspan
+         sodipodi:role="line"
+         id="tspan8905"
+         x="111.06679"
+         y="17.403467"
+         style="stroke-width:0.919281">Android</tspan></text>
     <text
-       transform="matrix(0.1,0,0,0.1,10,0)"
-       x="1113.75"
-       y="175"
-       textLength="247.5"
-       fill="#ffffff"
-       font-weight="bold"
-       id="text19"
-       lengthAdjust="spacing"
-       style="letter-spacing:-100px"
-       dx="-100">Android</text>
+       xml:space="preserve"
+       style="font-size:10.0392px;line-height:1.25;font-family:sans-serif;stroke-width:0.947096;letter-spacing:1px"
+       x="43.008232"
+       y="17.530968"
+       id="text717-9"><tspan
+         sodipodi:role="line"
+         id="tspan715-1"
+         x="43.008232"
+         y="17.530968"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.947096">PLATFORM</tspan></text>
   </g>
 </svg>
