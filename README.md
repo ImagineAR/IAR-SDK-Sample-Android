@@ -10,7 +10,7 @@
 
 ImagineAR is an Augmented Reality app development platform with tools to enable AR experiences for digital audiences.  This software development kit integrates seamlessly into native mobile applications providing everything needed to create and manage engaging AR experiences.  The ImagineAR SDK leverages ImagineAR Cloud to provide self-publishing management tools used to define and deliver AR experiences to end users in real time.
 
-**Want to learn more about ImagineAR?** Visit the [ImagineAR website](imaginear.com).
+**Want to learn more about ImagineAR?** Visit the [ImagineAR website](https://imaginear.com/).
 
 # ImagineAR Features
 **Marker Types**
@@ -80,7 +80,6 @@ The ImagineAR SDK can render the following digital content types in the AR camer
  - Providing the most immersive experience, the SDK supports complex 3D model rendering
  - Animation is supported for 3D models, looping the animation in the scene
  - Real-time shadows are rendered based on the model's geometry during surface-detection experiences
- - On iOS, 3D models are required to be in the USDZ format
 
 **Videos**
 
@@ -98,15 +97,15 @@ Assets can be manipulated dynamically using metadata defined in the ImagineAR Cl
 # How to Get Started
 
 - Download this repository extract and open the folder.
-- Use Android Studio to build the the samples. If you don't have already, install [Android Studio](https://developer.android.com/studio), following the instructions on the website.
+- Use Android Studio to build the samples. If you don't have already, install [Android Studio](https://developer.android.com/studio), following the instructions on the website.
 
 # The Samples
 
-The ImagineAR SDK provides three sample applications to demonstrate the various features of the platform.  surface-ar-sample and target-ar-sample can be integrated independently based on the needs of the application, but both rely on functionality from core-sample.
+The ImagineAR SDK provides three sample applications to demonstrate the various features of the platform.  `surface-ar-sample` and `target-ar-sample` can be integrated independently based on the needs of the application, but both rely on functionality from `core-sample`.
 
 ## surface-ar-sample
 
-Demonstrates the basic usage of the features contained within the iar-surface-android:
+Demonstrates the basic usage of the features contained within the `iar-surface-android`:
 
 - Environment surface detection
 - Dynamic acquisition of defined content metadata from ImagineAR Cloud
@@ -116,11 +115,11 @@ Demonstrates the basic usage of the features contained within the iar-surface-an
 - NFC Markers
 - Video Capture & Sharing for surface AR experiences
 
-![Surface SDK Sample](/img/surfaceSample.jpg)
+![Surface SDK Sample](/img/SurfaceSample.png)
 
 ## target-ar-sample
 
-Demonstrates the basic usage of the features contained within the iar-target-android:
+Demonstrates the basic usage of the features contained within the `iar-target-android`:
 
 - Recognition of target images for Image Marker experiences
 - Dynamic acquisition of defined content metadata from ImagineAR Cloud
@@ -132,7 +131,7 @@ Demonstrates the basic usage of the features contained within the iar-target-and
 
 - [Download images](https://iarv2storage.blob.core.windows.net/sdk-versions/TargetImages.zip)
 
-![Target SDK Sample](/img/targetSample.jpg)
+![Target SDK Sample](/img/TargetSample.png)
 
 ## core-sample
 
@@ -143,7 +142,7 @@ Demonstrates the basic API-based content interactions with ImagineAR Cloud for t
 - Location Markers
 - On-Demand Markers
 
-![Core SDK Sample](/img/coreSample.jpg)
+![Core SDK Sample](/img/CoreSample.png)
 
 ## common
 
@@ -153,7 +152,7 @@ All samples contain the following feature modules to support their respective fe
 - Debug Tools - a curated set of developer tools to help with configuration and debugging
 
 ## Requirements
--You need an Android device and Android development environment with minimum API 26.
+- You need an Android device and Android development environment with minimum API 26.
 - Only portrait mode is supported.
 
 # Ready to Integrate?
@@ -161,7 +160,7 @@ The ImagineAR SDK is a paid service with flexible pricing, access to the Imagine
 
 Read-only sample content is provided for test integrations to help ensure ImagineAR is the right tool for your application. If you're ready to test the integration into your mobile app, head to our [integration documentation](https://docs.dev.imaginear.com/docs/v1.5/android/integration#integrate-the-sdk-into-your-application) for all the details.
 
-Have questions about integration or are ready to discuss pricing? Don't hesitate to reach out to us at [info@imaginear.com](info@imaginear.com).
+Have questions about integration or are ready to discuss pricing? Don't hesitate to reach out to us at info@imaginear.com](https://imaginear.com/contact-us).
 
 
 # License
