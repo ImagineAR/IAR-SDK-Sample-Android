@@ -4,6 +4,8 @@
     <img src="img/IAR_GitHub_Banner.png" width="100%" alt="ImagineAR Logo" />
     <br />
     <br />
+    <a href="https://docs.imaginear.com/" alt="ImagineAR-SDK" title="ImagineAR-SDK"><img src="img/version.svg" /></a>
+  <img src="img/platform.svg" alt="Supported Platforms: Android" />
 </p>
 
 # IAR-SDK-Samples-Android
