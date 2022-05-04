@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.iar.common.PermissionUtils
+import com.iar.common.Utils
 import com.iar.nfc_sdk.NFCController
 import com.iar.surface_ar_sample.databinding.ActivityMainBinding
 import com.iar.surface_ar_sample.ui.fragments.nfc.NFCViewModel
@@ -84,12 +85,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        nfcController.onResume()
+        if (Utils.checkNFCSupported(this)) {
+            nfcController.onResume()
+        }
     }
 
     override fun onPause() {
         super.onPause()
-        nfcController.onPause()
+        if (Utils.checkNFCSupported(this)) {
+            nfcController.onPause()
+        }
     }
 
 }
