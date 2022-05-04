@@ -1,15 +1,13 @@
 package com.iar.surface_ar_sample.ui.fragments.nfc
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.iar.common.Utils
-import com.iar.iar_core.Marker
 import com.iar.nfc_sdk.NFCController
+import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentReadNfcBinding
 import com.iar.surface_ar_sample.ui.activities.MainActivity
 import com.iar.surface_ar_sample.ui.common.BaseFragment
@@ -35,15 +33,22 @@ class ReadNFCFragment : BaseFragment() {
 
         val currentActivity = activity as? MainActivity
 
-        nfcViewModel.nfcController.observe(viewLifecycleOwner) { controller ->
-            controller?.let {
-                nfcController = controller
+        if (Utils.checkNFCSupported(requireContext())) {
+            nfcViewModel.nfcController.observe(viewLifecycleOwner) { controller ->
+                controller?.let {
+                    nfcController = controller
+                }
             }
         }
 
+
         binding.readButton.setOnClickListener {
-            nfcController?.let {
-                currentActivity?.nfcViewModel?.startNfc(it, false)
+            if (Utils.checkNFCSupported(requireContext())) {
+                nfcController?.let {
+                    currentActivity?.nfcViewModel?.startNfc(it, false)
+                }
+            } else {
+                Utils.showToastMessage(getString(R.string.nfc_upsupport), requireContext())
             }
         }
 
@@ -51,19 +56,22 @@ class ReadNFCFragment : BaseFragment() {
             isWrite = write
         }
 
-        nfcViewModel.currentIntent.observe(viewLifecycleOwner) { intent ->
-            nfcController?.let { controller ->
-                if (!isWrite) {
-                    val markerTag = nfcViewModel.readNfc(controller, intent)
-                    markerTag?.let { tag ->
-                        val readMessage = "Read NFC successfully,  $tag"
-                        binding.readMessage.text = readMessage
-                        nfcViewModel.getMarkerById(tag.id)
-                        nfcViewModel.setIsWrite(true)
+        if (Utils.checkNFCSupported(requireContext())) {
+            nfcViewModel.currentIntent.observe(viewLifecycleOwner) { intent ->
+                nfcController?.let { controller ->
+                    if (!isWrite) {
+                        val markerTag = nfcViewModel.readNfc(controller, intent)
+                        markerTag?.let { tag ->
+                            val readMessage = "Read NFC successfully,  $tag"
+                            binding.readMessage.text = readMessage
+                            nfcViewModel.getMarkerById(tag.id)
+                            nfcViewModel.setIsWrite(true)
+                        }
                     }
                 }
             }
         }
+
 
         binding.markerButton.setOnClickListener {
 
