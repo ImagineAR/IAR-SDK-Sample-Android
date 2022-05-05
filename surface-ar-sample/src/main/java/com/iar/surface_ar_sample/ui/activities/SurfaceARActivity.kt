@@ -2,6 +2,8 @@ package com.iar.surface_ar_sample.ui.activities
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.widget.FrameLayout
 import androidx.activity.viewModels
 import com.iar.surface_ar_sample.ui.fragments.surfacear.SurfaceAROverlayFragment
@@ -15,6 +17,13 @@ class SurfaceARActivity: IARSurfaceActivity() {
 
     private var mOverlay: WeakReference<SurfaceAROverlayFragment>? = null
 
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        //provide your own customized UI/behaviour
+        if(!this.isARCoreSupported()){
+            println("This device does not support ARCore.")
+        }
+    }
     /**
      * Here we can override the function provided by IARActivity
      * to add our custom overlay over the camera view.
