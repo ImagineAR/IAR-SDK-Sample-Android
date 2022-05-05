@@ -1,6 +1,7 @@
 package com.iar.common
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import android.text.InputType
 import android.util.TypedValue
@@ -73,5 +74,10 @@ object Utils {
         editText.maxLines = 2
         editText.textSize = 14f
         return editText
+    }
+
+    fun checkNFCSupported(context: Context): Boolean {
+        val pm = context.packageManager
+        return pm.hasSystemFeature(PackageManager.FEATURE_NFC)
     }
 }
