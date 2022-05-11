@@ -10,7 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.iar.common.Utils
 import com.iar.target_ar_sample.databinding.FragmentTargetArOverlayBinding
+import com.iar.target_ar_sample.ui.activities.TargetARActivity
 import com.iar.target_sdk.IARActivity
 import kotlinx.coroutines.*
 
@@ -99,17 +101,17 @@ class TargetAROverlayFragment: Fragment() {
     private fun stopRecording() {
         binding?.progressBar?.visibility = View.GONE
         binding?.videoButton?.isEnabled = true
-        val uri = (activity as? IARActivity)?.stopRecording()
+        (activity as? IARActivity)?.stopRecording()
     }
 
     private fun updateProgress(progress:Int) {
         binding?.progressBar?.progress = progress
     }
 
-    fun onVideoRecordingSaved(fileUri: Uri){
+    fun onVideoRecordingSaved(fileUri: Uri) {
         context?.let {
-            Toast.makeText(it, "Video saved at: $fileUri", Toast.LENGTH_SHORT).show()
+            Utils.showToastMessage("Video saved at: $fileUri", it)
         }
-        (activity as? IARActivity)?.shareScreenShot(fileUri)
+        Utils.shareScreenShot(fileUri, requireActivity() as TargetARActivity)
     }
 }

@@ -4,13 +4,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.iar.common.Utils
 import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentSurfaceArOverlayBinding
 import com.iar.surface_ar_sample.ui.activities.SurfaceARActivity
@@ -123,8 +123,8 @@ class SurfaceAROverlayFragment: Fragment() {
 
     fun onVideoRecordingSaved(fileUri: Uri) {
         context?.let {
-            Toast.makeText(it, "Video saved at: $fileUri", Toast.LENGTH_SHORT).show()
+            Utils.showToastMessage("Video saved at: $fileUri", it)
         }
-        (activity as? SurfaceARActivity)?.shareScreenShot(fileUri)
+        Utils.shareScreenShot(fileUri, requireActivity() as SurfaceARActivity)
     }
 }
