@@ -1,8 +1,10 @@
 package com.iar.common
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.text.InputType
 import android.util.TypedValue
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -79,5 +82,14 @@ object Utils {
     fun checkNFCSupported(context: Context): Boolean {
         val pm = context.packageManager
         return pm.hasSystemFeature(PackageManager.FEATURE_NFC)
+    }
+
+    fun shareScreenShot(uri: Uri, activity: AppCompatActivity) {
+        val sendIntent = Intent()
+        sendIntent.setAction(Intent.ACTION_SEND)
+        sendIntent.setType("image/*")
+        sendIntent.putExtra(Intent.EXTRA_STREAM, uri)
+        val shareIntent: Intent = Intent.createChooser(sendIntent, null)
+        activity.startActivity(shareIntent)
     }
 }
