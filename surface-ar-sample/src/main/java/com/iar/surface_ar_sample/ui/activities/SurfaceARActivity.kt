@@ -1,11 +1,12 @@
 package com.iar.surface_ar_sample.ui.activities
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.FrameLayout
 import androidx.activity.viewModels
+import com.iar.common.Utils
+import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.ui.fragments.surfacear.SurfaceAROverlayFragment
 import com.iar.surface_sdk.aractivity.IARSurfaceActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,13 +65,13 @@ class SurfaceARActivity: IARSurfaceActivity() {
         }
     }
 
-    fun shareScreenShot(uri: Uri) {
-        val sendIntent = Intent()
-        sendIntent.action = Intent.ACTION_SEND
-        sendIntent.type = "image/*"
-        sendIntent.putExtra(Intent.EXTRA_STREAM, uri)
-        val shareIntent: Intent = Intent.createChooser(sendIntent, null)
-        startActivity(shareIntent)
+    override fun onScreenshotCapture(fileUri: Uri?, fileName: String?) {
+        super.onScreenshotCapture(fileUri, fileName)
+        if(fileUri!=null){
+            Utils.shareScreenShot(fileUri, this)
+        }else{
+            Utils.showToastMessage(getString(R.string.no_screenshot_file), this)
+        }
     }
 
 }

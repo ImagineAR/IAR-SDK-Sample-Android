@@ -2,9 +2,10 @@ package com.iar.target_ar_sample.ui.activities
 
 import android.net.Uri
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.activity.viewModels
+import com.iar.common.Utils
 import com.iar.iar_core.Region
+import com.iar.target_ar_sample.R
 import com.iar.target_ar_sample.ui.fragments.targetar.TargetAROverlayFragment
 import com.iar.target_sdk.IARActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,23 +55,23 @@ class TargetARActivity: IARActivity() {
         mOverlay?.get()?.onTrackingChanged(isTracking)
     }
 
-    /**
-     * This callback gets called when a screenshot is taken. The
-     * uri provided will be the path where it is currently saved.
-     */
-    override fun shareScreenShot(uri: Uri?) {
-        // Default behavior brings up a share modal.
-        super.shareScreenShot(uri)
-    }
-
     override fun onVideoRecordingSaved(uri: Uri?) {
-       super.onVideoRecordingSaved(uri)
+        super.onVideoRecordingSaved(uri)
 
-        if(uri!=null){
+        if (uri != null) {
             mOverlay?.get()?.onVideoRecordingSaved(uri)
-        }else{
-            Toast.makeText(this, "No file saved, video Uri is null", Toast.LENGTH_SHORT).show()
+        } else {
+            Utils.showToastMessage(getString(R.string.no_video_file), this)
         }
-
     }
+
+    override fun onScreenshotCapture(uri: Uri?) {
+        super.onScreenshotCapture(uri)
+        if (uri != null) {
+            Utils.shareScreenShot(uri, this)
+        } else {
+            Utils.showToastMessage(getString(R.string.no_screenshot_file), this)
+        }
+    }
+
 }
