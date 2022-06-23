@@ -33,7 +33,7 @@ steps:
 
 - task: AppCenterDistribute@3
   inputs:
-    serverEndpoint: 'IAR SDK Target App Center - Android'
+    serverEndpoint: 'Azure Pipline - IAR SDK Target Sample App - Android'
     appSlug: $(appslug)
     appFile: './target-ar-sample/build/outputs/apk/release/target-ar-sample-release-unsigned.apk'
     symbolsOption: 'Android'
