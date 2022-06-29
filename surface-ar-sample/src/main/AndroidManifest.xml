@@ -17,6 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IARSDKSamples">
+        <activity
+            android:name=".ui.activities.PreviewVideoActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.ar.core"
@@ -38,20 +42,18 @@
             android:grantUriPermissions="true" />
 
         <activity
-            android:name="com.iar.surface_ar_sample.ui.activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.activities.SurfaceARActivity"
             android:screenOrientation="portrait" />
-
-
     </application>
 
 </manifest>
