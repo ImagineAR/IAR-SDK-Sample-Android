@@ -67,9 +67,14 @@ class SurfaceAROverlayFragment: Fragment() {
             val visibility = if (isPlaced) View.VISIBLE else View.GONE
             binding?.screenshotButton?.visibility = visibility
             binding?.videoButton?.visibility = visibility
-            binding?.placeMoveButton?.text =
-                if(isPlaced) getString(R.string.button_label_move)
-                else getString(R.string.button_label_place)
+
+            if (isPlaced) {
+                binding?.placeMoveButton?.text = getString(R.string.button_label_move)
+                (activity as? IARSurfaceActivity)?.playVideo()
+            } else {
+                binding?.placeMoveButton?.text = getString(R.string.button_label_place)
+                (activity as? IARSurfaceActivity)?.pauseVideo()
+            }
         }
     }
 

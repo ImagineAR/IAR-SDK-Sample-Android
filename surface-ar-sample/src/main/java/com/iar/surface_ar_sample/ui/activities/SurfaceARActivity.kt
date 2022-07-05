@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.lang.ref.WeakReference
 
 @AndroidEntryPoint
-class SurfaceARActivity: IARSurfaceActivity() {
+class SurfaceARActivity : IARSurfaceActivity() {
     private val viewModel by viewModels<SurfaceARViewModel>()
 
     private var mOverlay: WeakReference<SurfaceAROverlayFragment>? = null
@@ -21,10 +21,11 @@ class SurfaceARActivity: IARSurfaceActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         //provide your own customized UI/behaviour
-        if(!this.isARCoreSupported()){
+        if (!this.isARCoreSupported()) {
             println("This device does not support ARCore.")
         }
     }
+
     /**
      * Here we can override the function provided by IARActivity
      * to add our custom overlay over the camera view.
@@ -67,11 +68,16 @@ class SurfaceARActivity: IARSurfaceActivity() {
 
     override fun onScreenshotCapture(fileUri: Uri?, fileName: String?) {
         super.onScreenshotCapture(fileUri, fileName)
-        if(fileUri!=null){
+        if (fileUri != null) {
             Utils.shareScreenShot(fileUri, this)
-        }else{
+        } else {
             Utils.showToastMessage(getString(R.string.no_screenshot_file), this)
         }
+    }
+
+    override fun onVideoEnd() {
+        super.onVideoEnd()
+        playVideo()
     }
 
 }
