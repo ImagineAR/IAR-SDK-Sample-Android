@@ -45,7 +45,7 @@ class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppCon
         }
     }
 
-    fun validateLicense(context: Context) {
+    private fun validateLicense(context: Context) {
         SurfaceAPI.validateLicense(
             appConfig.getOrgKeyRegion().first,
             appConfig.getOrgKeyRegion().second,
@@ -68,7 +68,7 @@ class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppCon
     fun navigateOnDemandToSurfaceAR(
         activity: AppCompatActivity,
         marker: Marker,
-        onComplete: (() -> Unit)? = null
+        onComplete: ((progress: Int) -> Unit)? = null
     ) {
         SurfaceAPI.downloadDemandAssetsAndRewards(
             activity,
@@ -79,12 +79,15 @@ class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppCon
                     putExtra(IARSurfaceActivity.ARG_MARKER, Utils.gson.toJson(marker))
                 }
 
-                onComplete?.invoke()
                 navigate(intent)
             },
             onFail = { errorMsg ->
-                onComplete?.invoke()
+
                 _error.postValue("$errorMsg")
+            },
+            onProgress = { progress ->
+                // println("progress $progress")
+                onComplete?.invoke(progress)
             }
         )
     }
@@ -92,7 +95,7 @@ class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppCon
     fun getMarkerById(
         activity: AppCompatActivity,
         markerId: String,
-        onComplete: (() -> Unit)? = null
+        onComplete: ((progress: Int) -> Unit)? = null
     ) {
         SurfaceAPI.getMarkerById(markerId,
             { marker ->
@@ -107,7 +110,8 @@ class OnDemandMarkersViewModel @Inject constructor(private val appConfig: AppCon
     }
 
     fun navigateToWriteNFCFragment(markerId: String) {
-        val action: NavDirections = OnDemandMarkersFragmentDirections.actionFragmentOndemandToWriteNFCFragment(markerId)
+        val action: NavDirections =
+            OnDemandMarkersFragmentDirections.actionFragmentOndemandToWriteNFCFragment(markerId)
 
         navigate(action)
     }

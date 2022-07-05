@@ -25,7 +25,7 @@ import com.iar.surface_ar_sample.ui.common.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LocationMarkersFragment : BaseFragment(){
+class LocationMarkersFragment : BaseFragment() {
 
     private val viewModel by viewModels<LocationMarkersViewModel>()
     override fun getViewModel(): BaseViewModel = viewModel
@@ -50,28 +50,28 @@ class LocationMarkersFragment : BaseFragment(){
         val defaultLocation = "Coordinates: 48.166667,-100.166667 Radius: 10000"
         binding.markerLocation.text = defaultLocation
 
-        if(DebugSettingsController.simulatedLocation){
+        if (DebugSettingsController.simulatedLocation) {
             val coordinateString = "Coordinates: ${viewModel.getCoordinates()} Radius: 10000"
             binding.markerLocation.text = coordinateString
             viewModel.onGetLocationMarkers(viewModel.getCoordinates())
         }
 
-        viewModel.locationMarkers.observe(viewLifecycleOwner, { markers ->
+        viewModel.locationMarkers.observe(viewLifecycleOwner) { markers ->
             markers?.let {
                 setupMarkersList(markers)
             }
-
-        })
+        }
 
         binding.getMarkerButton.setOnClickListener {
             setupDialog()
         }
 
-        viewModel.error.observe(viewLifecycleOwner, { error ->
+        viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Utils.showToastMessage("There is error $error", requireContext())
             }
-        })
+        }
+
         return binding.root
     }
 
@@ -86,13 +86,10 @@ class LocationMarkersFragment : BaseFragment(){
                     object : LocationMakersAdapter.OnLocationMarkerItemClickListener {
                         override fun onMarkerItemClick(marker: Marker) {
                             (activity as? MainActivity)?.let {
-                                binding.downloadOverlay.visibility = View.VISIBLE
 
-                                viewModel.navigateLocationToSurfaceAR(it, marker) {
+                                viewModel.navigateLocationToSurfaceAR(it, marker) { progress ->
                                     // OnComplete callback.
-                                    Handler(Looper.getMainLooper()).post {
-                                        binding.downloadOverlay.visibility = View.GONE
-                                    }
+                                    showDownloadProgress(progress)
                                 }
                             }
                         }
@@ -100,8 +97,9 @@ class LocationMarkersFragment : BaseFragment(){
                     object : LocationMakersAdapter.OnTakeMeThereClickListener {
                         override fun onTakeMeThereClick(marker: Marker) {
                             val lat = String.format("%.6f", marker.location.latitude)
-                            val long= String.format("%.6f", marker.location.longitude)
-                            val markerLocation = "${marker.location.latitude},${marker.location.longitude}"
+                            val long = String.format("%.6f", marker.location.longitude)
+                            val markerLocation =
+                                "${marker.location.latitude},${marker.location.longitude}"
                             val locationString = "Coordinates: $lat,$long Radius: 10000"
 
                             viewModel.onGetLocationMarkers(markerLocation)
@@ -136,6 +134,18 @@ class LocationMarkersFragment : BaseFragment(){
         }
         builder.setNegativeButton(getString(R.string.cancel)) { dialogInterface, i -> dialogInterface.dismiss() }
         builder.create().show()
+    }
+
+    private fun showDownloadProgress(progress: Int) {
+        Handler(Looper.getMainLooper()).post {
+            if (progress in 0..99) {
+                binding.downloadOverlay.visibility = View.VISIBLE
+                val progressPercent = "$progress%"
+                binding.progressText.text = progressPercent
+            } else {
+                binding.downloadOverlay.visibility = View.GONE
+            }
+        }
     }
 
 }

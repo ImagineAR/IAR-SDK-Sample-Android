@@ -74,20 +74,16 @@ class OnDemandMarkersFragment : BaseFragment() {
             val adapter =
                 MarkersAdapter(markers, object : MarkersAdapter.OnMarkerItemClickListener {
                     override fun onMarkerItemClick(marker: Marker) {
-                        if(args.isNfc){
+                        if (args.isNfc) {
                             val id = marker.id
                             viewModel.navigateToWriteNFCFragment(id)
                             return
                         }
 
                         (activity as? MainActivity)?.let {
-                            binding.downloadOverlay.visibility = View.VISIBLE
-
-                            viewModel.navigateOnDemandToSurfaceAR(it, marker) {
+                            viewModel.navigateOnDemandToSurfaceAR(it, marker) { progress ->
                                 // OnComplete callback.
-                                Handler(Looper.getMainLooper()).post {
-                                    binding.downloadOverlay.visibility = View.GONE
-                                }
+                                showDownloadProgress(progress)
                             }
                         }
                     }
@@ -109,14 +105,10 @@ class OnDemandMarkersFragment : BaseFragment() {
             val inputId = editText.text.toString()
 
             (activity as? MainActivity)?.let {
-                binding.downloadOverlay.visibility = View.VISIBLE
 
-                viewModel.getMarkerById(it, inputId) {
+                viewModel.getMarkerById(it, inputId) { progress ->
                     // OnComplete callback.
-
-                    Handler(Looper.getMainLooper()).post {
-                        binding.downloadOverlay.visibility = View.GONE
-                    }
+                    showDownloadProgress(progress)
                     viewModel.isValidMarker = false
                 }
 
@@ -132,5 +124,16 @@ class OnDemandMarkersFragment : BaseFragment() {
         builder.create().show()
     }
 
+    private fun showDownloadProgress(progress: Int) {
+        Handler(Looper.getMainLooper()).post {
+            if (progress in 0..99) {
+                binding.downloadOverlay.visibility = View.VISIBLE
+                val progressPercent = "$progress%"
+                binding.progressText.text = progressPercent
+            } else {
+                binding.downloadOverlay.visibility = View.GONE
+            }
+        }
+    }
 
 }

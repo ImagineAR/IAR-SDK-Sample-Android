@@ -91,9 +91,11 @@ class LocationMarkersViewModel @Inject constructor(private val appConfig: AppCon
         })
     }
 
-    fun navigateLocationToSurfaceAR(activity: AppCompatActivity,
-                                    marker: Marker,
-                                    onComplete: (() -> Unit)? = null) {
+    fun navigateLocationToSurfaceAR(
+        activity: AppCompatActivity,
+        marker: Marker,
+        onComplete: ((progress: Int) -> Unit)? = null
+    ) {
         SurfaceAPI.downloadDemandAssetsAndRewards(
             activity,
             marker,
@@ -103,12 +105,14 @@ class LocationMarkersViewModel @Inject constructor(private val appConfig: AppCon
                     putExtra(IARSurfaceActivity.ARG_MARKER, Utils.gson.toJson(marker))
                 }
 
-                onComplete?.invoke()
                 navigate(intent)
             },
             onFail = { errorMsg ->
-                onComplete?.invoke()
                 _error.postValue("$errorMsg")
+            },
+            onProgress = { progress ->
+                Log.i(LOGTAG, "progress $progress")
+                onComplete?.invoke(progress)
             }
         )
     }
