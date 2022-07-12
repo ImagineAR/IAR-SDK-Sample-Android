@@ -78,11 +78,17 @@ dependencies {
 
 //    implementation 'com.github.ImagineAR:iar-core-android:1.5.4'
 //    implementation 'com.github.ImagineAR:iar-surface-android:1.5.4'
+
+    implementation 'com.github.ImagineAR:iar-core-android-beta:1.6.0'
+    implementation 'com.github.ImagineAR:iar-surface-android-beta:1.6.0'
+
+    /*
+  Adding the NFC capability might severely reduce the amount of compatible devices with your application.
+  See details: https://docs.imaginear.com/docs/v1.5/android/custom-ar#customize-experiences-using-nfc
+  */
 //    implementation 'com.github.ImagineAR:iar-nfc-android:1.5.4'
 
-    implementation 'com.imaginear.iar:iar_core-dev:1.6.11-dev'
-    implementation 'com.imaginear.iar:iar_sdk_surface-dev:1.6.11-dev'
-    implementation 'com.imaginear.iar:iar_nfc-dev:1.6.11-dev'
+    implementation 'com.github.ImagineAR:iar-nfc-android-beta:1.6.0'
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
