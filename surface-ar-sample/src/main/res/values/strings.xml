@@ -49,5 +49,6 @@
     <string name="get_location_markers">Get Location Markers</string>
     <string name="nfc_upsupport">NFC is not supported on this device.</string>
     <string name="share_and_save">Share and Save</string>
+    <string name="no_screenshot_file">No screenshot saved, Uri is null</string>
 
 </resources>

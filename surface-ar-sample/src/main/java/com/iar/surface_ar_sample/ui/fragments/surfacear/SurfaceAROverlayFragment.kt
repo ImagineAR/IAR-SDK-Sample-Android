@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.iar.common.Constants
+import com.iar.common.Utils
 import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentSurfaceArOverlayBinding
 import com.iar.surface_ar_sample.ui.activities.PreviewVideoActivity
@@ -135,6 +136,5 @@ class SurfaceAROverlayFragment: Fragment() {
             putExtra(Constants.EXTRAS_VIDEO_URI, uri.toString())
         }
         startActivity(intent)
-
     }
 }
