@@ -31,7 +31,7 @@ class SurfaceAROverlayFragment: Fragment() {
         binding = FragmentSurfaceArOverlayBinding.inflate(inflater, container, false)
 
         context?.let {
-            Toast.makeText(it, "Point your camera at a surface to place", Toast.LENGTH_LONG).show()
+            Utils.showToastMessage(getString(R.string.tutorial_point_camera), it)
         }
 
         binding?.screenshotButton?.setOnClickListener {
@@ -131,5 +131,9 @@ class SurfaceAROverlayFragment: Fragment() {
             Utils.showToastMessage("Video saved at: $fileUri", it)
         }
         Utils.shareScreenShot(fileUri, requireActivity() as SurfaceARActivity)
+    }
+
+    fun onSurfaceDetected() {
+        Utils.showToastMessage(getString(R.string.tutorial_place), requireContext())
     }
 }

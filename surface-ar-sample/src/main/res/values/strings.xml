@@ -50,4 +50,7 @@
     <string name="nfc_upsupport">NFC is not supported on this device.</string>
     <string name="no_screenshot_file">No screenshot saved, Uri is null</string>
 
+    <string name="tutorial_point_camera">Point your camera at a surface to place.</string>
+    <string name="tutorial_place">Tap the PLACE button to place.</string>
+
 </resources>
