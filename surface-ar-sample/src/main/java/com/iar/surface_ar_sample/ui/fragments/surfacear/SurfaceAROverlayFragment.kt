@@ -13,11 +13,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.iar.common.Constants
-import com.iar.common.Utils
 import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentSurfaceArOverlayBinding
-import com.iar.surface_ar_sample.ui.activities.PreviewVideoActivity
-import com.iar.surface_ar_sample.ui.activities.SurfaceARActivity
+import com.iar.common.PreviewVideoActivity
 import com.iar.surface_sdk.aractivity.IARSurfaceActivity
 import kotlinx.coroutines.*
 

@@ -1,4 +1,4 @@
-package com.iar.surface_ar_sample.ui.activities
+package com.iar.common
 
 import android.net.Uri
 import android.os.Bundle
@@ -8,9 +8,8 @@ import android.widget.MediaController
 import android.widget.SeekBar
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
-import com.iar.common.Constants
-import com.iar.common.Utils
-import com.iar.surface_ar_sample.databinding.ActivityPreviewVideoBinding
+import com.iar.common.databinding.ActivityPreviewVideoBinding
+
 
 class PreviewVideoActivity : AppCompatActivity() {
 

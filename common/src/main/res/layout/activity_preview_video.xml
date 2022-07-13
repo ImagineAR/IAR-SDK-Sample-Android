@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.activities.PreviewVideoActivity">
+    tools:context="com.iar.common.PreviewVideoActivity">
 
     <VideoView
         android:id="@+id/preview_video"

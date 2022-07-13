@@ -6,6 +6,7 @@
         <entry key="common/src/main/res/drawable/checker_track.xml" value="0.1475" />
         <entry key="common/src/main/res/drawable/ripple_effect.xml" value="0.1475" />
         <entry key="common/src/main/res/drawable/round_rect_small.xml" value="0.1475" />
+        <entry key="common/src/main/res/layout/activity_preview_video.xml" value="0.19701086956521738" />
         <entry key="common/src/main/res/layout/custom_preference.xml" value="0.19610507246376813" />
         <entry key="common/src/main/res/layout/custom_preference_switch.xml" value="0.19610507246376813" />
         <entry key="common/src/main/res/layout/debug_button.xml" value="0.19610507246376813" />
