@@ -17,10 +17,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IARSDKSamples">
-        <activity
-            android:name="com.iar.common.PreviewVideoActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
 
         <meta-data
             android:name="com.google.ar.core"
