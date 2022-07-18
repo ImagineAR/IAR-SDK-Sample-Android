@@ -70,6 +70,10 @@ class SurfaceAROverlayFragment: Fragment() {
             binding?.placeMoveButton?.text =
                 if(isPlaced) getString(R.string.button_label_move)
                 else getString(R.string.button_label_place)
+
+            if (isPlaced) {
+                (activity as? IARSurfaceActivity)?.playVideo()
+            }
         }
     }
 
