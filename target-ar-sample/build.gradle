@@ -75,8 +75,11 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // IAR dependencies
-    implementation 'com.github.ImagineAR:iar-core-android:1.5.4'
-    implementation 'com.github.ImagineAR:iar-target-android:1.5.4'
+//    implementation 'com.github.ImagineAR:iar-core-android:1.5.4'
+//    implementation 'com.github.ImagineAR:iar-target-android:1.5.4'
+
+    implementation 'com.github.ImagineAR:iar-core-android-beta:1.6.0'
+    implementation 'com.github.ImagineAR:iar-target-android-beta:1.6.0'
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'

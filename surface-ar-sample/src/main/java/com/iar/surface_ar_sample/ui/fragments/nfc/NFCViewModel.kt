@@ -61,10 +61,6 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
         _isWrite.postValue(isWrite)
     }
 
-    private val _isComplete = MutableLiveData<Boolean>()
-    val isComplete: LiveData<Boolean>
-        get() = _isComplete
-
     fun validateLicense(context: Context) {
         SurfaceAPI.validateLicense(
             appConfig.getOrgKeyRegion().first,
@@ -92,7 +88,7 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
 
     fun closeKeyBoard(view: View, activity: AppCompatActivity) {
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0)
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     fun readNfc(controller: NFCController, intent: Intent): MarkerTag? {
@@ -108,15 +104,15 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
         ) { errorCode: Int?, errorMessage: String? ->
 
             Log.i(LOGTAG, "Get marker by Id: $errorCode $errorMessage")
+            _error.postValue("$errorCode $errorMessage")
         }
     }
 
     fun navigateNFCToSurfaceAR(
         activity: AppCompatActivity,
         marker: Marker,
-        onComplete: (() -> Unit)? = null
+        onComplete: ((progress: Int) -> Unit)? = null
     ) {
-        _isComplete.postValue(false)
         SurfaceAPI.downloadDemandAssetsAndRewards(
             activity,
             marker,
@@ -125,19 +121,21 @@ class NFCViewModel @Inject constructor(private val appConfig: AppConfig) :
                     putExtras(assetInfo.toExtrasBundle())
                     putExtra(IARSurfaceActivity.ARG_MARKER, Utils.gson.toJson(marker))
                 }
-                onComplete?.invoke()
                 navigate(intent)
-                _isComplete.postValue(true)
             },
             onFail = { errorMsg ->
-                onComplete?.invoke()
                 _error.postValue("$errorMsg")
+            },
+            onProgress = { progress ->
+                Log.i(LOGTAG, "progress $progress")
+                onComplete?.invoke(progress)
             }
         )
     }
 
     fun navigateToOnDemandMarkersFragment(isNfc: Boolean) {
-        val action: NavDirections = WriteNFCFragmentDirections.actionWriteNFCFragmentToFragmentOndemand(isNfc)
+        val action: NavDirections =
+            WriteNFCFragmentDirections.actionWriteNFCFragmentToFragmentOndemand(isNfc)
         navigate(action)
     }
 }
