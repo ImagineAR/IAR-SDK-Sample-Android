@@ -16,6 +16,7 @@ import com.iar.common.Constants
 import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentSurfaceArOverlayBinding
 import com.iar.common.PreviewVideoActivity
+import com.iar.common.Utils
 import com.iar.surface_sdk.aractivity.IARSurfaceActivity
 import kotlinx.coroutines.*
 
@@ -33,7 +34,7 @@ class SurfaceAROverlayFragment: Fragment() {
         binding = FragmentSurfaceArOverlayBinding.inflate(inflater, container, false)
 
         context?.let {
-            Toast.makeText(it, "Point your camera at a surface to place", Toast.LENGTH_LONG).show()
+            Utils.showToastMessage(getString(R.string.tutorial_point_camera), it)
         }
 
         binding?.screenshotButton?.setOnClickListener {
@@ -139,5 +140,9 @@ class SurfaceAROverlayFragment: Fragment() {
             putExtra(Constants.EXTRAS_VIDEO_URI, uri.toString())
         }
         startActivity(intent)
+    }
+
+    fun onSurfaceDetected() {
+        Utils.showToastMessage(getString(R.string.tutorial_place), requireContext())
     }
 }

@@ -80,4 +80,8 @@ class SurfaceARActivity : IARSurfaceActivity() {
         playVideo()
     }
 
+    override fun surfaceViewSurfaceDetected() {
+        mOverlay?.get()?.onSurfaceDetected()
+    }
+
 }
