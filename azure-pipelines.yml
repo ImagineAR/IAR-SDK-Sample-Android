@@ -25,10 +25,10 @@ steps:
 - task: AndroidSigning@3
   inputs:
     apkFiles: './target-ar-sample/build/outputs/apk/release/target-ar-sample-release-unsigned.apk'
-    apksignerKeystoreFile: 'iar_sample_keystore_23'
-    apksignerKeystorePassword: $(keystorePassword_23)
+    apksignerKeystoreFile: 'iar_keystore'
+    apksignerKeystorePassword: $(keystorePassword)
     apksignerKeystoreAlias: 'iar'
-    apksignerKeyPassword: $(keystorePassword_23)
+    apksignerKeyPassword: $(keystoreAliasPassword)
     zipalign: false
 
 - task: AppCenterDistribute@3
