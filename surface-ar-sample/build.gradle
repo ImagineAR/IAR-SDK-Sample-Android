@@ -14,7 +14,7 @@ android {
         applicationId "com.example.surface_ar"
         minSdk 26
         targetSdk 31
-        versionCode 7
+        versionCode 8
         versionName "1.0.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -80,8 +80,8 @@ dependencies {
 //    implementation 'com.github.ImagineAR:iar-core-android:1.5.4'
 //    implementation 'com.github.ImagineAR:iar-surface-android:1.5.4'
 
-    implementation 'com.github.ImagineAR:iar-core-android-beta:1.6.0'
-    implementation 'com.github.ImagineAR:iar-surface-android-beta:1.6.0'
+    implementation 'com.github.ImagineAR:iar-core-android-beta:1.6.1'
+    implementation 'com.github.ImagineAR:iar-surface-android-beta:1.6.1'
 
     /*
     Adding the NFC capability might severely reduce the amount of compatible devices with your application.
@@ -89,7 +89,7 @@ dependencies {
     */
 //    implementation 'com.github.ImagineAR:iar-nfc-android:1.5.4'
 
-    implementation 'com.github.ImagineAR:iar-nfc-android-beta:1.6.0'
+    implementation 'com.github.ImagineAR:iar-nfc-android-beta:1.6.1'
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
