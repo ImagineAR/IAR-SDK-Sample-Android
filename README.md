@@ -160,7 +160,7 @@ All samples contain the following feature modules to support their respective fe
 # Ready to Integrate?
 The ImagineAR SDK is a paid service with flexible pricing, access to the ImagineAR Cloud dashboard is limited to our customers.
 
-Read-only sample content is provided for test integrations to help ensure ImagineAR is the right tool for your application. If you're ready to test the integration into your mobile app, head to our [integration documentation](https://docs.dev.imaginear.com/docs/v1.5/android/integration#integrate-the-sdk-into-your-application) for all the details.
+Read-only sample content is provided for test integrations to help ensure ImagineAR is the right tool for your application. If you're ready to test the integration into your mobile app, head to our [integration documentation](https://docs.imaginear.com/docs/v1.6/android/integration#integrate-the-sdk-into-your-application) for all the details.
 
 Have questions about integration or are ready to discuss pricing? Don't hesitate to reach out to us at [info@imaginear.com](https://imaginear.com/contact-us).
 
