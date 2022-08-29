@@ -1,19 +1,22 @@
 package com.iar.surface_ar_sample.ui.fragments.surfacear
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.iar.common.Utils
+import com.iar.common.Constants
 import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.FragmentSurfaceArOverlayBinding
-import com.iar.surface_ar_sample.ui.activities.SurfaceARActivity
+import com.iar.common.PreviewVideoActivity
+import com.iar.common.Utils
 import com.iar.surface_sdk.aractivity.IARSurfaceActivity
 import kotlinx.coroutines.*
 
@@ -31,7 +34,7 @@ class SurfaceAROverlayFragment: Fragment() {
         binding = FragmentSurfaceArOverlayBinding.inflate(inflater, container, false)
 
         context?.let {
-            Toast.makeText(it, "Point your camera at a surface to place", Toast.LENGTH_LONG).show()
+            Utils.showToastMessage(getString(R.string.tutorial_point_camera), it)
         }
 
         binding?.screenshotButton?.setOnClickListener {
@@ -67,9 +70,14 @@ class SurfaceAROverlayFragment: Fragment() {
             val visibility = if (isPlaced) View.VISIBLE else View.GONE
             binding?.screenshotButton?.visibility = visibility
             binding?.videoButton?.visibility = visibility
-            binding?.placeMoveButton?.text =
-                if(isPlaced) getString(R.string.button_label_move)
-                else getString(R.string.button_label_place)
+
+            if (isPlaced) {
+                binding?.placeMoveButton?.text = getString(R.string.button_label_move)
+                (activity as? IARSurfaceActivity)?.playVideo()
+            } else {
+                binding?.placeMoveButton?.text = getString(R.string.button_label_place)
+                (activity as? IARSurfaceActivity)?.pauseVideo()
+            }
         }
     }
 
@@ -122,9 +130,19 @@ class SurfaceAROverlayFragment: Fragment() {
     }
 
     fun onVideoRecordingSaved(fileUri: Uri) {
-        context?.let {
-            Utils.showToastMessage("Video saved at: $fileUri", it)
+        Log.d("SurfaceAROverlayFragment", "Video saved at: $fileUri")
+        goToPreviewVideo(fileUri)
+
+    }
+
+    private fun goToPreviewVideo(uri: Uri) {
+        val intent = Intent(activity, PreviewVideoActivity::class.java).apply {
+            putExtra(Constants.EXTRAS_VIDEO_URI, uri.toString())
         }
-        Utils.shareScreenShot(fileUri, requireActivity() as SurfaceARActivity)
+        startActivity(intent)
+    }
+
+    fun onSurfaceDetected() {
+        Utils.showToastMessage(getString(R.string.tutorial_place), requireContext())
     }
 }

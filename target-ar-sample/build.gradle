@@ -12,8 +12,8 @@ android {
         applicationId "com.iar.iarsdksamples"
         minSdk 26
         targetSdk 31
-        versionCode 5
-        versionName "1.0.2"
+        versionCode 7
+        versionName "1.0.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -75,8 +75,8 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // IAR dependencies
-    implementation 'com.github.ImagineAR:iar-core-android:1.5.4'
-    implementation 'com.github.ImagineAR:iar-target-android:1.5.4'
+    implementation 'com.github.ImagineAR:iar-core-android:1.6.0'
+    implementation 'com.github.ImagineAR:iar-target-android:1.6.0'
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'

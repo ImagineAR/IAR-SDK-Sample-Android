@@ -1,6 +1,8 @@
 package com.iar.surface_ar_sample.ui.fragments.nfc
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +43,6 @@ class ReadNFCFragment : BaseFragment() {
             }
         }
 
-
         binding.readButton.setOnClickListener {
             if (Utils.checkNFCSupported(requireContext())) {
                 nfcController?.let {
@@ -72,7 +73,6 @@ class ReadNFCFragment : BaseFragment() {
             }
         }
 
-
         binding.markerButton.setOnClickListener {
 
             val currentMarker = nfcViewModel.currentMarker
@@ -82,27 +82,32 @@ class ReadNFCFragment : BaseFragment() {
                 return@setOnClickListener
             }
             (activity as MainActivity).let { activity ->
-                binding.downloadOverlay.visibility = View.VISIBLE
-
-                nfcViewModel.navigateNFCToSurfaceAR(activity, currentMarker)
-                nfcViewModel.isComplete.observe(viewLifecycleOwner) { isComplete ->
-                    if (isComplete) {
-                        binding.downloadOverlay.visibility = View.GONE
-
-                    }
+                nfcViewModel.navigateNFCToSurfaceAR(activity, currentMarker) { progress ->
+                    showDownloadProgress(progress)
                 }
             }
 
             nfcViewModel.currentMarker = null
         }
 
-        nfcViewModel.error.observe(viewLifecycleOwner, { error ->
+        nfcViewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Utils.showToastMessage("There is error $error", requireContext())
             }
-        })
+        }
         return binding.root
     }
 
+    private fun showDownloadProgress(progress: Int) {
+        Handler(Looper.getMainLooper()).post {
+            if (progress in 0..99) {
+                binding.downloadOverlay.visibility = View.VISIBLE
+                val progressPercent = "$progress%"
+                binding.progressText.text = progressPercent
+            } else {
+                binding.downloadOverlay.visibility = View.GONE
+            }
+        }
+    }
 
 }
