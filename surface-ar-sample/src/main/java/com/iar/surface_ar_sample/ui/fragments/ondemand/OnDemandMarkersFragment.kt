@@ -63,6 +63,12 @@ class OnDemandMarkersFragment : BaseFragment() {
         binding.getMarkerButton.setOnClickListener {
             setupDialog()
         }
+
+        binding.downloadOverlay.setOnClickListener {
+            viewModel.cancelDownloads()
+            binding.downloadOverlay.visibility = View.GONE
+        }
+
         return binding.root
     }
 

@@ -95,6 +95,12 @@ class ReadNFCFragment : BaseFragment() {
                 Utils.showToastMessage("There is error $error", requireContext())
             }
         }
+
+        binding.downloadOverlay.setOnClickListener {
+            nfcViewModel.cancelDownloads()
+            binding.downloadOverlay.visibility = View.GONE
+        }
+
         return binding.root
     }
 
