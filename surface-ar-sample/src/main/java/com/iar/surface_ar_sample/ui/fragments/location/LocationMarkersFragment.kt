@@ -72,6 +72,11 @@ class LocationMarkersFragment : BaseFragment() {
             }
         }
 
+        binding.downloadOverlay.setOnClickListener {
+            viewModel.cancelDownloads()
+            binding.downloadOverlay.visibility = View.GONE
+        }
+
         return binding.root
     }
 

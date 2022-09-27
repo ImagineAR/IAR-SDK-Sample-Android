@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import com.iar.common.NavigationCommand
 import com.iar.common.SingleLiveEvent
+import com.iar.surface_sdk.SurfaceAPI
 
 open class BaseViewModel: ViewModel() {
     // Mutable live data should always be private
@@ -38,5 +39,9 @@ open class BaseViewModel: ViewModel() {
 
     fun navigateRoot() {
         _navigationCommand.postValue(NavigationCommand.ToRoot)
+    }
+
+    fun cancelDownloads(){
+        SurfaceAPI.cancelDownloads()
     }
 }
