@@ -5,11 +5,14 @@
     <string name="logout">Logout</string>
     <string name="create_new_user">Create New User</string>
     <string name="migrate_user">Migrate User</string>
+    <string name="migrate">Migrate</string>
     <string name="login_user">Login User</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="enter_external_unserId">Enter external userId:</string>
     <string name="migrate_message">After id regeneration, the data of current userId will be lost. If you would like to migrate data, click MIGRATE, otherwise click OK.</string>
+    <string name="there_is_error">There is error</string>
+
 
     <string name="debug_mode_key">debug_switch</string>
     <string name="log_key">log_switch</string>
@@ -26,6 +29,15 @@
     <string name="open_developer_console">Open Developer Console</string>
     <string name="center_coordinates">48.166667, -100.166667</string>
     <string name="center_of_na">Center of NA</string>
+    <string name="enter_valid_coordinates">Please enter valid coordinates.</string>
+    <string name="denied_permission_message">You have denied permission to several necessary permissions:\n</string>
+    <string name="camera">\nCamera</string>
+    <string name="storage_access">\nStorage access</string>
+    <string name="permission_instruction">\n\nPlease permit the permission through Settings screen.\n\nSelect Permissions -> Enable permission</string>
+    <string name="oops">Oops</string>
+    <string name="permit_manually">Permit Manually</string>
+
+
 
     <string name="enable_debug_mode">Reset to Default</string>
     <string name="enable_log_file">Log to File</string>
@@ -42,5 +54,7 @@
     <string name="apply">Apply</string>
     <string name="user_management">User Management</string>
     <string name="share_and_save">Share and Save</string>
+
+
 
 </resources>

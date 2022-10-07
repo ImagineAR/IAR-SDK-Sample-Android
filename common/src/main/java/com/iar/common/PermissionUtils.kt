@@ -25,7 +25,6 @@ object PermissionUtils {
      * The permission being asked, i.e. Manifest.permission.CAMERA
      * @return
      */
-    @RequiresApi(Build.VERSION_CODES.M)
     fun checkPermission(activity: Activity, permissionTypes: Array<String>): Boolean {
         val remainingPermissions: MutableList<String> = ArrayList()
         val deniedPermissions: MutableList<String> = ArrayList()
@@ -54,7 +53,6 @@ object PermissionUtils {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     private fun neverAskAgainSelected(activity: Activity, permission: String): Boolean {
         val prevShouldShowStatus = getRationaleDisplayStatus(activity, permission)
         val currShouldShowStatus = activity.shouldShowRequestPermissionRationale(permission)
@@ -68,7 +66,7 @@ object PermissionUtils {
 
     private fun displayNeverAskAgainDialog(activity: Activity, deniedPermissions: Array<String>) {
         val builder = AlertDialog.Builder(activity, R.style.AppDialog)
-        var message = "You have denied permission to several necessary permissions:\n"
+        var message = activity.getString(R.string.denied_permission_message)
 
         // Check which permissions were denied.
         var cameraDenied = false
@@ -79,16 +77,16 @@ object PermissionUtils {
             if (p.contains(Manifest.permission.READ_EXTERNAL_STORAGE)) storageDenied = true
         }
         if (cameraDenied) {
-            message += "\nCamera"
+            message += activity.getString(R.string.camera)
         }
         if (storageDenied) {
-            message += "\nStorage access"
+            message += activity.getString(R.string.storage_access)
         }
-        message += "\n\nPlease permit the permission through Settings screen.\n\nSelect Permissions -> Enable permission"
-        builder.setTitle("Oops")
+        message += activity.getString(R.string.permission_instruction)
+        builder.setTitle(activity.getString(R.string.oops))
         builder.setMessage(message)
         builder.setCancelable(false)
-        builder.setPositiveButton("Permit Manually") { dialog: DialogInterface, which: Int ->
+        builder.setPositiveButton(activity.getString(R.string.permit_manually)) { dialog: DialogInterface, which: Int ->
             dialog.dismiss()
             val intent = Intent()
             intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
@@ -96,7 +94,7 @@ object PermissionUtils {
             intent.data = uri
             activity.startActivity(intent)
         }
-        builder.setNegativeButton("Cancel", null)
+        builder.setNegativeButton(activity.getString(R.string.cancel), null)
         builder.show()
     }
 }

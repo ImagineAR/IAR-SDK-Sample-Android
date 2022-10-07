@@ -53,7 +53,7 @@ class UserFragment : BaseFragment() {
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
-                showToastMessage("There is error $error", requireContext())
+                showToastMessage("${getString(R.string.there_is_error)} $error", requireContext())
             }
         }
 
@@ -97,11 +97,11 @@ class UserFragment : BaseFragment() {
     private fun setExternalUser() {
         val buttonText: String = binding.logButton.text.toString()
 
-        if (buttonText == "Login") {
+        if (buttonText == getString(R.string.login)) {
             userDialog(getString(R.string.login_user), false, false)
         }
 
-        if (buttonText == "Logout") {
+        if (buttonText == getString(R.string.logout)) {
             viewModel.logout(requireActivity())
         }
     }
@@ -127,7 +127,7 @@ class UserFragment : BaseFragment() {
             editText.setText(oldUserId)
             editText.textAlignment = View.TEXT_ALIGNMENT_CENTER
 
-            builder.setNeutralButton("Migrate") { dialogInterface, i ->
+            builder.setNeutralButton(R.string.migrate) { dialogInterface, i ->
                 migrateUser(oldUserId,true)
             }
         } else {

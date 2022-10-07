@@ -41,7 +41,7 @@ class LocationPreference @JvmOverloads constructor(
 
             button.isClickable = true
             button.setOnClickListener {
-                if (button.text == "Center of NA") {
+                if (button.text == context.getString(R.string.center_of_na)) {
                     editLocation.setText(context.getString(R.string.center_coordinates))
                 }
 
@@ -57,7 +57,7 @@ class LocationPreference @JvmOverloads constructor(
 
                 } else {
                     button.text = context.getString(R.string.apply)
-                    Utils.showToastMessage("Please enter valid coordinates.", context)
+                    Utils.showToastMessage(context.getString(R.string.enter_valid_coordinates), context)
                 }
 
                 //Hide keyboard
