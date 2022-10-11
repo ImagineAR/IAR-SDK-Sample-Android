@@ -79,12 +79,12 @@ class ARHuntsFragment : BaseFragment() {
 
     private fun setupDialog() {
         val builder= AlertDialog.Builder(requireActivity())
-        builder.setTitle("Get AR Hunt")
+        builder.setTitle(getString(R.string.get_ar_hunt))
         val container = FrameLayout(requireActivity())
         val editText: EditText = setupDialogEditText(requireContext())
         container.addView(editText)
         builder.setView(container)
-        builder.setMessage("Enter hunt ID")
+        builder.setMessage(getString(R.string.enter_hunt_id))
 
         builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
@@ -105,7 +105,7 @@ class ARHuntsFragment : BaseFragment() {
                     singleHunt
                 )
             } else {
-                showToastMessage("Don't have the hunt Id", requireContext())
+                showToastMessage(getString(R.string.no_hunt_id), requireContext())
             }
         }
 

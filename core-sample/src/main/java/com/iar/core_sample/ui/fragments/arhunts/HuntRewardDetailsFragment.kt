@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.gson.GsonBuilder
 import com.iar.common.Utils.gson
 import com.iar.common.Utils.loadImage
+import com.iar.core_sample.R
 import com.iar.core_sample.databinding.FragmentHuntRewardsBinding
 import com.iar.iar_core.HuntReward
 
@@ -31,7 +32,7 @@ class HuntRewardDetailsFragment : Fragment() {
             binding.rewardImage.loadImage(it, requireContext())
         }
         binding.rewardName.text = huntReward?.reward?.name
-        val typeString = "Type: ${huntReward?.reward?.type}"
+        val typeString = "${getString(R.string.type)} ${huntReward?.reward?.type}"
         binding.rewardType.text = typeString
         binding.rewardId.text = huntReward?.reward?.id
 

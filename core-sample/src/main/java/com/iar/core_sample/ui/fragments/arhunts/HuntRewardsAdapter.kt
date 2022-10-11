@@ -25,9 +25,9 @@ class HuntRewardsAdapter (private val huntRewardList: ArrayList<HuntReward>, val
             holder.rewardImage.loadImage(it, holder.rewardImage.getContext())
         }
 
-        val IdString = "ID:\n ${huntReward.id}"
+        val IdString = "${holder.huntRewardId.context.getString(R.string.id)}\n ${huntReward.id}"
         holder.huntRewardId.text = IdString
-        val huntIdString = "Hunt Id:\n ${huntReward.huntId}"
+        val huntIdString = "${holder.huntRewardHuntId.context.getString(R.string.hunt_id)}\n ${huntReward.huntId}"
         holder.huntRewardHuntId.text = huntIdString
 
         holder.itemView.setOnClickListener {

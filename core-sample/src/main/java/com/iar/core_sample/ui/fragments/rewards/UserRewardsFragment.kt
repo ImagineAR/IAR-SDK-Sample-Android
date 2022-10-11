@@ -61,7 +61,7 @@ class UserRewardsFragment : BaseFragment() {
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
-                showToastMessage("There is error $error", requireContext())
+                showToastMessage("${getString(R.string.there_is_error)} $error", requireContext())
             }
         }
 
@@ -97,12 +97,12 @@ class UserRewardsFragment : BaseFragment() {
 
     private fun setupDialog() {
         val builder = AlertDialog.Builder(requireActivity())
-        builder.setTitle("Get User Reward")
+        builder.setTitle(getString(R.string.get_user_reward))
         val container = FrameLayout(requireActivity())
         val editText: EditText = setupDialogEditText(requireContext())
         container.addView(editText)
         builder.setView(container)
-        builder.setMessage("Enter reward ID")
+        builder.setMessage(getString(R.string.enter_reward_id))
         builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
             onGetUserReward(inputId)
@@ -118,7 +118,7 @@ class UserRewardsFragment : BaseFragment() {
             if (reward != null) {
                 viewModel.navigateToRewardDetailsFragment(reward)
             } else {
-                showToastMessage("Don't have this reward id", requireContext())
+                showToastMessage(getString(R.string.no_reward_id), requireContext())
             }
         }
     }
