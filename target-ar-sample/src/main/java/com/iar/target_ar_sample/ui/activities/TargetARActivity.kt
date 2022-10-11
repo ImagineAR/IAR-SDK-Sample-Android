@@ -6,7 +6,6 @@ import android.os.Looper
 import android.widget.RelativeLayout
 import androidx.activity.viewModels
 import com.iar.common.Utils
-import com.iar.iar_core.Constants.UPDATE_ERROR_NO_NETWORK_CONNECTION
 
 import com.iar.iar_core.IARError
 import com.iar.iar_core.Region
@@ -82,7 +81,7 @@ class TargetARActivity: IARActivity() {
     override fun onError(errorCode: IARError?, errorDesc: String?, errorTime: Double): Boolean {
 
         errorDesc?.let{
-            if(it.contains("No network connection detected.")){
+            if(it.contains(getString(R.string.no_network_connection))){
                 Handler(Looper.getMainLooper()).postDelayed({
                     Utils.showToastMessage(getString(R.string.no_internet_connection), this)
                     finish()
