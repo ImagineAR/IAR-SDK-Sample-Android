@@ -12,11 +12,11 @@ import com.iar.iar_core.Marker
 import com.iar.surface_ar_sample.R
 
 
-class LocationMakersAdapter (
+class LocationMarkersAdapter (
     private val markersList: List<Marker>,
     val listener: OnLocationMarkerItemClickListener,
     private val takeMeListener: OnTakeMeThereClickListener
-): RecyclerView.Adapter<LocationMakersAdapter.MarkerViewHolder>()
+): RecyclerView.Adapter<LocationMarkersAdapter.MarkerViewHolder>()
 {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarkerViewHolder {
@@ -36,7 +36,7 @@ class LocationMakersAdapter (
 
         holder.markerName.text = marker.name
         holder.markerId.text = marker.id
-        val distanceString = "Distance: ${marker.location.distance}"
+        val distanceString = "${holder.markerDistance.context.getString(R.string.distance)} ${marker.location.distance}"
         holder.markerDistance.text = distanceString
 
         holder.takeMeButton.setOnClickListener {

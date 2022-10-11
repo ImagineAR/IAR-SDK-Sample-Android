@@ -55,7 +55,7 @@ class OnDemandMarkersFragment : BaseFragment() {
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
                 context?.let { curContext ->
-                    Toast.makeText(curContext, "There is error $it", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(curContext, "${getString(R.string.there_is_error)} $it", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -101,12 +101,12 @@ class OnDemandMarkersFragment : BaseFragment() {
 
     private fun setupDialog() {
         val builder = AlertDialog.Builder(requireActivity())
-        builder.setTitle("Get Marker by ID")
+        builder.setTitle(getString(R.string.get_marker_id))
         val container = FrameLayout(requireActivity())
         val editText: EditText = Utils.setupDialogEditText(requireContext())
         container.addView(editText)
         builder.setView(container)
-        builder.setMessage("Enter Marker ID:")
+        builder.setMessage(getString(R.string.enter_marker_id))
         builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
 
@@ -134,7 +134,7 @@ class OnDemandMarkersFragment : BaseFragment() {
         Handler(Looper.getMainLooper()).post {
             if (progress in 0..99) {
                 binding.downloadOverlay.visibility = View.VISIBLE
-                val progressPercent = "$progress%"
+                val progressPercent = "$progress${getString(R.string.percent)}"
                 binding.progressText.text = progressPercent
             } else {
                 binding.downloadOverlay.visibility = View.GONE
