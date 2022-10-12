@@ -53,5 +53,20 @@
 
     <string name="tutorial_point_camera">Point your camera at a surface to place.</string>
     <string name="tutorial_place">Tap the PLACE button to place.</string>
+    <string name="permissions_requested">All permissions requested are necessary for the app to run properly.</string>
+    <string name="device_not_support_arcore">This device does not support ARCore.</string>
+    <string name="distance">Distance:</string>
+    <string name="default_location">Coordinates: 48.166667,-100.166667 Radius: 10000</string>
+    <string name="coordinates">Coordinates:</string>
+    <string name="radius">Radius: 10000</string>
+    <string name="there_is_error">There is error</string>
+    <string name="location_hint">48.166667, -100.166667</string>
+    <string name="enter_location_coordinates">Enter location coordinates</string>
+    <string name="percent">%</string>
+    <string name="read_nfc_success">Read NFC successfully,</string>
+    <string name="not_find_marker">Could not find the marker</string>
+    <string name="get_marker_id">Get Marker by ID</string>
+    <string name="enter_marker_id">Enter Marker ID:</string>
+
 
 </resources>

@@ -32,7 +32,7 @@ abstract class BaseFragment : Fragment() {
                 }
                 is NavigationCommand.To -> {
                     // The direction should have an argument in it's structure if it needs to
-                    // so we dont have to pass in args.
+                    // so we don't have to pass in args.
                     navController.navigate(it.direction)
                 }
                 is NavigationCommand.Back -> {

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.iar.common.PermissionUtils
 import com.iar.common.Utils
 import com.iar.nfc_sdk.NFCController
+import com.iar.surface_ar_sample.R
 import com.iar.surface_ar_sample.databinding.ActivityMainBinding
 import com.iar.surface_ar_sample.ui.fragments.nfc.NFCViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         if (hasDeniedAPermission) {
             Toast.makeText(
                 applicationContext,
-                "All permissions requested are necessary for the app to run properly.",
+                getString(R.string.permissions_requested),
                 Toast.LENGTH_LONG
             ).show()
 

@@ -54,7 +54,7 @@ class OnDemandMarkersFragment : BaseFragment() {
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
-                showToastMessage("There is error $error", requireContext())
+                showToastMessage("${getString(R.string.there_is_error)} $error", requireContext())
             }
         }
         return binding.root
@@ -82,12 +82,12 @@ class OnDemandMarkersFragment : BaseFragment() {
 
     private fun setupDialog() {
         val builder = AlertDialog.Builder(requireActivity())
-        builder.setTitle("Get Marker by ID")
+        builder.setTitle(getString(R.string.get_marker_by_id))
         val container = FrameLayout(requireActivity())
         val editText: EditText = Util.setupDialogEditText(requireContext())
         container.addView(editText)
         builder.setView(container)
-        builder.setMessage("Enter Marker ID:")
+        builder.setMessage(getString(R.string.enter_marker_id))
         builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
             viewModel.getMarkerById(inputId)

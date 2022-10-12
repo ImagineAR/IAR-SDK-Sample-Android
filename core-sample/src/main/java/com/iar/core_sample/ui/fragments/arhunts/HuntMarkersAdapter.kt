@@ -37,9 +37,9 @@ class HuntMarkersAdapter(
 
         holder.clueImage.loadImage(imageUrl, holder.clueImage.getContext())
 
-        val IdString = "ID:\n ${huntMarker.id}"
-        holder.huntMarkerId.text = IdString
-        val huntIdString = "Hunt Id:\n ${huntMarker.huntId}"
+        val idString = "${holder.huntMarkerId.context.getString(R.string.id)}\n ${huntMarker.id}"
+        holder.huntMarkerId.text = idString
+        val huntIdString = "${holder.huntMarkerHuntId.context.getString(R.string.hunt_id)}\n ${huntMarker.huntId}"
         holder.huntMarkerHuntId.text = huntIdString
 
         holder.itemView.setOnClickListener {

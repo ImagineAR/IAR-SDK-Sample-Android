@@ -14,9 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.iar.common.Constants
 import com.iar.common.PreviewVideoActivity
-import com.iar.common.Utils
+import com.iar.target_ar_sample.R
 import com.iar.target_ar_sample.databinding.FragmentTargetArOverlayBinding
-import com.iar.target_ar_sample.ui.activities.TargetARActivity
 import com.iar.target_sdk.IARActivity
 import kotlinx.coroutines.*
 
@@ -33,7 +32,7 @@ class TargetAROverlayFragment: Fragment() {
         binding = FragmentTargetArOverlayBinding.inflate(inflater, container, false)
 
         context?.let {
-            Toast.makeText(it, "Point your camera at an AR target to begin", Toast.LENGTH_LONG).show()
+            Toast.makeText(it, getString(R.string.instruction), Toast.LENGTH_LONG).show()
         }
 
         binding?.screenshotButton?.setOnClickListener {

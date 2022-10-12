@@ -37,7 +37,7 @@ class MarkersAdapter(
         var textString = ""
         if (marker.type == "Location") {
             textString = "${marker.id}\n" +
-                    "Distance: ${marker.location.distance}"
+                    "${holder.markerId.context.getString(R.string.distance)} ${marker.location.distance}"
             holder.nearbyLayout.visibility = View.VISIBLE
             holder.takeMeButton.setOnClickListener {
                 takeMeListener.onTakeMeThereClick(marker)

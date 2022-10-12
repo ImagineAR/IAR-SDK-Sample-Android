@@ -42,11 +42,11 @@ class LocationMarkersFragment : BaseFragment() {
 
         binding = FragmentLocationMarkersBinding.inflate(inflater, container, false)
         markerListView = binding.locationMarkerList
-        val defaultLocation = "Coordinates: 48.166667,-100.166667 Radius: 10000"
+        val defaultLocation = getString(R.string.default_location)
         binding.markerLocation.text = defaultLocation
 
         if(DebugSettingsController.simulatedLocation){
-            val coordinateString = "Coordinates: ${viewModel.getCoordinates()} Radius: 10000"
+            val coordinateString = "${getString(R.string.coordinates)} ${viewModel.getCoordinates()} ${getString(R.string.radius)}"
             binding.markerLocation.text = coordinateString
             viewModel.onGetLocationMarkers(viewModel.getCoordinates())
         }
@@ -59,7 +59,7 @@ class LocationMarkersFragment : BaseFragment() {
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
-                showToastMessage("There is error $error", requireContext())
+                showToastMessage("${getString(R.string.there_is_error)} $error", requireContext())
             }
         }
 
@@ -87,7 +87,7 @@ class LocationMarkersFragment : BaseFragment() {
                         val lat = String.format("%.6f", marker.location.latitude)
                         val long= String.format("%.6f", marker.location.longitude)
                         val markerLocation = "${marker.location.latitude},${marker.location.longitude}"
-                        val locationString = "Coordinates: $lat,$long Radius: 10000"
+                        val locationString = "${getString(R.string.coordinates)} $lat,$long ${getString(R.string.radius)}"
 
                         viewModel.onGetLocationMarkers(markerLocation)
                         binding.markerLocation.text = locationString
@@ -100,19 +100,19 @@ class LocationMarkersFragment : BaseFragment() {
 
     private fun setupDialog() {
         val builder = AlertDialog.Builder(requireActivity())
-        builder.setTitle("Get Location Markers")
+        builder.setTitle(getString(R.string.get_location_markers))
         val container = FrameLayout(requireActivity())
         val editText: EditText = setupDialogEditText(requireContext())
         editText.setTextIsSelectable(true)
-        editText.hint = "48.166667, -100.166667"
+        editText.hint = getString(R.string.location_hint)
         viewModel.editTextFilters(editText)
         container.addView(editText)
         builder.setView(container)
-        builder.setMessage("Enter location coordinates")
+        builder.setMessage(getString(R.string.enter_location_coordinates))
         builder.setPositiveButton(getString(R.string.ok)) { dialogInterface, _ ->
             val inputId = editText.text.toString()
             viewModel.onGetLocationMarkers(inputId)
-            val locationString = "Coordinates: $inputId Radius: 10000"
+            val locationString = "${getString(R.string.coordinates)} $inputId ${getString(R.string.radius)}"
             if (viewModel.isValidCoordinates) {
                 binding.markerLocation.text = locationString
             }

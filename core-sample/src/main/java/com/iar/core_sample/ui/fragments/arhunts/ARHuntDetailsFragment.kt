@@ -46,9 +46,9 @@ class ARHuntDetailsFragment : BaseFragment() {
         binding.huntDescription.text = hunt.description
         binding.huntImage.loadImage(hunt.thumbnailUrl, requireContext())
 
-        val huntData = "Start Date: ${hunt.startDate}\n" +
-                "End Date: ${hunt.endDate}\n" +
-                "Retroactive Contribution: ${hunt.retroactiveContribution}\n"
+        val huntData = "${getString(R.string.start_date)} ${hunt.startDate}\n" +
+                "${getString(R.string.end_date)} ${hunt.endDate}\n" +
+                "${getString(R.string.retroactive_contribution)} ${hunt.retroactiveContribution}\n"
         binding.huntData.text = huntData
 
         huntMarkerListView = binding.huntMarkerList

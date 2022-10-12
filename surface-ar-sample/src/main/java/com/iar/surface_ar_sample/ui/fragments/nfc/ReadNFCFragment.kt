@@ -63,7 +63,7 @@ class ReadNFCFragment : BaseFragment() {
                     if (!isWrite) {
                         val markerTag = nfcViewModel.readNfc(controller, intent)
                         markerTag?.let { tag ->
-                            val readMessage = "Read NFC successfully,  $tag"
+                            val readMessage = "${getString(R.string.read_nfc_success)}  $tag"
                             binding.readMessage.text = readMessage
                             nfcViewModel.getMarkerById(tag.id)
                             nfcViewModel.setIsWrite(true)
@@ -78,7 +78,7 @@ class ReadNFCFragment : BaseFragment() {
             val currentMarker = nfcViewModel.currentMarker
 
             if (currentMarker == null) {
-                Utils.showToastMessage("Could not find the marker", requireContext())
+                Utils.showToastMessage(getString(R.string.not_find_marker), requireContext())
                 return@setOnClickListener
             }
             (activity as MainActivity).let { activity ->
@@ -92,7 +92,7 @@ class ReadNFCFragment : BaseFragment() {
 
         nfcViewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
-                Utils.showToastMessage("There is error $error", requireContext())
+                Utils.showToastMessage("${getString(R.string.there_is_error)} $error", requireContext())
             }
         }
 
@@ -108,7 +108,7 @@ class ReadNFCFragment : BaseFragment() {
         Handler(Looper.getMainLooper()).post {
             if (progress in 0..99) {
                 binding.downloadOverlay.visibility = View.VISIBLE
-                val progressPercent = "$progress%"
+                val progressPercent = "$progress${getString(R.string.percent)}"
                 binding.progressText.text = progressPercent
             } else {
                 binding.downloadOverlay.visibility = View.GONE

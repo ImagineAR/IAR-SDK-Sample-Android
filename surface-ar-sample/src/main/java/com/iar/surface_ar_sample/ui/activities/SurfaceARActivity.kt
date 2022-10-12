@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.iar.common.Utils
 import com.iar.surface_ar_sample.R
@@ -22,7 +23,12 @@ class SurfaceARActivity : IARSurfaceActivity() {
         super.onCreate(savedInstanceState, persistentState)
         //provide your own customized UI/behaviour
         if (!this.isARCoreSupported()) {
-            println("This device does not support ARCore.")
+            println(getString(R.string.device_not_support_arcore))
+            Toast.makeText(
+                applicationContext,
+                getString(R.string.device_not_support_arcore),
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 

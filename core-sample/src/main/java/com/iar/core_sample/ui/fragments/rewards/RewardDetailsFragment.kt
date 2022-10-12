@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.iar.common.Utils.loadImage
+import com.iar.core_sample.R
 import com.iar.core_sample.databinding.RewardDetailsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,14 +41,14 @@ class RewardDetailsFragment : Fragment() {
         }
 
         binding.rewardType.text = reward.type
-        val name = "Reward Name: ${reward.name}"
+        val name = "${getString(R.string.reward_name)} ${reward.name}"
         binding.rewardName.text = name
-        val id = "Reward Id: ${reward.id}"
+        val id = "${R.string.reward_id} ${reward.id}"
         binding.rewardId.text = id
-        val action = "ActionButtonEnabled: ${reward.actionButtonEnabled}\n" +
-                "ActionButtonText: ${reward.actionButtonText}\nActionButtonUrl: ${reward.actionButtonUrl}"
+        val action = "${getString(R.string.action_button_enabled)} ${reward.actionButtonEnabled}\n" +
+                "${getString(R.string.action_button_text)} ${reward.actionButtonText}\n${getString(R.string.action_button_url)} ${reward.actionButtonUrl}"
         binding.rewardAction.text = action
-        val rewardReason = "Reward Reason: ${reward.rewardReasonType}"
+        val rewardReason = "${getString(R.string.reward_reason)} ${reward.rewardReasonType}"
         binding.rewardReason.text = rewardReason
 
         return binding.root

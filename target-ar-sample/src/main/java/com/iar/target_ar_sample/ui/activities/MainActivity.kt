@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
 import com.iar.common.PermissionUtils
+import com.iar.target_ar_sample.R
 import com.iar.target_ar_sample.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         if (hasDeniedAPermission) {
             Toast.makeText(
                 applicationContext,
-                "All permissions requested are necessary for the app to run properly.",
+                getString(R.string.permissions_requested),
                 Toast.LENGTH_LONG
             ).show()
 
