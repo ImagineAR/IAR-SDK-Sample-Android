@@ -12,9 +12,9 @@ android {
 
     defaultConfig {
         applicationId "com.example.core_sample"
-        minSdk 26
+        minSdk 21
         targetSdk 31
-        versionCode 10
+        versionCode 11
         versionName "1.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -89,8 +89,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // IAR dependencies
-    implementation 'com.github.ImagineAR:iar-core-android-beta:1.7.2'
-    implementation 'com.github.ImagineAR:iar-surface-android-beta:1.7.2'
+    implementation 'com.github.ImagineAR:iar-core-android-beta:1.7.4'
+    implementation 'com.github.ImagineAR:iar-surface-android-beta:1.7.4'
 
     //Preference
     implementation 'androidx.preference:preference:1.1.1'
